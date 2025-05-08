@@ -1,0 +1,1855 @@
+fileFormatVersion: 2
+guid: 4b2127e0e4a6f744c9183fba53ce2377
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 567516112080275257
+    second: human_200_0
+  - first:
+      213: -5739697585809397059
+    second: human_200_1
+  - first:
+      213: 6671063288396436939
+    second: human_200_2
+  - first:
+      213: 7154313778656648833
+    second: human_200_3
+  - first:
+      213: 3992941515627430843
+    second: human_200_4
+  - first:
+      213: -3582714966375314571
+    second: human_200_5
+  - first:
+      213: 3050570295450620300
+    second: human_200_6
+  - first:
+      213: -173486183185091563
+    second: human_200_7
+  - first:
+      213: 2701148586370802739
+    second: human_200_8
+  - first:
+      213: 189920336332066699
+    second: human_200_9
+  - first:
+      213: 3231742091040196447
+    second: human_200_10
+  - first:
+      213: -2257345804799927180
+    second: human_200_11
+  - first:
+      213: -7530849988251577195
+    second: human_200_12
+  - first:
+      213: -6363464814163968105
+    second: human_200_13
+  - first:
+      213: -4830674292861601756
+    second: human_200_14
+  - first:
+      213: -3104428597263241340
+    second: human_200_15
+  - first:
+      213: -8875380358432828206
+    second: human_200_16
+  - first:
+      213: -541889111634642571
+    second: human_200_17
+  - first:
+      213: -1628538365977451353
+    second: human_200_18
+  - first:
+      213: -6232849913336044878
+    second: human_200_19
+  - first:
+      213: 3592577386945682546
+    second: human_200_20
+  - first:
+      213: -955604412795176101
+    second: human_200_21
+  - first:
+      213: -8374428201145464192
+    second: human_200_22
+  - first:
+      213: 1657815553969115433
+    second: human_200_23
+  - first:
+      213: -5130402707996621837
+    second: human_200_24
+  - first:
+      213: 161284513072900642
+    second: human_200_25
+  - first:
+      213: -5015924593283133752
+    second: human_200_26
+  - first:
+      213: 2341397896667951651
+    second: human_200_27
+  - first:
+      213: -136817818847030334
+    second: human_200_28
+  - first:
+      213: 4300626416290169832
+    second: human_200_29
+  - first:
+      213: -101376575514641025
+    second: human_200_30
+  - first:
+      213: -6604983948972180448
+    second: human_200_31
+  - first:
+      213: 7256690292677248647
+    second: human_200_32
+  - first:
+      213: 4729913076161678092
+    second: human_200_33
+  - first:
+      213: -391832636435958871
+    second: human_200_34
+  - first:
+      213: 7563671189307193204
+    second: human_200_35
+  - first:
+      213: 3505406964734588216
+    second: human_200_36
+  - first:
+      213: -6331333526469134471
+    second: human_200_37
+  - first:
+      213: 5631009191712322857
+    second: human_200_38
+  - first:
+      213: 2428359338888454631
+    second: human_200_39
+  - first:
+      213: 8151792293075144741
+    second: human_200_40
+  - first:
+      213: -2112531272902987823
+    second: human_200_41
+  - first:
+      213: -2812825622378901214
+    second: human_200_42
+  - first:
+      213: -6234068682968466116
+    second: human_200_43
+  - first:
+      213: -6771927597156396756
+    second: human_200_44
+  - first:
+      213: 625900719544912616
+    second: human_200_45
+  - first:
+      213: 5938919805505501275
+    second: human_200_46
+  - first:
+      213: -3040394548938475151
+    second: human_200_47
+  - first:
+      213: -7324106446544746924
+    second: human_200_48
+  - first:
+      213: 2929525739840262912
+    second: human_200_49
+  - first:
+      213: -6883049302952950723
+    second: human_200_50
+  - first:
+      213: -5292206347084990467
+    second: human_200_51
+  - first:
+      213: 8570613666539369993
+    second: human_200_52
+  - first:
+      213: -5538600829054997646
+    second: human_200_53
+  - first:
+      213: 7671764665886831157
+    second: human_200_54
+  - first:
+      213: 3959671745336688120
+    second: human_200_55
+  - first:
+      213: 1920259891862987207
+    second: human_200_56
+  - first:
+      213: -8082851430052786383
+    second: human_200_57
+  - first:
+      213: -7546899170136662938
+    second: human_200_58
+  - first:
+      213: -6498478832601131743
+    second: human_200_59
+  - first:
+      213: 3744818643050175559
+    second: human_200_60
+  - first:
+      213: 1579600262807898525
+    second: human_200_61
+  - first:
+      213: 6201048799520537961
+    second: human_200_62
+  - first:
+      213: -5237124576666080246
+    second: human_200_63
+  - first:
+      213: 5818179891654717816
+    second: human_200_64
+  - first:
+      213: -6394605825349233432
+    second: human_200_65
+  - first:
+      213: -9021384484912631818
+    second: human_200_66
+  - first:
+      213: 8380624210707307791
+    second: human_200_67
+  - first:
+      213: -3742979887438823146
+    second: human_200_68
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: human_200_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 253
+        width: 21
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9370bd8a5e830e700800000000000000
+      internalID: 567516112080275257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 253
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbae9a7b47f7850b0800000000000000
+      internalID: -5739697585809397059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_2
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 253
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5d40b47b0649c50800000000000000
+      internalID: 6671063288396436939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 253
+        width: 21
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e138cf97a394360800000000000000
+      internalID: 7154313778656648833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_4
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 254
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb302e72727c96730800000000000000
+      internalID: 3992941515627430843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_5
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 252
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57b49b958b3a74ec0800000000000000
+      internalID: -3582714966375314571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_6
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 254
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8151b6658dc55a20800000000000000
+      internalID: 3050570295450620300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_7
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 252
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51470dd4c37a79df0800000000000000
+      internalID: -173486183185091563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_8
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 253
+        width: 24
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3342e28f3586c7520800000000000000
+      internalID: 2701148586370802739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 253
+        width: 23
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f02b62a8bb2a200800000000000000
+      internalID: 189920336332066699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_10
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 253
+        width: 24
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57012e2f4479dc20800000000000000
+      internalID: 3231742091040196447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_11
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 253
+        width: 23
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47c9ea153fb4ca0e0800000000000000
+      internalID: -2257345804799927180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_12
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 253
+        width: 21
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5949289f5db0d7790800000000000000
+      internalID: -7530849988251577195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_13
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 253
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79f3f03777e60b7a0800000000000000
+      internalID: -6363464814163968105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_14
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 253
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4287f5c135ff5fcb0800000000000000
+      internalID: -4830674292861601756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_15
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 253
+        width: 21
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f6f8583aadae4d0800000000000000
+      internalID: -3104428597263241340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_16
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 190
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d4d129769054d480800000000000000
+      internalID: -8875380358432828206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_17
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 190
+        width: 19
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5797d5959b2da78f0800000000000000
+      internalID: -541889111634642571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_18
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 190
+        width: 19
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a4a1d80cf44669e0800000000000000
+      internalID: -1628538365977451353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_19
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 190
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2e741e6087089a0800000000000000
+      internalID: -6232849913336044878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_20
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 190
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c9ff069166bd130800000000000000
+      internalID: 3592577386945682546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_21
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 190
+        width: 19
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b3c8d79d20db2f0800000000000000
+      internalID: -955604412795176101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_22
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 190
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08a06b1bbed08cb80800000000000000
+      internalID: -8374428201145464192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_23
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 190
+        width: 20
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 921527d767eb10710800000000000000
+      internalID: 1657815553969115433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_24
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 190
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f3c82b4be52dc8b0800000000000000
+      internalID: -5130402707996621837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_25
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 190
+        width: 37
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a6b7df86ffc3200800000000000000
+      internalID: 161284513072900642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_26
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 190
+        width: 65
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce863d682bd36ab0800000000000000
+      internalID: -5015924593283133752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_27
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 190
+        width: 67
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3227db45bf05e7020800000000000000
+      internalID: 2341397896667951651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_28
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 127
+        width: 20
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c3ddac2bece91ef0800000000000000
+      internalID: -136817818847030334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_29
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 127
+        width: 20
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e303ae90f4eeab30800000000000000
+      internalID: 4300626416290169832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_30
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 127
+        width: 20
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7d77ebaa86d79ef0800000000000000
+      internalID: -101376575514641025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_31
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 127
+        width: 20
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c3b56d7126654a0800000000000000
+      internalID: -6604983948972180448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_32
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 128
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7868d04af51f4b460800000000000000
+      internalID: 7256690292677248647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_33
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 126
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0b8713f1e604a140800000000000000
+      internalID: 4729913076161678092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_34
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 128
+        width: 21
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a374dd0b4eef8af0800000000000000
+      internalID: -391832636435958871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_35
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 126
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477f2846fde87f860800000000000000
+      internalID: 7563671189307193204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_36
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 125
+        width: 34
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8357f2edf05b5a030800000000000000
+      internalID: 3505406964734588216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_37
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 125
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9773948d3b59228a0800000000000000
+      internalID: -6331333526469134471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_38
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 125
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 925f8f6860d552e40800000000000000
+      internalID: 5631009191712322857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_39
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 125
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1e275e3f343b120800000000000000
+      internalID: 2428359338888454631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_40
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 64
+        width: 21
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 520d28786ebf02170800000000000000
+      internalID: 8151792293075144741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_41
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 72
+        width: 23
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dfa6bdfff7cea2e0800000000000000
+      internalID: -2112531272902987823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_42
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 70
+        width: 23
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2211dfadff5d6f8d0800000000000000
+      internalID: -2812825622378901214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_43
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 67
+        width: 23
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3df646ff832c79a0800000000000000
+      internalID: -6234068682968466116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_44
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 64
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2114d6cab74502a0800000000000000
+      internalID: -6771927597156396756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_45
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 64
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eac2256365afa800800000000000000
+      internalID: 625900719544912616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_46
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 64
+        width: 35
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b58fface8184b6250800000000000000
+      internalID: 5938919805505501275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_47
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 64
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 179fc7534495ec5d0800000000000000
+      internalID: -3040394548938475151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_48
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 64
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4564d8cddfb8b5a90800000000000000
+      internalID: -7324106446544746924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_49
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 64
+        width: 25
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 003da8b9324c7a820800000000000000
+      internalID: 2929525739840262912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_50
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 64
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d344dfd702f7a70a0800000000000000
+      internalID: -6883049302952950723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_51
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 64
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df77eebdd5e4e86b0800000000000000
+      internalID: -5292206347084990467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_52
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 64
+        width: 25
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906ff2d78bfe0f670800000000000000
+      internalID: 8570613666539369993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_53
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 64
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27b2e7704efe223b0800000000000000
+      internalID: -5538600829054997646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_54
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 64
+        width: 25
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532f39e1155977a60800000000000000
+      internalID: 7671764665886831157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_55
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 64
+        width: 25
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fdb1ff197493f630800000000000000
+      internalID: 3959671745336688120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_56
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1
+        width: 23
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c16cea923226aa10800000000000000
+      internalID: 1920259891862987207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_57
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1
+        width: 23
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f027bf271f3df80800000000000000
+      internalID: -8082851430052786383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_58
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 1
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c5050a037044790800000000000000
+      internalID: -7546899170136662938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_59
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 1
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1251a62aee3c0d5a0800000000000000
+      internalID: -6498478832601131743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_60
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 1
+        width: 23
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74c144707b448f330800000000000000
+      internalID: 3744818643050175559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_61
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 1
+        width: 23
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9947c7e11edbe510800000000000000
+      internalID: 1579600262807898525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_62
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 1
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96db842570d8e0650800000000000000
+      internalID: 6201048799520537961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_63
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 1
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0ca95be1fef157b0800000000000000
+      internalID: -5237124576666080246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_64
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 1
+        width: 50
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 871766119c35eb050800000000000000
+      internalID: 5818179891654717816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_65
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 1
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e45a65c1ebc147a0800000000000000
+      internalID: -6394605825349233432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_66
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 1
+        width: 50
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ffef8abb9a9dc280800000000000000
+      internalID: -9021384484912631818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_67
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 1
+        width: 23
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0d5f333155fd4470800000000000000
+      internalID: 8380624210707307791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: human_200_68
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 1
+        width: 24
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61107cf9f934e0cc0800000000000000
+      internalID: -3742979887438823146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
