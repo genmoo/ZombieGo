@@ -347,7 +347,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ep0_scene22_zombie_0: 1614896674105051893
+      ep0_scene22_zombie_1: -5654561049997439547
+      ep0_scene22_zombie_2: 1511640954879000087
+      ep0_scene22_zombie_3: 7577268268801275545
+      ep0_scene22_zombie_4: -7326393489243468629
+      ep0_scene22_zombie_5: -1998608883718472795
+      ep0_scene22_zombie_6: -7741882098224341939
+      ep0_scene22_zombie_7: -3071809188596212303
+      ep0_scene22_zombie_8: -1222429232505734680
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

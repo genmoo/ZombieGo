@@ -797,7 +797,34 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cutscene_Reboot_CrowdZombie_0_0: -4207244307318304928
+      Cutscene_Reboot_CrowdZombie_0_1: 5644824967755515254
+      Cutscene_Reboot_CrowdZombie_0_10: 5509359552504939676
+      Cutscene_Reboot_CrowdZombie_0_11: 434608734654459687
+      Cutscene_Reboot_CrowdZombie_0_12: -4366686565102504726
+      Cutscene_Reboot_CrowdZombie_0_13: 8072912679262448690
+      Cutscene_Reboot_CrowdZombie_0_14: -1385912707270647990
+      Cutscene_Reboot_CrowdZombie_0_15: -6374864549589971019
+      Cutscene_Reboot_CrowdZombie_0_16: 7936599327422021063
+      Cutscene_Reboot_CrowdZombie_0_17: 6118373900761120593
+      Cutscene_Reboot_CrowdZombie_0_18: -8013656663974822588
+      Cutscene_Reboot_CrowdZombie_0_19: 2335259103921270531
+      Cutscene_Reboot_CrowdZombie_0_2: -4201445899835888147
+      Cutscene_Reboot_CrowdZombie_0_20: -8860791543453932333
+      Cutscene_Reboot_CrowdZombie_0_21: -1392709275195737101
+      Cutscene_Reboot_CrowdZombie_0_22: 9106882635721183827
+      Cutscene_Reboot_CrowdZombie_0_23: 171984826774994201
+      Cutscene_Reboot_CrowdZombie_0_24: -6223570125101622505
+      Cutscene_Reboot_CrowdZombie_0_25: 1426173263077253716
+      Cutscene_Reboot_CrowdZombie_0_26: 3458571844618792648
+      Cutscene_Reboot_CrowdZombie_0_3: 6073409987068756240
+      Cutscene_Reboot_CrowdZombie_0_4: -6839549093435980149
+      Cutscene_Reboot_CrowdZombie_0_5: 8316703119610889718
+      Cutscene_Reboot_CrowdZombie_0_6: -7084830433756252485
+      Cutscene_Reboot_CrowdZombie_0_7: -8354992845957359883
+      Cutscene_Reboot_CrowdZombie_0_8: 3225483576144774486
+      Cutscene_Reboot_CrowdZombie_0_9: -6116689978690056960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

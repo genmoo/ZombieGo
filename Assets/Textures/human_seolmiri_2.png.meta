@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      human_seolmiri_2_0: 5033747257983563688
+      human_seolmiri_2_1: 5698797719665854974
+      human_seolmiri_2_10: -5978001442244305538
+      human_seolmiri_2_11: 5625402829353354168
+      human_seolmiri_2_2: -1569471760303440859
+      human_seolmiri_2_3: -6559809058414503523
+      human_seolmiri_2_4: 7477220595341021788
+      human_seolmiri_2_5: 781761862583521399
+      human_seolmiri_2_6: -5924815630355528213
+      human_seolmiri_2_7: -8370976277992577549
+      human_seolmiri_2_8: -4651843392463136582
+      human_seolmiri_2_9: 5276207260031517605
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

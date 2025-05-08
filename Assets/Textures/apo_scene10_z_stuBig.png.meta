@@ -497,7 +497,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      apo_scene10_z_stuBig_0: -4147092828045255697
+      apo_scene10_z_stuBig_1: -8336422650822377889
+      apo_scene10_z_stuBig_10: -1302638616292911561
+      apo_scene10_z_stuBig_11: -1293094584112079115
+      apo_scene10_z_stuBig_12: -1233207297994995907
+      apo_scene10_z_stuBig_13: -682088723255650669
+      apo_scene10_z_stuBig_14: 6093832259344454985
+      apo_scene10_z_stuBig_2: -2204979375133832098
+      apo_scene10_z_stuBig_3: -3315461640802680685
+      apo_scene10_z_stuBig_4: 1278372807401902488
+      apo_scene10_z_stuBig_5: -6194303677649955715
+      apo_scene10_z_stuBig_6: 7011049817486782354
+      apo_scene10_z_stuBig_7: 7359328272345121883
+      apo_scene10_z_stuBig_8: -6288475417047962876
+      apo_scene10_z_stuBig_9: 2170976446126356270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

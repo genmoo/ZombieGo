@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ZH_Night_ClassRoom_0: 6944248569741462649
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

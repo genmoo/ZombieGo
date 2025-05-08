@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HeroesEp4H_C_Miri_0: -8258079236214468529
+      HeroesEp4H_C_Miri_1: 1114223290993199319
+      HeroesEp4H_C_Miri_2: -1334587698581994319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
