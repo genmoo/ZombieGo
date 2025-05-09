@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 113faddf60f8e974487dcf3a3b83ea9b
+guid: 38612d80d15595a4b85e241183e908e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2908724979216959823
-    second: waiting_nolimit_0
-  - first:
-      213: 1401170780915583854
-    second: waiting_nolimit_1
-  - first:
-      213: -2134460270514268901
-    second: waiting_nolimit_2
-  - first:
-      213: 6590944415661497979
-    second: waiting_nolimit_3
+      213: -515801719305043453
+    second: Obj_2062_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: waiting_nolimit_0
+      name: Obj_2062_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 160
+        width: 58
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f49488f15fddd5820800000000000000
-      internalID: 2908724979216959823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_nolimit_1
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 0
-        width: 22
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e6b412ac665f17310800000000000000
-      internalID: 1401170780915583854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_nolimit_2
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 0
-        width: 22
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b1510dc51bfd062e0800000000000000
-      internalID: -2134460270514268901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_nolimit_3
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 0
-        width: 60
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7e19d5960db77b50800000000000000
-      internalID: 6590944415661497979
+      spriteID: 3028942b11187d8f0800000000000000
+      internalID: -515801719305043453
       vertices: []
       indices: 
       edges: []
@@ -209,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Obj_2062_0: -515801719305043453
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
