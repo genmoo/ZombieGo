@@ -497,7 +497,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ep3Hard_C_Yuri_0: -7384080949071583817
+      Ep3Hard_C_Yuri_1: 7369657057069342938
+      Ep3Hard_C_Yuri_10: 8768630529142240935
+      Ep3Hard_C_Yuri_11: 4983902746004033490
+      Ep3Hard_C_Yuri_12: 2190200916001044064
+      Ep3Hard_C_Yuri_13: -4292212937329398429
+      Ep3Hard_C_Yuri_14: -1395051495285465587
+      Ep3Hard_C_Yuri_2: -7643788834516482222
+      Ep3Hard_C_Yuri_3: 1595585261346263256
+      Ep3Hard_C_Yuri_4: -5987503523474381545
+      Ep3Hard_C_Yuri_5: -6283528129339306869
+      Ep3Hard_C_Yuri_6: -6464817624791959866
+      Ep3Hard_C_Yuri_7: -1165568567820465946
+      Ep3Hard_C_Yuri_8: -652172104655091016
+      Ep3Hard_C_Yuri_9: -3646804258196101709
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

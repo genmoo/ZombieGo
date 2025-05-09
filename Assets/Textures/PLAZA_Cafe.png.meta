@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PLAZA_Cafe_0: -4564088656955658141
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

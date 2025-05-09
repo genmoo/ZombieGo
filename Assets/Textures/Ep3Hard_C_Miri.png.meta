@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ep3Hard_C_Miri_0: 8683254103273862869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
