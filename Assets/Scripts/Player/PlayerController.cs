@@ -22,8 +22,22 @@ public class PlayerController : MonoBehaviour
     bool isMoving = false;
     MoveDir dir = MoveDir.None;
 
+    void Awake()
+    {
+        if (grid == null)
+        {
+            grid = MapManager.Instance.grid;
+        }
+    }
+
     void Start()
     {
+
+        if (grid == null)
+        {
+            grid = MapManager.Instance.grid;
+        }
+        
         Vector3 pos = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0.5f);
         transform.position = pos;
     }
