@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b60ee1ee8c9fd4a469eb1537f2651ced
+guid: cdbfda4eb3095c848a7acb569e77a289
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1241417173210409284
-    second: waiting_100_0
+      213: -8603846279157950535
+    second: SpotLightMask_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,11 +100,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: waiting_100_0
+      name: SpotLightMask_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 224
         width: 32
         height: 32
       alignment: 0
@@ -115,14 +115,542 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb659b488a995cee0800000000000000
-      internalID: -1241417173210409284
+      spriteID: 9b759bce46ff89880800000000000000
+      internalID: -8603846279157950535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_1
+      name: SpotLightMask_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8d5cffc9855a5469827b59d20df14c
+      internalID: 1396752496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 595176d8d88aeba4a9821521ce0b7326
+      internalID: 934640402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b9d3f5585fd5e4bba4821c744cb7b3
+      internalID: 1371686230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d89018678632324492c7b503949630c
+      internalID: 1504737732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de3ff04cd6026a4fa2a4d4c0f9ee5cc
+      internalID: -1835379118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3e07058c720a2b4ebfa062f5d9e3846
+      internalID: -872307386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e3c1316de483b841b7b67328221f1db
+      internalID: -478659425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d74181b67ecce48a23d8afe2481283
+      internalID: -2141856869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e2c2df8ca7c3045951d43e4290d7fe
+      internalID: -609020878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eab30fc9c02d294c9be8128137dcbee
+      internalID: 1417794668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ce56e7a6557d147ad8a84b4ad24311
+      internalID: 1765380592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2a59181099fff749baa06ae99caed6f
+      internalID: 2007311131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ef907bae6da8a4383cdf42c68c3b00
+      internalID: 1065251281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c120354b79d864fafb9a40d7df8425
+      internalID: 455345281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 653621cd119d6d64a9f5969721270767
+      internalID: -961619753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219de3ac78582834d84f79f88b586c90
+      internalID: -373737716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541f1ec766e2fe94eabea66cc30d2217
+      internalID: 430882477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf4bb4743de4a740aea183679390fa2
+      internalID: 788174558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83c393212923725459ce75eb02b6f82f
+      internalID: 1264744395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647a05c563f41e643bcd768bbf822996
+      internalID: 1158396308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a0d32a015e90f94eb162c40454238e8
+      internalID: 1381829910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_22
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a7699d2fefe604a86d36f291462b2b
+      internalID: 506159631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8306eeec0de200f43a95edab1e9e674c
+      internalID: 1095162414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01439f12542b77848840f85cc5551f40
+      internalID: 1825597209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpotLightMask_25
       rect:
         serializedVersion: 2
         x: 32
@@ -137,14 +665,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b419d23f02a9cb4e8dd68f701ccca72
-      internalID: -94928719
+      spriteID: 1fe5dc78ee22016419f646606532e9fd
+      internalID: 1598193592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_2
+      name: SpotLightMask_26
       rect:
         serializedVersion: 2
         x: 64
@@ -159,14 +687,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15913a97fac576f4a9e4f64dcc4ec749
-      internalID: -147622628
+      spriteID: f384b99e94b89e5429af33f3de9d935d
+      internalID: -565070515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_3
+      name: SpotLightMask_27
       rect:
         serializedVersion: 2
         x: 96
@@ -181,14 +709,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4599f91ea62bfdb44adc9a1519f281a3
-      internalID: 1383843803
+      spriteID: 0f38e99a793b5274aa60d4ea3c592d60
+      internalID: -1640199074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_4
+      name: SpotLightMask_28
       rect:
         serializedVersion: 2
         x: 128
@@ -203,14 +731,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24222d0abe600c74ab9d550528ed8a52
-      internalID: -1106548967
+      spriteID: 6520b51c2bcbc4a4d82896878bdb5197
+      internalID: -507654011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_5
+      name: SpotLightMask_29
       rect:
         serializedVersion: 2
         x: 160
@@ -225,14 +753,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e2a286610bca3b4aa09c9f8de9c1944
-      internalID: 279202197
+      spriteID: 306a3f12ae0d0a54c9892ddc9f0d28b2
+      internalID: 1158463496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_6
+      name: SpotLightMask_30
       rect:
         serializedVersion: 2
         x: 192
@@ -247,14 +775,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d21bbd2d4ab5eb14c921c0136979d18a
-      internalID: 948839559
+      spriteID: 71a2c229435e8c24e968b925332f5567
+      internalID: 294229530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_7
+      name: SpotLightMask_31
       rect:
         serializedVersion: 2
         x: 224
@@ -269,190 +797,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21bb8920139ca5d4cbf2f35b50dc74ef
-      internalID: -1186145726
+      spriteID: 586c68f21a69dae4d987d61ec49c6223
+      internalID: 250732565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7eca929661b6234ba3ef96c0089f102
-      internalID: -646414289
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7665cde2e43112842aa513cf16e1eeb6
-      internalID: 855396822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ee15ab05be0d27f46838b4553bc3f089
-      internalID: -2058813856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_11
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9254f609c25ff4b4d904c5fca4a6e3bc
-      internalID: -101836974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_12
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69e8a66c37d71b54d8b4f069b854fc87
-      internalID: -835233089
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_13
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4ab6bd8a87739a4aa92eca636f8b638
-      internalID: 331204871
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_14
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 183c19d0391657d498a209839c0e976f
-      internalID: 1360775690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_15
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27345451bf987bb43853bc88ee9a6d2e
-      internalID: -1169949048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_16
+      name: SpotLightMask_32
       rect:
         serializedVersion: 2
         x: 0
@@ -467,14 +819,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 688f232005e1e604695948931e8b47fb
-      internalID: -521561423
+      spriteID: 139c5e3329d71194196e35c370af2bb6
+      internalID: 223174925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_17
+      name: SpotLightMask_33
       rect:
         serializedVersion: 2
         x: 32
@@ -489,14 +841,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a6aeec501962664eb315d2f74351f91
-      internalID: -485435882
+      spriteID: d620deb4704043842b152158b3f0ed60
+      internalID: -1111688177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_18
+      name: SpotLightMask_34
       rect:
         serializedVersion: 2
         x: 64
@@ -511,14 +863,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7623ff591fbbba4fb4732c9ae4181e2
-      internalID: -1785054596
+      spriteID: 061b590a22b41614c9ec40395f32c116
+      internalID: -1925234821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_19
+      name: SpotLightMask_35
       rect:
         serializedVersion: 2
         x: 96
@@ -533,14 +885,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 600a8a7a14acb1f48a35c26a66daefe3
-      internalID: -1332643831
+      spriteID: c87092eb3e3ffb043b467f82c73b2220
+      internalID: 431861948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_20
+      name: SpotLightMask_36
       rect:
         serializedVersion: 2
         x: 128
@@ -555,14 +907,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14b0ac1926c21184897aeb3e0955736d
-      internalID: 1450464175
+      spriteID: cb06ab558719b1245b271b7474f23692
+      internalID: -1959015078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_21
+      name: SpotLightMask_37
       rect:
         serializedVersion: 2
         x: 160
@@ -577,14 +929,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e04673722c9e1c74aa5f331f6a27adef
-      internalID: -793496496
+      spriteID: 697482ca96f415e4faa2b5ec44347d04
+      internalID: 2097248272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_22
+      name: SpotLightMask_38
       rect:
         serializedVersion: 2
         x: 192
@@ -599,14 +951,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b57f485be1d3454ebafdaec06abbd80
-      internalID: -690371354
+      spriteID: 32d18224c8691f14aad972eb26cbdcfb
+      internalID: 137136835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_23
+      name: SpotLightMask_39
       rect:
         serializedVersion: 2
         x: 224
@@ -621,190 +973,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14828d8b6fabef84899c2fe72ea24e59
-      internalID: -1331184423
+      spriteID: 6dc0fdf42f583fa41add800aeeb4cdcf
+      internalID: -1152274025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_24
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a221abd3d81644488f37aba28f208ec
-      internalID: -848569391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_25
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd808b1bf70914d4282dafd712caa710
-      internalID: -1438559171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_26
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c030499786acd14cb8ac7a5d31bb1a4
-      internalID: 2059339025
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_27
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c12291df556b5c347bb4e78fae85aeea
-      internalID: -122953408
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_28
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1965e5d6c5c8403469482b2075ff2f29
-      internalID: -355553016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_29
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15c36136b1464814baa1631d3abf3f50
-      internalID: -1908142846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_30
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aacb7633888ef874f8cf780d85b00646
-      internalID: -649080047
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_31
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7efb9801dcfb8844a5b7cbbfabba79c
-      internalID: -621931991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_32
+      name: SpotLightMask_40
       rect:
         serializedVersion: 2
         x: 0
@@ -819,14 +995,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f559eabf318d194aa611253da84eea7
-      internalID: 2013145848
+      spriteID: dbd2d70a2bec8f240aaacfe58b653454
+      internalID: -1650339205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_33
+      name: SpotLightMask_41
       rect:
         serializedVersion: 2
         x: 32
@@ -841,14 +1017,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2004cc12a1fe3824ea94a64db478dc41
-      internalID: 1376090525
+      spriteID: 4600271f960b37a45bd7288cd86b9017
+      internalID: 1086285553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_34
+      name: SpotLightMask_42
       rect:
         serializedVersion: 2
         x: 64
@@ -863,14 +1039,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc8030e86c6bbb7458d53de5da8d016a
-      internalID: 167386950
+      spriteID: b55705a8b97fcfa499c5cc7ddf38be3c
+      internalID: 466435380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_35
+      name: SpotLightMask_43
       rect:
         serializedVersion: 2
         x: 96
@@ -885,14 +1061,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7d5bcc098624da4e883b9dc676c3618
-      internalID: 816874352
+      spriteID: cd529795ea40732488844f36686f0eac
+      internalID: 1628998764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_36
+      name: SpotLightMask_44
       rect:
         serializedVersion: 2
         x: 128
@@ -907,14 +1083,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 563e9d6e3ae829f40a0019576f04c81c
-      internalID: -561628028
+      spriteID: 4cc12f24c2f3e674497fb00442e1d2ca
+      internalID: -1111660968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_37
+      name: SpotLightMask_45
       rect:
         serializedVersion: 2
         x: 160
@@ -929,14 +1105,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4acd49be4abb7a744a982f9af30e9500
-      internalID: 870137275
+      spriteID: f28980e04e108354b828a71e91de4cf9
+      internalID: 288940041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_38
+      name: SpotLightMask_46
       rect:
         serializedVersion: 2
         x: 192
@@ -951,14 +1127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f69069a0f2e18742ad9484d463d5ead
-      internalID: 1914662794
+      spriteID: d62b9a2cbc372c3428062fe43818cff6
+      internalID: -1808521733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_39
+      name: SpotLightMask_47
       rect:
         serializedVersion: 2
         x: 224
@@ -973,190 +1149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67017af511d8cee41b3dade53e6dc56a
-      internalID: -93089015
+      spriteID: 1b97b1a5505058f4f9cf178c573e3c43
+      internalID: -704296402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_40
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17c6e18056d660541995a044c60124da
-      internalID: 741145657
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_41
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d37f88e431a8054c9cf4c846a731154
-      internalID: -790755009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_42
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ddc7849f35d3d4947aecef61fad6146a
-      internalID: -1161695314
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_43
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94836ba6825009547900d28ee88fab55
-      internalID: 1021700632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_44
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bab14bc8ac5f21843b9a92dffba9490d
-      internalID: -1161344555
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_45
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70c2fad092fdf244ba02bce1be6cd913
-      internalID: -1955492346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_46
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1faac4f56e71e624db9b34a9156bbdda
-      internalID: -1518982805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_47
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3323f613c807514091100db06bfdbb7
-      internalID: 609887383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_48
+      name: SpotLightMask_48
       rect:
         serializedVersion: 2
         x: 0
@@ -1171,14 +1171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a633b412f2763646bf6b850dec5046e
-      internalID: -1052046357
+      spriteID: c674432b5199f5d40b36770030a658ee
+      internalID: 881704098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_49
+      name: SpotLightMask_49
       rect:
         serializedVersion: 2
         x: 32
@@ -1193,14 +1193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d56809262a9b17d4984c0c2ed09ca209
-      internalID: 1229793235
+      spriteID: 3bc634f186e862c48a181152eebae73f
+      internalID: -1738355343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_50
+      name: SpotLightMask_50
       rect:
         serializedVersion: 2
         x: 64
@@ -1215,14 +1215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1c9b79d30d299a4c87fb366ebeb1cb9
-      internalID: 1672721566
+      spriteID: 4d70c034c228dce42a7aeffbd6076473
+      internalID: 861293327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_51
+      name: SpotLightMask_51
       rect:
         serializedVersion: 2
         x: 96
@@ -1237,14 +1237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e8f22450f62a1f4bba23bfe055bfd78
-      internalID: -763689312
+      spriteID: cca474d5a2e94944dac438b870e9b3c9
+      internalID: 1818037424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_52
+      name: SpotLightMask_52
       rect:
         serializedVersion: 2
         x: 128
@@ -1259,14 +1259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ea285f8ef6bed746be06d41cda62cb1
-      internalID: 619585204
+      spriteID: 6d4ffacf1b979614b8aca86cc5a22a39
+      internalID: -1870696748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_53
+      name: SpotLightMask_53
       rect:
         serializedVersion: 2
         x: 160
@@ -1281,14 +1281,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c13325b79549fc4bbae074d8e38b747
-      internalID: -2094875383
+      spriteID: bed39147d39c842419f3a038d83f4fbf
+      internalID: -602847630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_54
+      name: SpotLightMask_54
       rect:
         serializedVersion: 2
         x: 192
@@ -1303,14 +1303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88f567004c50be94bb1551c6311f6a40
-      internalID: 472281928
+      spriteID: b9155c2af9baa734a8d8737f4a9399d9
+      internalID: 1026063718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_55
+      name: SpotLightMask_55
       rect:
         serializedVersion: 2
         x: 224
@@ -1325,190 +1325,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19b6fcd7bb8aea041b4e7e642d2ac9c6
-      internalID: -24203967
+      spriteID: ec4e71a5f44b4ec48928c6721eccbf50
+      internalID: -1260607048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_56
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c9e5da2a9aae184388aa00a5537bc30
-      internalID: -1766010062
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_57
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba8982ea448d0ac4199d5e2315d9a2f7
-      internalID: 2053556023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_58
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69b58dffb02d24544ab8c35cbc0aa9f2
-      internalID: 354881402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_59
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68eddad89204ad94e8c89bb8ed5cabe9
-      internalID: 944624239
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_60
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4dd32a8cebc714b45b4e674f72aba1f1
-      internalID: 1745011068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_61
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7808e8e0d4e59c14c8c45561e0552a70
-      internalID: 1240736356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_62
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53e3b0b5c9aa75343a46608af27a485a
-      internalID: -1527008307
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_63
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 616e2ce741a01a341a667db96f4096fe
-      internalID: -1651419727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_64
+      name: SpotLightMask_56
       rect:
         serializedVersion: 2
         x: 0
@@ -1523,14 +1347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e4972ea5acdd504c9e201af21333c67
-      internalID: -1139101825
+      spriteID: bfe3b81569ee8ae429447bcd423e74fe
+      internalID: 5790591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_65
+      name: SpotLightMask_57
       rect:
         serializedVersion: 2
         x: 32
@@ -1545,14 +1369,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa22085cf10ecbb40842a061aa6d2f87
-      internalID: -1768837130
+      spriteID: e17d84a0efe623546a307302d24f3839
+      internalID: -528564085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_66
+      name: SpotLightMask_58
       rect:
         serializedVersion: 2
         x: 64
@@ -1567,14 +1391,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caccc97d19ade704183a16174d072abc
-      internalID: 1417038204
+      spriteID: f4b217aae0ea8374d8b9288cb0ce698d
+      internalID: -1325342241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_67
+      name: SpotLightMask_59
       rect:
         serializedVersion: 2
         x: 96
@@ -1589,14 +1413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 933f32dc273eb0c4ea4a4b1807e19bc4
-      internalID: -1036011343
+      spriteID: 8eb761bef528bcb4a8bffb3f83a2eb67
+      internalID: 2091602069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_68
+      name: SpotLightMask_60
       rect:
         serializedVersion: 2
         x: 128
@@ -1611,14 +1435,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5891b1e8c84ad07438f7662db04ea59f
-      internalID: 897338217
+      spriteID: 4920138db76448a40948772a164d1c16
+      internalID: 1250103398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_69
+      name: SpotLightMask_61
       rect:
         serializedVersion: 2
         x: 160
@@ -1633,14 +1457,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8de2935264653741aa8a3b858c9e21c
-      internalID: -716649703
+      spriteID: a8608c0c0ab6f234497dd0c5386a0a23
+      internalID: 1678541909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_70
+      name: SpotLightMask_62
       rect:
         serializedVersion: 2
         x: 192
@@ -1655,14 +1479,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 888b58f02b5ae1544a48d1dc670876ef
-      internalID: 1779439048
+      spriteID: 84ebf0f9ccbe34142b7fa23b8d0e8fbf
+      internalID: 1494228918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: waiting_100_71
+      name: SpotLightMask_63
       rect:
         serializedVersion: 2
         x: 224
@@ -1677,184 +1501,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 451d1a4a178b595459a843160f38ba5a
-      internalID: -819422556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_72
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81590bc47854e504dadfe92ed36052bf
-      internalID: 472746299
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_73
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d941ad6153771e34fb938f69b82fb645
-      internalID: 1064896268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_74
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cde02ba3c029eb4cb285451be0ed78c
-      internalID: 2075508956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_75
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0d2b455f869eda4bbbd1d1501ed2398
-      internalID: -859861717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_76
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0def50080cca1bd48918c300a43fb3b1
-      internalID: 425639074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_77
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e5d62a7c02cdf94db192273255388aa
-      internalID: 1877213450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_78
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88fe1f21f9e24f2448fea42a8992895b
-      internalID: 968738523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: waiting_100_79
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2be37e2c1342cab4c8e178d81631201d
-      internalID: 1028913334
+      spriteID: d1248e0dc2a663b4594a4ccc9b48b54a
+      internalID: 1941777741
       vertices: []
       indices: 
       edges: []
@@ -1863,7 +1511,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 73e2ee8e9cc52aa40b956bce1bb53894
+    spriteID: 110fcb6c50b1f4541b777a340c0ab64a
     internalID: 0
     vertices: []
     indices: 
@@ -1873,88 +1521,72 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":16.0,"y":5.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":8.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      waiting_100_0: -1241417173210409284
-      waiting_100_1: -94928719
-      waiting_100_10: -2058813856
-      waiting_100_11: -101836974
-      waiting_100_12: -835233089
-      waiting_100_13: 331204871
-      waiting_100_14: 1360775690
-      waiting_100_15: -1169949048
-      waiting_100_16: -521561423
-      waiting_100_17: -485435882
-      waiting_100_18: -1785054596
-      waiting_100_19: -1332643831
-      waiting_100_2: -147622628
-      waiting_100_20: 1450464175
-      waiting_100_21: -793496496
-      waiting_100_22: -690371354
-      waiting_100_23: -1331184423
-      waiting_100_24: -848569391
-      waiting_100_25: -1438559171
-      waiting_100_26: 2059339025
-      waiting_100_27: -122953408
-      waiting_100_28: -355553016
-      waiting_100_29: -1908142846
-      waiting_100_3: 1383843803
-      waiting_100_30: -649080047
-      waiting_100_31: -621931991
-      waiting_100_32: 2013145848
-      waiting_100_33: 1376090525
-      waiting_100_34: 167386950
-      waiting_100_35: 816874352
-      waiting_100_36: -561628028
-      waiting_100_37: 870137275
-      waiting_100_38: 1914662794
-      waiting_100_39: -93089015
-      waiting_100_4: -1106548967
-      waiting_100_40: 741145657
-      waiting_100_41: -790755009
-      waiting_100_42: -1161695314
-      waiting_100_43: 1021700632
-      waiting_100_44: -1161344555
-      waiting_100_45: -1955492346
-      waiting_100_46: -1518982805
-      waiting_100_47: 609887383
-      waiting_100_48: -1052046357
-      waiting_100_49: 1229793235
-      waiting_100_5: 279202197
-      waiting_100_50: 1672721566
-      waiting_100_51: -763689312
-      waiting_100_52: 619585204
-      waiting_100_53: -2094875383
-      waiting_100_54: 472281928
-      waiting_100_55: -24203967
-      waiting_100_56: -1766010062
-      waiting_100_57: 2053556023
-      waiting_100_58: 354881402
-      waiting_100_59: 944624239
-      waiting_100_6: 948839559
-      waiting_100_60: 1745011068
-      waiting_100_61: 1240736356
-      waiting_100_62: -1527008307
-      waiting_100_63: -1651419727
-      waiting_100_64: -1139101825
-      waiting_100_65: -1768837130
-      waiting_100_66: 1417038204
-      waiting_100_67: -1036011343
-      waiting_100_68: 897338217
-      waiting_100_69: -716649703
-      waiting_100_7: -1186145726
-      waiting_100_70: 1779439048
-      waiting_100_71: -819422556
-      waiting_100_72: 472746299
-      waiting_100_73: 1064896268
-      waiting_100_74: 2075508956
-      waiting_100_75: -859861717
-      waiting_100_76: 425639074
-      waiting_100_77: 1877213450
-      waiting_100_78: 968738523
-      waiting_100_79: 1028913334
-      waiting_100_8: -646414289
-      waiting_100_9: 855396822
+      SpotLightMask_0: -8603846279157950535
+      SpotLightMask_1: 1396752496
+      SpotLightMask_10: 1417794668
+      SpotLightMask_11: 1765380592
+      SpotLightMask_12: 2007311131
+      SpotLightMask_13: 1065251281
+      SpotLightMask_14: 455345281
+      SpotLightMask_15: -961619753
+      SpotLightMask_16: -373737716
+      SpotLightMask_17: 430882477
+      SpotLightMask_18: 788174558
+      SpotLightMask_19: 1264744395
+      SpotLightMask_2: 934640402
+      SpotLightMask_20: 1158396308
+      SpotLightMask_21: 1381829910
+      SpotLightMask_22: 506159631
+      SpotLightMask_23: 1095162414
+      SpotLightMask_24: 1825597209
+      SpotLightMask_25: 1598193592
+      SpotLightMask_26: -565070515
+      SpotLightMask_27: -1640199074
+      SpotLightMask_28: -507654011
+      SpotLightMask_29: 1158463496
+      SpotLightMask_3: 1371686230
+      SpotLightMask_30: 294229530
+      SpotLightMask_31: 250732565
+      SpotLightMask_32: 223174925
+      SpotLightMask_33: -1111688177
+      SpotLightMask_34: -1925234821
+      SpotLightMask_35: 431861948
+      SpotLightMask_36: -1959015078
+      SpotLightMask_37: 2097248272
+      SpotLightMask_38: 137136835
+      SpotLightMask_39: -1152274025
+      SpotLightMask_4: 1504737732
+      SpotLightMask_40: -1650339205
+      SpotLightMask_41: 1086285553
+      SpotLightMask_42: 466435380
+      SpotLightMask_43: 1628998764
+      SpotLightMask_44: -1111660968
+      SpotLightMask_45: 288940041
+      SpotLightMask_46: -1808521733
+      SpotLightMask_47: -704296402
+      SpotLightMask_48: 881704098
+      SpotLightMask_49: -1738355343
+      SpotLightMask_5: -1835379118
+      SpotLightMask_50: 861293327
+      SpotLightMask_51: 1818037424
+      SpotLightMask_52: -1870696748
+      SpotLightMask_53: -602847630
+      SpotLightMask_54: 1026063718
+      SpotLightMask_55: -1260607048
+      SpotLightMask_56: 5790591
+      SpotLightMask_57: -528564085
+      SpotLightMask_58: -1325342241
+      SpotLightMask_59: 2091602069
+      SpotLightMask_6: -872307386
+      SpotLightMask_60: 1250103398
+      SpotLightMask_61: 1678541909
+      SpotLightMask_62: 1494228918
+      SpotLightMask_63: 1941777741
+      SpotLightMask_7: -478659425
+      SpotLightMask_8: -2141856869
+      SpotLightMask_9: -609020878
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
