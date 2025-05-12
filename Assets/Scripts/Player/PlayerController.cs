@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public enum MoveDir
 {
@@ -10,44 +11,44 @@ public enum MoveDir
     Right
 }
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     public Grid grid;
-    public float speed;
+    public Tilemap wallTilemap;
+    public float speed = 5f;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    
-    Vector3Int cellPos = Vector3Int.zero;
-    Vector2 lastMoveInput = Vector2.down;
-    bool isMoving = false;
-    MoveDir dir = MoveDir.None;
 
-    void Awake()
+    private Rigidbody2D rb;
+    private Vector3Int cellPos = Vector3Int.zero;
+    private Vector2 lastMoveInput = Vector2.down;
+    private bool isMoving = false;
+    private MoveDir dir = MoveDir.None;
+
+    private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         if (grid == null)
-        {
             grid = MapManager.Instance.grid;
-        }
     }
 
-    void Start()
+    private void Start()
     {
-
-        if (grid == null)
-        {
-            grid = MapManager.Instance.grid;
-        }
-        
-        Vector3 pos = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0.5f);
-        transform.position = pos;
+        cellPos = grid.WorldToCell(transform.position);
+        rb.position = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f); 
     }
 
-    void Update()
+    private void Update()
     {
         DirInput();
-        UpdatePosition();
         UpdateMoving();
         UpdateAnimator();
+    }
+
+    private void FixedUpdate()
+    {
+        UpdatePosition();
     }
 
     void DirInput()
@@ -66,91 +67,72 @@ public class PlayerController : MonoBehaviour
             dir = MoveDir.None;
     }
 
-    void UpdatePosition()
+    void UpdateMoving()
     {
-        if (!isMoving)
-        return;
+        if (isMoving || dir == MoveDir.None)
+            return;
 
-        Vector3 destPos = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0.5f);
-        Vector3 moveDir = destPos - transform.position;
-
-        float dist = moveDir.magnitude;
-        if (dist < speed * Time.deltaTime)
+        Vector3Int nextCell = cellPos;
+        switch (dir)
         {
-            transform.position = destPos;
-            isMoving = false;
+            case MoveDir.Up:    nextCell += Vector3Int.up; break;
+            case MoveDir.Down:  nextCell += Vector3Int.down; break;
+            case MoveDir.Left:  nextCell += Vector3Int.left; break;
+            case MoveDir.Right: nextCell += Vector3Int.right; break;
         }
+        
+        Vector3Int topCell = nextCell + Vector3Int.up;
 
-        else
+        if (!wallTilemap.HasTile(nextCell) && !wallTilemap.HasTile(topCell))
         {
-            transform.position += moveDir.normalized * speed * Time.deltaTime;
+            cellPos = nextCell;
             isMoving = true;
         }
     }
 
-    void UpdateMoving()
+    void UpdatePosition()
     {
         if (!isMoving)
+            return;
+
+        Vector2 destPos = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
+        Vector2 moveDir = destPos - rb.position;
+
+        float dist = moveDir.magnitude;
+        if (dist < speed * Time.fixedDeltaTime)
         {
-            switch (dir)
-            {
-                case MoveDir.Up:
-                    cellPos += Vector3Int.up;
-                    isMoving = true;
-                    break;
-                
-                case MoveDir.Down:
-                    cellPos += Vector3Int.down;
-                    isMoving = true;
-                    break;
-                case MoveDir.Left:
-                    cellPos += Vector3Int.left;
-                    isMoving = true;
-                    break;
-                case MoveDir.Right:
-                    cellPos += Vector3Int.right;
-                    isMoving = true;
-                    break;
-            }
+            rb.MovePosition(destPos);
+            isMoving = false;
+        }
+        else
+        {
+            rb.MovePosition(rb.position + moveDir.normalized * speed * Time.fixedDeltaTime);
         }
     }
 
     void UpdateAnimator()
     {
-        Vector2 moveInput = Vector2.zero; 
-        
+        Vector2 moveInput = Vector2.zero;
+
         switch (dir)
         {
-            case MoveDir.Up:
-                moveInput = Vector2.up;
-                break;
-            case MoveDir.Down:
-                moveInput = Vector2.down;
-                break;
-            case MoveDir.Left:
-                moveInput = Vector2.left;
-                break;
-            case MoveDir.Right:
-                moveInput = Vector2.right;
-                break;
-            case MoveDir.None:
-                moveInput = lastMoveInput;
-                break;
+            case MoveDir.Up: moveInput = Vector2.up; break;
+            case MoveDir.Down: moveInput = Vector2.down; break;
+            case MoveDir.Left: moveInput = Vector2.left; break;
+            case MoveDir.Right: moveInput = Vector2.right; break;
+            case MoveDir.None: moveInput = lastMoveInput; break;
         }
-        
+
         if (dir != MoveDir.None)
-        {
             lastMoveInput = moveInput;
-        }
-        
+
         if (lastMoveInput.x > 0)
             spriteRenderer.flipX = true;
         else if (lastMoveInput.x < 0)
             spriteRenderer.flipX = false;
-        
-        animator.SetFloat ("XInput", moveInput.x);
-        animator.SetFloat ("YInput", moveInput.y);
-        animator.SetBool("isWalk", isMoving);
-    }
 
+        animator.SetFloat("XInput", moveInput.x);
+        animator.SetFloat("YInput", moveInput.y);
+        animator.SetBool("isWalk", isMoving && dir != MoveDir.None);
+    }
 }
