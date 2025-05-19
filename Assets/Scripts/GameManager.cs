@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 
 public class GameManager : MonoBehaviour
@@ -13,10 +14,10 @@ public class GameManager : MonoBehaviour
         LYS_NightClass
     }
     
-    public CanvasGroup Fade_img;
+    // public CanvasGroup Fade_img;
+    public List<CanvasGroup> Fade_img;
     public float delay = 3f;
 
-    private static GameManager instance;
     private string currentSceneName;
 
     public static GameManager Instance { get; private set; }
@@ -31,27 +32,11 @@ public class GameManager : MonoBehaviour
             DestroyImmediate(this.gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
 
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-
-    public void GoTo(SceneName target)
-    {
-        Fade_img.blocksRaycasts = true;
-        Fade_img .alpha = 1f;
-        
-        // SceneManager.LoadScene(target.ToString());
-        StartCoroutine(LoadScene(target));
-    }
-
-    IEnumerator LoadScene(SceneName target)
-    {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(target.ToString());
     }
 
     // 스타트 함수
@@ -67,7 +52,7 @@ public class GameManager : MonoBehaviour
             _ => SceneName.Lobby
         };
 
-        GoTo(next);
+        StartCoroutine(LoadScene(next));
     }
 
 
@@ -86,15 +71,49 @@ public class GameManager : MonoBehaviour
         }
     }
 
+        IEnumerator LoadScene(SceneName target)
+    {
+        if(target == SceneName.LYS_NightClass)
+        {
+          Fade_img[1].blocksRaycasts = true;
+          Fade_img[1] .alpha = 1f;
+        }
+        else
+        {
+          Fade_img[0].blocksRaycasts = true;
+          Fade_img[0] .alpha = 1f;
+        }
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(target.ToString());
+    }
+
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Fade_img.blocksRaycasts = false;
-        Fade_img.alpha = 0f;
+         string sceneName = SceneManager.GetActiveScene().name;
+
+         if(sceneName == SceneName.LYS_NightClass.ToString())
+        {
+          Fade_img[1].blocksRaycasts = false;
+          Fade_img[1] .alpha = 0f;
+        }
+        else
+        {
+          Fade_img[0].blocksRaycasts = false;
+          Fade_img[0] .alpha = 0f;
+        }
     }
 
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+     public void ChangeToLobbyScene()
+    {
+        Fade_img[0].blocksRaycasts = true;
+        Fade_img[0] .alpha = 1f;
+        
+        StartCoroutine(LoadScene(SceneName.Lobby));
     }
 }
