@@ -12,6 +12,12 @@ public enum MoveDir
     Right
 }
 
+public enum PlayerState
+{
+    Human,
+    Zombie
+}
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
@@ -37,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private bool isCooldown = false;
     private float arrowCooldown = 1.5f;
     private float lastArrowTime = -999f;
+    
+    public PlayerState playerState = PlayerState.Human;
 
     private void Awake()
     {
@@ -59,13 +67,26 @@ public class PlayerController : MonoBehaviour
         DirInput();
         UpdateMoving();
         UpdateAnimator();
+
+        if (playerState == PlayerState.Human)
+        {
+            ArrowInput();
+        }
         
+        else if (playerState == PlayerState.Zombie)
+        {
+            
+        }
+    }
+
+    void ArrowInput()
+    {
         if (Keyboard.current.rightShiftKey.wasPressedThisFrame && Time.time - lastArrowTime >= arrowCooldown)
         {
             ShootArrow();
             lastArrowTime = Time.time;
             isCooldown = true;
-            
+
             arrowLoading.fillAmount = 0;
         }
 
@@ -82,11 +103,9 @@ public class PlayerController : MonoBehaviour
                 arrowLoading.fillAmount = 1;
             }
         }
-        
+
         Vector3Int currentCell = grid.WorldToCell(transform.position);
-        Vector3Int currentTop = currentCell + Vector3Int.up;
-        
-        if (cabinetTilemap.HasTile(currentCell) && cabinetTilemap.HasTile(currentTop))
+        if (cabinetTilemap.HasTile(currentCell))
         {
             SetPlayerAlpha(0.6f);
         }
@@ -95,7 +114,6 @@ public class PlayerController : MonoBehaviour
             SetPlayerAlpha(1f);
         }
     }
-    
 
     private void FixedUpdate()
     {
