@@ -3,28 +3,39 @@ using UnityEngine;
 public class LobbyUiManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject uiRoot;
+    private GameObject exitUi;
+    private GameObject creatRoomUi;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            uiRoot.SetActive(!uiRoot.activeSelf);
+            exitUi.SetActive(!exitUi.activeSelf);
         }
     }
 
-    public void OpenUI()
+    public void OpenExitUI()
     {
-        uiRoot.SetActive(true);
+        exitUi.SetActive(true);
     }
 
-    public void CloseUI()
+    public void CloseExitUI()
     {
-        uiRoot.SetActive(false);
+        exitUi.SetActive(false);
+    }
+
+    public void OpenCrRoomUI()
+    {
+        creatRoomUi.SetActive(true);
+    }
+
+    public void CloseCrRoomUI()
+    {
+        creatRoomUi.SetActive(false);
     }
 
     public void QuitGame()
-{
-    Application.Quit();
-}
+    {
+        Application.Quit();
+    }
 }
