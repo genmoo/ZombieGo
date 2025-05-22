@@ -4,19 +4,37 @@ public class LobbyUiManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject exitUi;
+    [SerializeField]
     private GameObject creatRoomUi;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            exitUi.SetActive(!exitUi.activeSelf);
+            if (creatRoomUi.activeSelf)
+            {
+                creatRoomUi.SetActive(false);
+            }
+            else
+            {
+                exitUi.SetActive(!exitUi.activeSelf);
+            }
+
+
         }
     }
 
     public void OpenExitUI()
     {
-        exitUi.SetActive(true);
+        if(!creatRoomUi.activeSelf)
+        {
+            exitUi.SetActive(!exitUi.activeSelf);
+        }
+        else
+        {
+            creatRoomUi.SetActive(false);
+        }
+        
     }
 
     public void CloseExitUI()

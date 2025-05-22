@@ -50,7 +50,7 @@ public class IntroLoader : MonoBehaviour
 
     System.Collections.IEnumerator AnimateDots()
     {
-        string baseText = "게임 필요한 데이터를 로딩중입니다";
+        string baseText = "게임에 필요한 데이터를 로딩중입니다";
         int dotCount = 0;
 
         while (true)
