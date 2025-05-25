@@ -66,9 +66,10 @@ public class Net_PlayerController : NetworkBehaviour
     public PlayerState2 PlayerState2 = PlayerState2.Human;
     public RuntimeAnimatorController zombieAnimator;
     private bool zombieSetupDone = false;
-    
+
     // 알파
-    [Networked] public float PlayerAlpha { get; set; }
+    [Networked, OnChangedRender(nameof(CabinetAlpha))]
+    public float PlayerAlpha { get; set; }
 
     private void Awake()
     {
@@ -100,7 +101,7 @@ public class Net_PlayerController : NetworkBehaviour
         // {
         //     return;
         // }
-        
+
         DirInput();
         if (PlayerState2 == PlayerState2.Human)
         {
@@ -117,7 +118,11 @@ public class Net_PlayerController : NetworkBehaviour
         }
 
         // CabinetAlpha();
-        
+
+        if (HasStateAuthority)
+            CabinetAlpha(); // 값 변경은 내 권한에서만
+
+        SetPlayerAlpha(PlayerAlpha); // 적용은 모두에서 항상
     }
 
      public override void FixedUpdateNetwork()
@@ -127,10 +132,10 @@ public class Net_PlayerController : NetworkBehaviour
             return;
         }
 
-        if (HasStateAuthority)
-            CabinetAlpha(); // 값 변경은 내 권한에서만
+        // if (HasStateAuthority)
+        //     CabinetAlpha(); // 값 변경은 내 권한에서만
 
-        SetPlayerAlpha(PlayerAlpha); // 적용은 모두에서 항상
+        // SetPlayerAlpha(PlayerAlpha); // 적용은 모두에서 항상
 
 
         UpdateAnimator();
