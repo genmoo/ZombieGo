@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Exit Text Box Gray_0: 6679110240261404365
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
