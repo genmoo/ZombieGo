@@ -46,20 +46,20 @@ public class Net_PlayerController : NetworkBehaviour
     private float arrowCooldown = 1.5f;
     private float lastArrowTime = -999f;
 
-    
+
     public Image dashLoading;
     public Image dashImage;
     private float timer2 = 0;
     private bool isCooldown2 = false;
     public float dashCooldown = 8f;
     private float lastDashTime = -999f;
-    
+
     private bool isDashing = false;
     private Vector2 dashTarget;
     private float dashSpeed = 30f;
     private Vector2 dashDirection = Vector2.zero;
     private float dashLock = 0;
-    
+
     private float ghostSpawnTimer = 0f;
     private float ghostSpawnInterval = 0.01f;
 
@@ -67,22 +67,32 @@ public class Net_PlayerController : NetworkBehaviour
     public RuntimeAnimatorController zombieAnimator;
     private bool zombieSetupDone = false;
 
-    // 알파
-    [Networked, OnChangedRender(nameof(CabinetAlpha))]
+    // 네트워크 관련련
+    [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
     public float PlayerAlpha { get; set; }
+    public Camera Camera;
+
+    public override void Spawned()
+    {
+        if (HasStateAuthority)
+        {
+            Camera = Camera.main;
+            Camera.GetComponent<FirstPersonCamera>().Target = transform;
+        }
+    }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         if (grid == null)
-            grid = MapManager.Instance.grid;
+            grid = WaitingMapManager.Instance.grid;
         if (wallTilemap == null)
-            wallTilemap = MapManager.Instance.wallTilemap;
+            wallTilemap = WaitingMapManager.Instance.wallTilemap;
 
 
         GameObject cabinetObj = GameObject.Find("Cabinet");
         cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
-   }
+    }
 
     private void Start()
     {
@@ -97,11 +107,6 @@ public class Net_PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        // if (HasStateAuthority == false)
-        // {
-        //     return;
-        // }
-
         DirInput();
         if (PlayerState2 == PlayerState2.Human)
         {
@@ -117,27 +122,16 @@ public class Net_PlayerController : NetworkBehaviour
             BecomeZombie();
         }
 
-        // CabinetAlpha();
-
         if (HasStateAuthority)
             CabinetAlpha(); // 값 변경은 내 권한에서만
-
-        SetPlayerAlpha(PlayerAlpha); // 적용은 모두에서 항상
     }
 
-     public override void FixedUpdateNetwork()
+    public override void FixedUpdateNetwork()
     {
         if (HasStateAuthority == false)
         {
             return;
         }
-
-        // if (HasStateAuthority)
-        //     CabinetAlpha(); // 값 변경은 내 권한에서만
-
-        // SetPlayerAlpha(PlayerAlpha); // 적용은 모두에서 항상
-
-
         UpdateAnimator();
         UpdateMoving();
 
@@ -172,7 +166,7 @@ public class Net_PlayerController : NetworkBehaviour
             }
             return; // 대시 중엔 일반 이동 금지
         }
-        
+
         UpdatePosition();
     }
 
@@ -307,7 +301,7 @@ public class Net_PlayerController : NetworkBehaviour
     void DashInput()
     {
         if (isDashing) return;
-        
+
         if (Keyboard.current.rightShiftKey.wasPressedThisFrame &&
             Time.time - lastDashTime > dashCooldown)
         {
@@ -316,13 +310,13 @@ public class Net_PlayerController : NetworkBehaviour
             else if (lastMoveInput == Vector2.left) dashDirection = Vector2Int.left;
             else if (lastMoveInput == Vector2.right) dashDirection = Vector2Int.right;
             else return;
-            
+
             Vector3Int startCell = grid.WorldToCell(rb.position);
             Vector3Int dashCell = startCell;
 
             for (int i = 0; i < 6; i++)
             {
-                Vector3Int nextCell = dashCell + new Vector3Int((int)dashDirection.x , (int)dashDirection.y, 0);
+                Vector3Int nextCell = dashCell + new Vector3Int((int)dashDirection.x, (int)dashDirection.y, 0);
                 if (wallTilemap.HasTile(nextCell))
                     break;
                 dashCell = nextCell;
@@ -330,12 +324,12 @@ public class Net_PlayerController : NetworkBehaviour
 
             dashTarget = grid.CellToWorld(dashCell) + new Vector3(0.5f, 0f);
             isDashing = true;
-            
+
             lastDashTime = Time.time;
             isCooldown2 = true;
             dashLoading.fillAmount = 0;
         }
-        
+
         if (isCooldown2)
         {
             timer2 += Runner.DeltaTime;
@@ -350,7 +344,7 @@ public class Net_PlayerController : NetworkBehaviour
             }
         }
     }
-    
+
     void CreateDashGhost()
     {
         GameObject ghost = new GameObject("DashGhost");
@@ -358,20 +352,19 @@ public class Net_PlayerController : NetworkBehaviour
 
         sr.sprite = spriteRenderer.sprite;
         sr.flipX = spriteRenderer.flipX;
-        sr.sortingOrder = spriteRenderer.sortingOrder - 1; 
+        sr.sortingOrder = spriteRenderer.sortingOrder - 1;
 
-        sr.color = new Color(1f, 1f, 1f, 0.5f); 
+        sr.color = new Color(1f, 1f, 1f, 0.5f);
 
         ghost.transform.position = transform.position;
         ghost.transform.localScale = transform.localScale;
 
         Destroy(ghost, 0.2f);
     }
-
-    void SetPlayerAlpha(float alpha)
+    void SetPlayerAlpha()
     {
         Color c = spriteRenderer.color;
-        c.a = alpha;
+        c.a = PlayerAlpha;
         spriteRenderer.color = c;
     }
 

@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         if (grid == null)
-            grid = MapManager.Instance.grid;
+            grid = WaitingMapManager.Instance.grid;
 
 
         GameObject cabinetObj = GameObject.Find("Cabinet");
