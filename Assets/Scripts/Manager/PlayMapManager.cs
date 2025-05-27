@@ -10,7 +10,7 @@ public class PlayMapManager : MonoBehaviour
     public Grid grid;
     public Tilemap wallTilemap;
     // public NetworkRunner runnerPrefab;
-    // public int playerCount = 0;
+    public int playerCount = 0;
     // private string[] persistentScenes = { "WaitingRoom", "LYS_NightClass" };
 
     void Awake()

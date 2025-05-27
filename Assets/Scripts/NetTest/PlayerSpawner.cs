@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined, IPlayerLeft
 {
     public GameObject PlayerPrefab;
+    public int playerCount = 0;
 
     public void PlayerJoined(PlayerRef player)
     {
@@ -27,11 +28,14 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined, IPlayerLeft
     public void SceneLoadSp()
     {
         print("0");
-        if (!Runner.IsServer) return;
+        // if (!Runner.IsServer) return;
         print("1");
         foreach (var player in Runner.ActivePlayers)
         {
             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, player);
+            PlayMapManager.Instance.playerCount++;
+             Debug.Log($"플레이어 입장: {player} / 현재 인원: {PlayMapManager.Instance.playerCount}");
+
         }
     }
 

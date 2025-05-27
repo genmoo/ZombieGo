@@ -11,8 +11,6 @@ public class WaitingMapManager : MonoBehaviour
     public Tilemap wallTilemap;
     public NetworkRunner runnerPrefab;
     public int playerCount = 0;
-    // private string[] persistentScenes = { "WaitingRoom", "LYS_NightClass" };
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -22,20 +20,6 @@ public class WaitingMapManager : MonoBehaviour
         }
 
         Instance = this;
-
-        // string currentScene = SceneManager.GetActiveScene().name;
-
-        // foreach (var sceneName in persistentScenes)
-        // {
-        //     if (currentScene == sceneName)
-        //     {
-        //         DontDestroyOnLoad(gameObject);
-        //         return;
-        //     }
-        // }
-
-        // Destroy(gameObject);
-        
     }
 
     async void Start()
@@ -50,10 +34,5 @@ public class WaitingMapManager : MonoBehaviour
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
     }
-
-    // void Update()
-    // {
-    //     print(playerCount);
-    // }
 }
 

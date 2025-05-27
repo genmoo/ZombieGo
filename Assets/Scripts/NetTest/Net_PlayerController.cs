@@ -89,6 +89,11 @@ public class Net_PlayerController : NetworkBehaviour
         if (wallTilemap == null)
             wallTilemap = WaitingMapManager.Instance.wallTilemap;
 
+             if (grid == null)
+            grid = PlayMapManager.Instance.grid;
+        if (wallTilemap == null)
+            wallTilemap = PlayMapManager.Instance.wallTilemap;
+
 
         GameObject cabinetObj = GameObject.Find("Cabinet");
         cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
