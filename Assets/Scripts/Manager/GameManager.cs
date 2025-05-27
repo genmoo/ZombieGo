@@ -3,27 +3,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-
 public class GameManager : MonoBehaviour
 {
-    // 씬 이름
     public enum SceneName
     {
         Lobby,
         WaitingRoom,
         LYS_NightClass
     }
-    
-    // public CanvasGroup Fade_img;
     public List<CanvasGroup> Fade_img;
     public float delay = 3f;
-
     private string currentSceneName;
-
     public static GameManager Instance { get; private set; }
-
-
-
 
     private void Awake()
     {
@@ -43,7 +34,6 @@ public class GameManager : MonoBehaviour
     public void ChangeToNextScene()
     {
         SceneName current = GetCurrentSceneEnum();
-
         SceneName next = current switch
         {
             SceneName.Lobby => SceneName.WaitingRoom,
@@ -51,10 +41,8 @@ public class GameManager : MonoBehaviour
             SceneName.LYS_NightClass => SceneName.Lobby,
             _ => SceneName.Lobby
         };
-
         StartCoroutine(LoadScene(next));
     }
-
 
     public static SceneName GetCurrentSceneEnum()
     {
@@ -86,8 +74,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(target.ToString());
     }
-
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
          string sceneName = SceneManager.GetActiveScene().name;
@@ -108,7 +94,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
      public void ChangeToLobbyScene()
     {
         Fade_img[0].blocksRaycasts = true;

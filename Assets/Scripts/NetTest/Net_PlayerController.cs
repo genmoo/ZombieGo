@@ -127,7 +127,7 @@ public class Net_PlayerController : NetworkBehaviour
             BecomeZombie();
         }
 
-        if (HasStateAuthority)
+        if (HasStateAuthority){}
             CabinetAlpha(); // 값 변경은 내 권한에서만
     }
 
@@ -177,11 +177,11 @@ public class Net_PlayerController : NetworkBehaviour
 
     void DirInput()
     {
-        if (Time.time < dashLock)
-        {
-            dir = MoveDir2.None;
-            return;
-        }
+        // if (Time.time < dashLock)
+        // {
+        //     dir = MoveDir2.None;
+        //     return;
+        // }
 
         if (Input.GetKey(KeyCode.W))
             dir = MoveDir2.Up;
@@ -209,7 +209,7 @@ public class Net_PlayerController : NetworkBehaviour
             case MoveDir2.Right: nextCell += Vector3Int.right; break;
         }
 
-        Vector3Int topCell = nextCell + Vector3Int.up;
+        // Vector3Int topCell = nextCell + Vector3Int.up;
 
         if (!wallTilemap.HasTile(nextCell))
         {
@@ -226,8 +226,8 @@ public class Net_PlayerController : NetworkBehaviour
         Vector2 destPos = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
         Vector2 MoveDir2 = destPos - rb.position;
 
-        float dist = MoveDir2.magnitude;
-        if (dist < speed * Runner.DeltaTime)
+        // float dist = MoveDir2.magnitude;
+        if (MoveDir2.magnitude < speed * Runner.DeltaTime)
         {
             rb.MovePosition(destPos);
             isMoving = false;

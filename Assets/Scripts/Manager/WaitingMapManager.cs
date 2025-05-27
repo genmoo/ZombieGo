@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Fusion;
-using UnityEngine.SceneManagement;
-
 
 public class WaitingMapManager : MonoBehaviour
 {
@@ -30,7 +28,7 @@ public class WaitingMapManager : MonoBehaviour
         await runner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
-            SessionName = "TestRoom",
+            SessionName = "Test",
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
     }
