@@ -1,15 +1,11 @@
+using System.Collections;
 using Fusion;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined, IPlayerLeft
 {
     public GameObject PlayerPrefab;
-    private NetworkRunner runner;
-
-    void Awake()
-    {
-        runner = GetComponent<NetworkRunner>();
-    }
-
+    
     public void PlayerJoined(PlayerRef player)
     {
         if (player == Runner.LocalPlayer)
@@ -42,6 +38,32 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined, IPlayerLeft
     //         Debug.Log($"플레이어 입장: {player} / 현재 인원: {PlayMapManager.Instance.playerCount}");
     //     }
     // }
-    
+
     // 이거 해야힘ㅋㅋㅋ
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine("SpawnAfterDelay");
+    }
+    
+    private IEnumerator SpawnAfterDelay()
+{
+    // 0.1~0.5초 정도 기다려서 프리팹 로딩 시간 확보
+    yield return new WaitForSeconds(0.2f);
+
+    if (Runner.IsRunning && Runner.LocalPlayer != null)
+    {
+        Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
+    }
+}
 }

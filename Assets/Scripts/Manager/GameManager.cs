@@ -18,9 +18,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // 네트워크
-    public NetworkRunner runner;
+    public NetworkRunner Runner;
     public NetworkSceneManagerDefault sceneManager;
-    public NetworkRunner runnerPrefab;
 
     private void Awake()
     {
@@ -35,7 +34,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        runner = GetComponent<NetworkRunner>();
+        Runner = GetComponent<NetworkRunner>();
         sceneManager = GetComponent<NetworkSceneManagerDefault>();
     }
 
@@ -81,7 +80,7 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
 
-            if (runner != null && runner.IsRunning)
+            if (Runner != null && Runner.IsRunning)
             {
                 //이미 러너가 실행 중이면 씬만 이동
                 Debug.Log("[Fusion] 러너 실행 중, StartGame 생략하고 씬만 전환");
@@ -98,7 +97,7 @@ public class GameManager : MonoBehaviour
                     SceneManager = sceneManager
                 };
 
-                runner.StartGame(args);
+                Runner.StartGame(args);
 
             }
         }
@@ -143,9 +142,9 @@ public class GameManager : MonoBehaviour
 
     public async void OnGameEndButton()
     {
-        if (runner != null)
+        if (Runner != null)
         {
-            await runner.Shutdown();
+            await Runner.Shutdown();
             // Destroy(runner.gameObject);
         }
     }
@@ -153,9 +152,9 @@ public class GameManager : MonoBehaviour
 
     public void OnStartGameButton()
     {
-        if (runner.IsSceneAuthority)
+        if (Runner.IsSceneAuthority)
         {
-            runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
+            Runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
         }
     }
     

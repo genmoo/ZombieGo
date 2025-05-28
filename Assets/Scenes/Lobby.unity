@@ -1373,17 +1373,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166096385}
   m_CullTransparentMesh: 1
---- !u!114 &193102738 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4554953760512878778, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
-  m_PrefabInstance: {fileID: 1115341567}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f1f3546c09d2c641b138a58e1686421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &193102745 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3297288205038606125, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
@@ -9893,6 +9882,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447486582}
   m_CullTransparentMesh: 1
+--- !u!114 &468141343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5109187343620005931, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
+  m_PrefabInstance: {fileID: 1115341567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1199893898, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &468141344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2148429619574226030, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
+  m_PrefabInstance: {fileID: 1115341567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6715d84f787f32442ad84d098fceda8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &547049121
 GameObject:
   m_ObjectHideFlags: 0
@@ -11048,6 +11059,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4554953760512878778, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
+      propertyPath: runner
+      value: 
+      objectReference: {fileID: 468141343}
     - target: {fileID: 8799432723965067367, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -12336,9 +12351,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 193102738}
-        m_TargetAssemblyTypeName: PlayerSpawner, Assembly-CSharp
-        m_MethodName: SceneLoadSpawn
+      - m_Target: {fileID: 468141344}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnStartGameButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
