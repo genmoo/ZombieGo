@@ -61,7 +61,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined, IPlayerLeft
     // 0.1~0.5초 정도 기다려서 프리팹 로딩 시간 확보
     yield return new WaitForSeconds(0.2f);
 
-    if (Runner.IsRunning && Runner.LocalPlayer != null)
+    if (Runner != null && Runner.IsRunning)
     {
         Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
     }
