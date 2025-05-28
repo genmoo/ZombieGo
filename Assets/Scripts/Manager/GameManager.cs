@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Fusion;
-using Fusion.Sockets;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
     // 네트워크
     public NetworkRunner runner;
     public NetworkSceneManagerDefault sceneManager;
+    public NetworkRunner runnerPrefab;
 
     private void Awake()
     {
@@ -72,33 +72,57 @@ public class GameManager : MonoBehaviour
     {
         if (target == SceneName.LYS_NightClass)
         {
-            Fade_img[1].blocksRaycasts = true;
-            Fade_img[1].alpha = 1f;
+            SceneManager.LoadScene(target.ToString());
+        }
+        else if (target == SceneName.WaitingRoom)
+        {
+            Fade_img[0].blocksRaycasts = true;
+            Fade_img[0].alpha = 1f;
+
+            yield return new WaitForSeconds(delay);
+
+            if (runner != null && runner.IsRunning)
+            {
+                //이미 러너가 실행 중이면 씬만 이동
+                Debug.Log("[Fusion] 러너 실행 중, StartGame 생략하고 씬만 전환");
+                SceneManager.LoadScene(target.ToString());
+            }
+            else
+            {
+                //러너가 없거나 종료된 상태면 StartGame 호출 (Fusion이 씬도 관리함)
+                var args = new StartGameArgs()
+                {
+                    GameMode = GameMode.Shared,
+                    SessionName = "Test",
+                    Scene = SceneRef.FromIndex(1), // WaitingRoom 씬 인덱스
+                    SceneManager = sceneManager
+                };
+
+                runner.StartGame(args);
+
+            }
         }
         else
         {
             Fade_img[0].blocksRaycasts = true;
             Fade_img[0].alpha = 1f;
+
+            var player = GameObject.FindWithTag("Player");
+            if (player != null)
+                Destroy(player);
+
+            yield return new WaitForSeconds(delay);
+            yield return SceneManager.LoadSceneAsync(target.ToString());
+            OnGameEndButton();
         }
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(target.ToString());
+
     }
 
     // 로드 된후 로딩 이미지 끄기기
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        string sceneName = SceneManager.GetActiveScene().name;
-
-        if (sceneName == SceneName.LYS_NightClass.ToString())
-        {
-            Fade_img[1].blocksRaycasts = false;
-            Fade_img[1].alpha = 0f;
-        }
-        else
-        {
-            Fade_img[0].blocksRaycasts = false;
-            Fade_img[0].alpha = 0f;
-        }
+        Fade_img[0].blocksRaycasts = false;
+        Fade_img[0].alpha = 0f;
     }
 
     private void OnDestroy()
@@ -109,25 +133,30 @@ public class GameManager : MonoBehaviour
     //  어디서든 로비로 가니깐 항상 셧다운 시켜야함 >> 그리고 러너 재생성성
     public void ChangeToLobbyScene()
     {
-        Fade_img[0].blocksRaycasts = true;
-        Fade_img[0].alpha = 1f;
-
         StartCoroutine(LoadScene(SceneName.Lobby));
     }
 
-    // 네트워크
-     public void CH()
+    public void ChangeToWatingScene()
     {
-      
-
-        var args = new StartGameArgs()
-        {
-            GameMode = GameMode.Shared, // Shared 모드
-            SessionName = "Test",
-            Scene = SceneRef.FromIndex(1), // 처음 대기방 씬
-            SceneManager = sceneManager
-        };
-
-        runner.StartGame(args);
+        StartCoroutine(LoadScene(SceneName.WaitingRoom));
     }
+
+    public async void OnGameEndButton()
+    {
+        if (runner != null)
+        {
+            await runner.Shutdown();
+            // Destroy(runner.gameObject);
+        }
+    }
+
+
+    public void OnStartGameButton()
+    {
+        if (runner.IsSceneAuthority)
+        {
+            runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
+        }
+    }
+    
 }
