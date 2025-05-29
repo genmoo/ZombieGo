@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Fusion;
 
 public class WaitingMapManager : MonoBehaviour
 {
@@ -19,18 +18,5 @@ public class WaitingMapManager : MonoBehaviour
 
         Instance = this;
     }
-
-    // async void Start()
-    // {
-    //     var runner = Instantiate(runnerPrefab);
-    //     runner.ProvideInput = true;
-
-    //     await runner.StartGame(new StartGameArgs
-    //     {
-    //         GameMode = GameMode.Shared,
-    //         SessionName = "Test",
-    //         SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
-    //     });
-    // }
 }
 

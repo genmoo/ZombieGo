@@ -9,7 +9,8 @@ public class LobbyUiManager : MonoBehaviour
     private GameObject exitUi;
     [SerializeField]
     private GameObject creatRoomUi;
-    public NetworkRunner runnerPrefab; 
+    [SerializeField]
+    private NetworkRunner GameManager; 
     private void Awake()
     {
         SceneManager.sceneLoaded += SpawnRunnder;
@@ -25,7 +26,7 @@ public class LobbyUiManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         if (FindObjectOfType<NetworkRunner>() == null)
         {
-            var runner = Instantiate(runnerPrefab);
+            var runner = Instantiate(GameManager);
         }
     }
 

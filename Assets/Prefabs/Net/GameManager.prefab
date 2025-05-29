@@ -351,7 +351,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
@@ -411,10 +411,9 @@ MonoBehaviour:
   Fade_img:
   - {fileID: 3035639302986300981}
   - {fileID: 1658536280843010951}
-  delay: 1
-  runner: {fileID: 5109187343620005931}
+  Runner: {fileID: 5109187343620005931}
   sceneManager: {fileID: 6387717279915354419}
-  runnerPrefab: {fileID: 0}
+  delay: 1
 --- !u!114 &5109187343620005931
 MonoBehaviour:
   m_ObjectHideFlags: 0

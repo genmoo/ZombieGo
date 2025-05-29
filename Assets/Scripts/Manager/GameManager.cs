@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Fusion;
-
 public class GameManager : MonoBehaviour
 {
     public enum SceneName
@@ -13,13 +12,13 @@ public class GameManager : MonoBehaviour
         LYS_NightClass
     }
     public List<CanvasGroup> Fade_img;
-    public float delay = 3f;
-    private string currentSceneName;
     public static GameManager Instance { get; private set; }
-
     // 네트워크
     public NetworkRunner Runner;
     public NetworkSceneManagerDefault sceneManager;
+    private string currentSceneName;
+    [SerializeField]
+    private float delay = 3f;
 
     private void Awake()
     {
@@ -32,46 +31,27 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
         Runner = GetComponent<NetworkRunner>();
         sceneManager = GetComponent<NetworkSceneManagerDefault>();
     }
-
-    // 스타트 함수
-    public void ChangeToNextScene()
+    private void OnEnable()
     {
-        SceneName current = GetCurrentSceneEnum();
-        SceneName next = current switch
-        {
-            SceneName.Lobby => SceneName.WaitingRoom,
-            SceneName.WaitingRoom => SceneName.LYS_NightClass,
-            SceneName.LYS_NightClass => SceneName.Lobby,
-            _ => SceneName.Lobby
-        };
-        StartCoroutine(LoadScene(next));
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public static SceneName GetCurrentSceneEnum()
+    private void OnDisable()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
-
-        if (System.Enum.TryParse(sceneName, out SceneName result))
-        {
-            return result;
-        }
-        else
-        {
-            Debug.LogError("씬 이름과 enum 값이 일치하지 않음: " + sceneName);
-            return SceneName.Lobby;
-        }
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     IEnumerator LoadScene(SceneName target)
     {
         if (target == SceneName.LYS_NightClass)
         {
-            SceneManager.LoadScene(target.ToString());
+            if (Runner.IsSceneAuthority)
+            {
+                Runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
+            }
         }
         else if (target == SceneName.WaitingRoom)
         {
@@ -82,9 +62,14 @@ public class GameManager : MonoBehaviour
 
             if (Runner != null && Runner.IsRunning)
             {
-                //이미 러너가 실행 중이면 씬만 이동
-                Debug.Log("[Fusion] 러너 실행 중, StartGame 생략하고 씬만 전환");
-                SceneManager.LoadScene(target.ToString());
+                 if (Runner.IsSceneAuthority)
+                {
+                    Runner.LoadScene(SceneRef.FromIndex(1), LoadSceneMode.Single);
+                }
+                // //이미 러너가 실행 중이면 씬만 이동
+                // Debug.Log("[Fusion] 러너 실행 중, StartGame 생략하고 씬만 전환");
+                // SceneManager.LoadScene(target.ToString());
+                // 대기방을 러너 씬으로 만들고 rpc로 게임방으로 보내기 다시 rpc로 대기방으로 보내기 지금은 일단 전부 보내는 방식으로 해둠 rpc 하기 귀찮아서
             }
             else
             {
@@ -96,12 +81,10 @@ public class GameManager : MonoBehaviour
                     Scene = SceneRef.FromIndex(1), // WaitingRoom 씬 인덱스
                     SceneManager = sceneManager
                 };
-
                 Runner.StartGame(args);
-
             }
         }
-        else
+        else if (target == SceneName.Lobby)
         {
             Fade_img[0].blocksRaycasts = true;
             Fade_img[0].alpha = 1f;
@@ -116,7 +99,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
     // 로드 된후 로딩 이미지 끄기기
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -124,12 +106,7 @@ public class GameManager : MonoBehaviour
         Fade_img[0].alpha = 0f;
     }
 
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    //  어디서든 로비로 가니깐 항상 셧다운 시켜야함 >> 그리고 러너 재생성성
+    // 씬 이동 버튼 함수
     public void ChangeToLobbyScene()
     {
         StartCoroutine(LoadScene(SceneName.Lobby));
@@ -140,22 +117,57 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadScene(SceneName.WaitingRoom));
     }
 
-    public async void OnGameEndButton()
+    public void ChangeToGameScene()
+    {
+        StartCoroutine(LoadScene(SceneName.LYS_NightClass));
+    }
+    // 셧 다운
+    public void OnGameEndButton()
     {
         if (Runner != null)
         {
-            await Runner.Shutdown();
-            // Destroy(runner.gameObject);
+            Runner.Shutdown();
+            Destroy(Runner.gameObject);
         }
     }
-
-
-    public void OnStartGameButton()
-    {
-        if (Runner.IsSceneAuthority)
-        {
-            Runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
-        }
-    }
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// 스타트 함수
+// public void ChangeToNextScene()
+// {
+//     SceneName current = GetCurrentSceneEnum();
+//     SceneName next = current switch
+//     {
+//         SceneName.Lobby => SceneName.WaitingRoom,
+//         SceneName.WaitingRoom => SceneName.LYS_NightClass,
+//         SceneName.LYS_NightClass => SceneName.Lobby,
+//         _ => SceneName.Lobby
+//     };
+//     StartCoroutine(LoadScene(next));
+// }
+
+// private static SceneName GetCurrentSceneEnum()
+// {
+//     string sceneName = SceneManager.GetActiveScene().name;
+
+//     if (System.Enum.TryParse(sceneName, out SceneName result))
+//     {
+//         return result;
+//     }
+//     else
+//     {
+//         Debug.LogError("씬 이름과 enum 값이 일치하지 않음: " + sceneName);
+//         return SceneName.Lobby;
+//     }
+// }

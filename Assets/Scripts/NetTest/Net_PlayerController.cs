@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using Fusion;
+using UnityEngine.SceneManagement;
 
 public enum MoveDir2
 {
@@ -71,6 +72,7 @@ public class Net_PlayerController : NetworkBehaviour
     [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
     public float PlayerAlpha { get; set; }
     public Camera Camera;
+    [Networked] public int SceneGroupId { get; set; }
 
     public override void Spawned()
     {
@@ -79,6 +81,9 @@ public class Net_PlayerController : NetworkBehaviour
             Camera = Camera.main;
             Camera.GetComponent<FirstPersonCamera>().Target = transform;
         }
+
+        //  씬 아이디 추가
+        UpdateSceneVisibility();
     }
 
     private void Awake()
@@ -89,7 +94,7 @@ public class Net_PlayerController : NetworkBehaviour
         if (wallTilemap == null)
             wallTilemap = WaitingMapManager.Instance.wallTilemap;
 
-             if (grid == null)
+        if (grid == null)
             grid = PlayMapManager.Instance.grid;
         if (wallTilemap == null)
             wallTilemap = PlayMapManager.Instance.wallTilemap;
@@ -112,23 +117,25 @@ public class Net_PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        DirInput();
-        if (PlayerState2 == PlayerState2.Human)
+        if (HasStateAuthority)
         {
-            ArrowInput();
-        }
-        else if (PlayerState2 == PlayerState2.Zombie)
-        {
-            DashInput();
-        }
+            DirInput();
+            if (PlayerState2 == PlayerState2.Human)
+            {
+                ArrowInput();
+            }
+            else if (PlayerState2 == PlayerState2.Zombie)
+            {
+                DashInput();
+            }
 
-        else if (PlayerState2 == PlayerState2.Zombie && !zombieSetupDone)
-        {
-            BecomeZombie();
-        }
+            else if (PlayerState2 == PlayerState2.Zombie && !zombieSetupDone)
+            {
+                BecomeZombie();
+            }
 
-        if (HasStateAuthority){}
             CabinetAlpha(); // 값 변경은 내 권한에서만
+        }
     }
 
     public override void FixedUpdateNetwork()
@@ -139,6 +146,7 @@ public class Net_PlayerController : NetworkBehaviour
         }
         UpdateAnimator();
         UpdateMoving();
+        UpdatePosition();
 
         if (isDashing)
         {
@@ -171,9 +179,23 @@ public class Net_PlayerController : NetworkBehaviour
             }
             return; // 대시 중엔 일반 이동 금지
         }
-
-        UpdatePosition();
     }
+
+    void UpdateSceneVisibility()
+    {
+        int mySceneGroupId = SceneManager.GetActiveScene().buildIndex; // 예: 0 = Game, 1 = Lobby
+
+        if (SceneGroupId != mySceneGroupId)
+        {
+            // 다른 씬이면 비활성화
+            gameObject.SetActive(false); // 또는 렌더러, 충돌기 비활성화
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
 
     void DirInput()
     {
