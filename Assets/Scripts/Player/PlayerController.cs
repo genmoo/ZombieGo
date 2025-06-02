@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
+using Fusion;
+
 
 public enum MoveDir
 {
@@ -19,7 +20,7 @@ public enum PlayerState
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
 public Grid grid;
     public Tilemap wallTilemap;
@@ -40,11 +41,32 @@ public Grid grid;
     private MoveDir dir = MoveDir.None;
     private bool zombieSetupDone = false;
 
+    public Camera Camera;
+    
+    [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
+    public float playerAlpha { get; set; }
+    
+    public override void Spawned()
+    {
+        if (HasStateAuthority)
+        {
+            Camera = Camera.main;
+            Camera.GetComponent<FirstPersonCamera>().Target = transform;
+        }
+    }
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         if (grid == null)
             grid = WaitingMapManager.Instance.grid;
+        if (wallTilemap == null)
+            wallTilemap = WaitingMapManager.Instance.wallTilemap;
+
+        if (grid == null)
+            grid = PlayMapManager.Instance.grid;
+        if (wallTilemap == null)
+            wallTilemap = PlayMapManager.Instance.wallTilemap;
 
         GameObject cabinetObj = GameObject.Find("Cabinet");
         cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
@@ -72,31 +94,34 @@ public Grid grid;
         if (playerState == PlayerState.Zombie)
             return;
 #endif*/
-        
-        DirInput();
-        UpdateMoving();
-        UpdateAnimator();
 
-        if (playerState == PlayerState.Human)
+        if (HasStateAuthority)
         {
-            arrowHandler.SetMoveInput(lastMoveInput);
-            arrowHandler.HandleArrowInput();
-        }
-        else if (playerState == PlayerState.Zombie)
-        {
-            zombieHandler.SetMoveInput(lastMoveInput);
-            zombieHandler.HandleDashInput();
-        }
+            DirInput();
+            
+            if (playerState == PlayerState.Human)
+            {
+                arrowHandler.SetMoveInput(lastMoveInput);
+                arrowHandler.HandleArrowInput();
+            }
+            else if (playerState == PlayerState.Zombie)
+            {
+                zombieHandler.SetMoveInput(lastMoveInput);
+                zombieHandler.HandleDashInput();
+            }
 
-        if (playerState == PlayerState.Zombie && !zombieSetupDone)
-        {
+            if (playerState == PlayerState.Zombie && !zombieSetupDone)
+            {
+
+            }
+
             BecomeZombie();
         }
 
         CabinetAlpha();
     }
 
-    private void FixedUpdate()
+    public override void FixedUpdateNetwork()
     {
         if (playerState == PlayerState.Zombie && zombieHandler.HandleDashMovement())
         {
@@ -104,6 +129,8 @@ public Grid grid;
             return;
         }
         
+        UpdateMoving();
+        UpdateAnimator();
         UpdatePosition();
     }
 
@@ -200,13 +227,21 @@ public Grid grid;
     void CabinetAlpha()
     {
         Vector3Int currentCell = grid.WorldToCell(transform.position);
-        SetPlayerAlpha(cabinetTilemap.HasTile(currentCell) ? 0.5f : 1f);
+
+        if (cabinetTilemap.HasTile(currentCell))
+        {
+            playerAlpha = HasStateAuthority ? 0.5f : 0f;
+        }
+        else
+        {
+            playerAlpha = 1f;
+        }
     }
 
     void SetPlayerAlpha(float alpha)
     {
         Color c = spriteRenderer.color;
-        c.a = alpha;
+        c.a = playerAlpha;
         spriteRenderer.color = c;
     }
 }

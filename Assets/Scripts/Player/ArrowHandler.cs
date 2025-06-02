@@ -1,8 +1,10 @@
+using Fusion;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
-public class ArrowHandler : MonoBehaviour
+public class ArrowHandler : NetworkBehaviour
 {
     public GameObject arrowPrefab;
     public float arrowSpeed = 10f;
@@ -65,7 +67,7 @@ public class ArrowHandler : MonoBehaviour
             spawnOffset = new Vector2(0.5f, 0.7f);
 
         Vector2 spawnPos = rb.position + spawnOffset;
-        GameObject arrow = Instantiate(arrowPrefab, spawnPos, Quaternion.identity);
+        NetworkObject arrow = Runner.Spawn(arrowPrefab, spawnPos, Quaternion.identity, Runner.LocalPlayer);
 
         Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
         arrowRb.linearVelocity = shootDir * arrowSpeed;
@@ -76,7 +78,14 @@ public class ArrowHandler : MonoBehaviour
                      shootDir == Vector2.right ? 90f : 0f;
 
         arrow.transform.rotation = Quaternion.Euler(0f, 0f, zRot);
-        Destroy(arrow, arrowLife);
+        ArrowDespawn(arrow, arrowLife).Forget();
+    }
+
+    private async UniTaskVoid ArrowDespawn(NetworkObject netObj, float time)
+    {
+        int delayMs = Mathf.RoundToInt(time * 1000f);
+        await UniTask.Delay(delayMs);
+        Runner.Despawn(netObj);
     }
 
     public void SetMoveInput(Vector2 moveInput)
