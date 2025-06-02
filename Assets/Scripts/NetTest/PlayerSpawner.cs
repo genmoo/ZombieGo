@@ -1,4 +1,5 @@
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,14 +19,13 @@ public class PlayerSpawner : SimulationBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine("SpawnAfterDelay");
+        // StartCoroutine("SpawnAfterDelay");
+        SpawnAfterDelay().Forget();
     }
 
-    private IEnumerator SpawnAfterDelay()
+    private async UniTask SpawnAfterDelay()
     {
-        // 프리팹 비동기 로딩을 기다리는 시간 확보
-        yield return new WaitForSeconds(0.2f);
-
+        await UniTask.Delay(2000);
         if (Runner != null && Runner.IsRunning)
         {
             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer,
@@ -33,11 +33,13 @@ public class PlayerSpawner : SimulationBehaviour
        {
            obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
            print(SceneManager.GetActiveScene().buildIndex);
-        });
+       });
 
         }
     }
 }
+
+// }
 // IPlayerJoined, IPlayerLeft
 //     public void PlayerJoined(PlayerRef player)
 //     {

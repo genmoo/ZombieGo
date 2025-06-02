@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using Fusion;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 public enum MoveDir2
 {
@@ -29,7 +30,6 @@ public class Net_PlayerController : NetworkBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private Tilemap cabinetTilemap;
-
     private Rigidbody2D rb;
     private Vector3Int cellPos = Vector3Int.zero;
     private Vector2 lastMoveInput = Vector2.down;
@@ -133,9 +133,8 @@ public class Net_PlayerController : NetworkBehaviour
             {
                 BecomeZombie();
             }
-
-            CabinetAlpha(); // 값 변경은 내 권한에서만
         }
+        CabinetAlpha();
     }
 
     public override void FixedUpdateNetwork()
@@ -305,7 +304,8 @@ public class Net_PlayerController : NetworkBehaviour
 
         Vector2 spawnPos = rb.position + spawnOffset;
 
-        GameObject arrow = Instantiate(arrowPrefab, spawnPos, Quaternion.identity);
+        // GameObject arrow = Instantiate(arrowPrefab, spawnPos, Quaternion.identity);
+        NetworkObject arrow = Runner.Spawn(arrowPrefab, spawnPos, Quaternion.identity, Runner.LocalPlayer);
 
         Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
         arrowRb.linearVelocity = shootDir * arrowSpeed;
@@ -322,9 +322,16 @@ public class Net_PlayerController : NetworkBehaviour
 
         arrow.transform.rotation = Quaternion.Euler(0f, 0f, zRot);
 
-        Destroy(arrow, arrowLife);
+        // Destroy(arrow, arrowLife);
+        ArrowDespawn(arrow, arrowLife).Forget();
     }
 
+    private async UniTaskVoid ArrowDespawn(NetworkObject netObj, float time)
+    {
+        int delayMs = Mathf.RoundToInt(time * 1000f);
+        await UniTask.Delay(delayMs);
+        Runner.Despawn(netObj);
+    }
     void DashInput()
     {
         if (isDashing) return;
@@ -388,12 +395,6 @@ public class Net_PlayerController : NetworkBehaviour
 
         Destroy(ghost, 0.2f);
     }
-    void SetPlayerAlpha()
-    {
-        Color c = spriteRenderer.color;
-        c.a = PlayerAlpha;
-        spriteRenderer.color = c;
-    }
 
     void ArrowInput()
     {
@@ -438,8 +439,14 @@ public class Net_PlayerController : NetworkBehaviour
     {
         Vector3Int currentCell = grid.WorldToCell(transform.position);
         if (cabinetTilemap.HasTile(currentCell))
-            PlayerAlpha = 0.5f;
+            PlayerAlpha = HasStateAuthority ? 0.5f : 0f;
         else
             PlayerAlpha = 1f;
+    }
+    void SetPlayerAlpha()
+    {
+        Color c = spriteRenderer.color;
+        c.a = PlayerAlpha;
+        spriteRenderer.color = c;
     }
 }
