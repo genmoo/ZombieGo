@@ -1,4 +1,7 @@
 using UnityEngine;
+using Fusion;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LobbyUiManager : MonoBehaviour
 {
@@ -6,6 +9,31 @@ public class LobbyUiManager : MonoBehaviour
     private GameObject exitUi;
     [SerializeField]
     private GameObject creatRoomUi;
+    [SerializeField]
+    private NetworkRunner GameManager; 
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += SpawnRunnder;
+    }
+
+    private void SpawnRunnder(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine("DelayRunner");
+    }
+
+    IEnumerator DelayRunner()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (FindObjectOfType<NetworkRunner>() == null)
+        {
+            var runner = Instantiate(GameManager);
+        }
+    }
+
+     void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SpawnRunnder;
+    }
 
     private void Update()
     {
@@ -20,13 +48,12 @@ public class LobbyUiManager : MonoBehaviour
                 exitUi.SetActive(!exitUi.activeSelf);
             }
 
-
         }
     }
 
     public void OpenExitUI()
     {
-        if(!creatRoomUi.activeSelf)
+        if (!creatRoomUi.activeSelf)
         {
             exitUi.SetActive(!exitUi.activeSelf);
         }
@@ -34,7 +61,7 @@ public class LobbyUiManager : MonoBehaviour
         {
             creatRoomUi.SetActive(false);
         }
-        
+
     }
 
     public void CloseExitUI()

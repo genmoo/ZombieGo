@@ -539,6 +539,7 @@ MonoBehaviour:
   zombieAnimator: {fileID: 9100000, guid: 63fd44bf242936e46809661c4f68599b, type: 2}
   _PlayerAlpha: 0
   Camera: {fileID: 0}
+  _SceneGroupId: 0
 --- !u!1 &3011402147385473590
 GameObject:
   m_ObjectHideFlags: 0
