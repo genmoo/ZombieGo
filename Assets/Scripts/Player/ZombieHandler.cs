@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using Fusion;
 
-public class ZombieHandler : MonoBehaviour
+public class ZombieHandler : NetworkBehaviour
 {
     public Grid grid;
     public Tilemap wallTilemap;

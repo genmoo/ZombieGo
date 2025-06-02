@@ -83,7 +83,7 @@ public class Net_PlayerController : NetworkBehaviour
         }
 
         //  씬 아이디 추가
-        UpdateSceneVisibility();
+        // UpdateSceneVisibility();
     }
 
     private void Awake()

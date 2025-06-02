@@ -1,28 +1,41 @@
 using UnityEngine;
+using Fusion;
 
-public class ZombieSensor : MonoBehaviour
+public class ZombieSensor : NetworkBehaviour
 {
     public ZombieHandler zombieHandler;
 
+    private PlayerController ownerPlayer;
+
+    private void Awake()
+    {
+        ownerPlayer = zombieHandler.GetComponent<PlayerController>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Time.time < zombieHandler.ImmuneUntil)
-        {
-            Debug.Log("감염 무시");
-            return;
-        }
+        if (IsImmune()) return;
 
-        var health = collision.GetComponent<HealthController>();
-        if (health == null) return;
+        if (!collision.TryGetComponent(out HealthController health)) return;
 
-        var otherPlayer = health.playerController;
-        if (otherPlayer == zombieHandler.GetComponent<PlayerController>()) return;
+        var targetPlayer = health.playerController;
+        
+        if (targetPlayer == ownerPlayer) return;
+        
+        if (ownerPlayer.playerState != PlayerState.Zombie) return;
+        if (targetPlayer.playerState != PlayerState.Human) return;
 
-        if (otherPlayer.playerState == PlayerState.Human)
-        {
-            Debug.Log("감염 발생!");
-            otherPlayer.playerState = PlayerState.Zombie;
-            otherPlayer.BecomeZombie();
-        }
+        Infect(targetPlayer);
+    }
+
+    private bool IsImmune()
+    {
+        return Time.time < zombieHandler.ImmuneUntil;
+    }
+
+    private void Infect(PlayerController target)
+    {
+        target.playerState = PlayerState.Zombie;
+        target.BecomeZombie();
     }
 }

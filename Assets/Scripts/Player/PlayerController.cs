@@ -21,13 +21,12 @@ public enum PlayerState
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : NetworkBehaviour
-{
-public Grid grid;
+{ 
+    public Grid grid;
     public Tilemap wallTilemap;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-
-    public PlayerState playerState = PlayerState.Human;
+    
     public float speed = 5f;
 
     public ArrowHandler arrowHandler;
@@ -46,6 +45,15 @@ public Grid grid;
     [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
     public float playerAlpha { get; set; }
     
+    [Networked] 
+    public PlayerState playerState { get; set; }
+    
+    [Networked, OnChangedRender(nameof(OnFlipChanged))]
+    public bool isFlipped { get; set; }
+
+    
+   
+    
     public override void Spawned()
     {
         if (HasStateAuthority)
@@ -53,6 +61,7 @@ public Grid grid;
             Camera = Camera.main;
             Camera.GetComponent<FirstPersonCamera>().Target = transform;
         }
+        
     }
     
     private void Awake()
@@ -81,11 +90,6 @@ public Grid grid;
     {
         cellPos = grid.WorldToCell(transform.position);
         rb.position = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
-
-        if (playerState == PlayerState.Zombie)
-        {
-            BecomeZombie();
-        }
     }
 
     private void Update()
@@ -95,10 +99,12 @@ public Grid grid;
             return;
 #endif*/
 
+
+
         if (HasStateAuthority)
         {
             DirInput();
-            
+
             if (playerState == PlayerState.Human)
             {
                 arrowHandler.SetMoveInput(lastMoveInput);
@@ -110,11 +116,15 @@ public Grid grid;
                 zombieHandler.HandleDashInput();
             }
 
-            if (playerState == PlayerState.Zombie && !zombieSetupDone)
+            //디버깅용
+            if (Keyboard.current.eKey.wasPressedThisFrame)
             {
-
+                playerState = PlayerState.Zombie;
             }
+        }
 
+        if (playerState == PlayerState.Zombie && !zombieSetupDone)
+        {
             BecomeZombie();
         }
 
@@ -205,9 +215,9 @@ public Grid grid;
             lastMoveInput = moveInput;
 
         if (dir == MoveDir.Right)
-            spriteRenderer.flipX = true;
+            isFlipped = spriteRenderer.flipX = true;
         else if (dir == MoveDir.Left)
-            spriteRenderer.flipX = false;
+            isFlipped = spriteRenderer.flipX = false;
 
         if (dir == MoveDir.Up || dir == MoveDir.Down)
             spriteRenderer.flipX = false;
@@ -238,10 +248,16 @@ public Grid grid;
         }
     }
 
-    void SetPlayerAlpha(float alpha)
+    void SetPlayerAlpha()
     {
         Color c = spriteRenderer.color;
         c.a = playerAlpha;
         spriteRenderer.color = c;
+    }
+    
+    
+    private void OnFlipChanged()
+    {
+        spriteRenderer.flipX = isFlipped;
     }
 }

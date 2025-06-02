@@ -28,12 +28,12 @@ public class PlayerSpawner : SimulationBehaviour
         await UniTask.Delay(2000);
         if (Runner != null && Runner.IsRunning)
         {
-            Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer,
-            onBeforeSpawned: (runner, obj) =>
-       {
-           obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
-           print(SceneManager.GetActiveScene().buildIndex);
-       });
+            Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer);
+            // onBeforeSpawned: (runner, obj) =>
+            // {
+            //     obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
+            //     print(SceneManager.GetActiveScene().buildIndex);
+            // });
 
         }
     }

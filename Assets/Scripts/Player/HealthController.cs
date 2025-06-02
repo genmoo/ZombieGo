@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Fusion;
 
-public class HealthController : MonoBehaviour
+public class HealthController : NetworkBehaviour
 {
     public int maxHealth;
     private int currentHealth;
@@ -11,7 +12,7 @@ public class HealthController : MonoBehaviour
     public Slider healthSlider;
     public GameObject healthUI;
 
-    private void Awake()
+    public override void Spawned()
     {
         InitHealth();
     }

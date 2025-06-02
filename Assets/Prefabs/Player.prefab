@@ -350,6 +350,9 @@ GameObject:
   - component: {fileID: 5460838842038689637}
   - component: {fileID: 8779908427083572965}
   - component: {fileID: 4745883303506823377}
+  - component: {fileID: 2723439027037760663}
+  - component: {fileID: 3955060356193897698}
+  - component: {fileID: 1572514156123657906}
   m_Layer: 27
   m_Name: Player
   m_TagString: Untagged
@@ -471,6 +474,8 @@ MonoBehaviour:
   speed: 5
   arrowHandler: {fileID: 5460838842038689637}
   zombieHandler: {fileID: 4745883303506823377}
+  Camera: {fileID: 0}
+  _playerAlpha: 0
 --- !u!50 &2561882897380308845
 Rigidbody2D:
   serializedVersion: 5
@@ -600,6 +605,72 @@ MonoBehaviour:
   dashCooldown: 8
   dashSpeed: 30
   ghostSpawnInterval: 0.01
+--- !u!114 &2723439027037760663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780608394636880836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2835341297
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 3448699737050935526}
+  - {fileID: 5460838842038689637}
+  - {fileID: 8779908427083572965}
+  - {fileID: 4745883303506823377}
+  - {fileID: 3955060356193897698}
+  - {fileID: 1572514156123657906}
+  - {fileID: 6774961380702630867}
+  ForceRemoteRenderTimeframe: 0
+--- !u!114 &3955060356193897698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780608394636880836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e690b5fb1084f5ab1c86457af401d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 1
+  _interpolationTarget: {fileID: 0}
+  UsePreciseRotation: 0
+  UseRenderSleepThresholds: 1
+  RenderThresholds:
+    UseEnergy: 1
+    Position: 0.01
+    Rotation: 0.01
+    Scale: 0.01
+--- !u!114 &1572514156123657906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780608394636880836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 8384868651919936581}
+  ApplyTiming: 2
+  SyncSettings: 79
+  StateHashes: 000000002b1a167c794069556bd5a32d398fdc04
+  TriggerHashes: 00000000
+  TotalWords: 3
 --- !u!1 &3011402147385473590
 GameObject:
   m_ObjectHideFlags: 0

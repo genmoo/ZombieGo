@@ -1,6 +1,7 @@
 using UnityEngine;
+using Fusion;
 
-public class ArrowDamage : MonoBehaviour
+public class ArrowDamage : NetworkBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
