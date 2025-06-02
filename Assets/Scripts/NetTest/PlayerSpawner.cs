@@ -1,42 +1,63 @@
+using System.Collections;
+using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
-using System.Collections.Generic;
-
-public class PlayerSpawner : SimulationBehaviour, IPlayerJoined, IPlayerLeft
+using UnityEngine.SceneManagement;
+public class PlayerSpawner : SimulationBehaviour
 {
     public GameObject PlayerPrefab;
-    public int playerCount = 0;
 
-    public void PlayerJoined(PlayerRef player)
+    private void OnEnable()
     {
-        if (player == Runner.LocalPlayer)
-        {
-            Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
-        }
-
-        WaitingMapManager.Instance.playerCount++;
-        Debug.Log($"플레이어 입장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-
-    public void PlayerLeft(PlayerRef player)
+    private void OnDisable()
     {
-        WaitingMapManager.Instance.playerCount--;
-        Debug.Log($"플레이어 퇴장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    
-    public void SceneLoadSp()
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        print("0");
-        // if (!Runner.IsServer) return;
-        print("1");
-        foreach (var player in Runner.ActivePlayers)
+        // StartCoroutine("SpawnAfterDelay");
+        SpawnAfterDelay().Forget();
+    }
+
+    private async UniTask SpawnAfterDelay()
+    {
+        await UniTask.Delay(2000);
+        if (Runner != null && Runner.IsRunning)
         {
-            Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, player);
-            PlayMapManager.Instance.playerCount++;
-             Debug.Log($"플레이어 입장: {player} / 현재 인원: {PlayMapManager.Instance.playerCount}");
+            Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer,
+            onBeforeSpawned: (runner, obj) =>
+       {
+           obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
+           print(SceneManager.GetActiveScene().buildIndex);
+       });
 
         }
     }
-
 }
+
+// }
+// IPlayerJoined, IPlayerLeft
+//     public void PlayerJoined(PlayerRef player)
+//     {
+//         if (player == Runner.LocalPlayer)
+//         {
+//             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer,
+//    onBeforeSpawned: (runner, obj) =>
+//    {
+//        obj.GetComponent<Net_PlayerController>().SceneGroupId = 3;
+//    });
+//         }
+
+//         WaitingMapManager.Instance.playerCount++;
+//         Debug.Log($"플레이어 입장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
+//     }
+
+//     public void PlayerLeft(PlayerRef player)
+//     {
+//         WaitingMapManager.Instance.playerCount--;
+//         Debug.Log($"플레이어 퇴장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
+//     }

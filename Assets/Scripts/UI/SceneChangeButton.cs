@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class SceneChangeButton : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class SceneChangeButton : MonoBehaviour
     {
         ChangeToNextScene,
         ChangeToLobbyScene,
+        ChangeToWatingScene,
+        ChangeToGameScene
     }
 
     [SerializeField]
@@ -18,7 +19,8 @@ public class SceneChangeButton : MonoBehaviour
     private void Awake()
     {
         btn = GetComponent<Button>();
-        btn.onClick.AddListener(() => {
+        btn.onClick.AddListener(() =>
+        {
             CallSceneChangeFunction(selectedSceneChange);
         });
     }
@@ -27,11 +29,14 @@ public class SceneChangeButton : MonoBehaviour
     {
         switch (type)
         {
-            case SceneChangeType.ChangeToNextScene:
-                GameManager.Instance.ChangeToNextScene();
-                break;
             case SceneChangeType.ChangeToLobbyScene:
                 GameManager.Instance.ChangeToLobbyScene();
+                break;
+            case SceneChangeType.ChangeToWatingScene:
+                GameManager.Instance.ChangeToWatingScene();
+                break;
+            case SceneChangeType.ChangeToGameScene:
+                GameManager.Instance.ChangeToGameScene();
                 break;
         }
     }

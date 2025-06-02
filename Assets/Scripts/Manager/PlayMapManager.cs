@@ -2,16 +2,29 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Fusion;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 
 
-public class PlayMapManager : MonoBehaviour
+public class PlayMapManager : NetworkBehaviour
 {
     public static PlayMapManager Instance;
     public Grid grid;
     public Tilemap wallTilemap;
-    // public NetworkRunner runnerPrefab;
     public int playerCount = 0;
-    // private string[] persistentScenes = { "WaitingRoom", "LYS_NightClass" };
+
+    // timer
+    [SerializeField] private TMP_Text text;
+
+    [SerializeField] private float time;
+    [SerializeField] private float curTime;
+
+    private NetworkRunner Runner;
+
+    int minute;
+    int second;
 
     void Awake()
     {
@@ -20,42 +33,41 @@ public class PlayMapManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
 
-        // string currentScene = SceneManager.GetActiveScene().name;
+        if (Runner == null)
+            Runner = FindObjectOfType<NetworkRunner>();
+    }
 
-        // foreach (var sceneName in persistentScenes)
-        // {
-        //     if (currentScene == sceneName)
-        //     {
-        //         DontDestroyOnLoad(gameObject);
-        //         return;
-        //     }
-        // }
+    private void Start()
+    {
+        if (Runner.IsSharedModeMasterClient)
+        {
+            Invoke("StartTimer", 3f);
+        }
+    }
 
-        // Destroy(gameObject);
-
+    public void StartTimer()
+    {
+        time = 70;
+        Timer().Forget();
     }
     
-    
-
-    // async void Start()
-    // {
-    //     var runner = Instantiate(runnerPrefab);
-    //     runner.ProvideInput = true;
-
-    //     await runner.StartGame(new StartGameArgs
-    //     {
-    //         GameMode = GameMode.Shared,
-    //         SessionName = "TestRoom",
-    //         SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
-    //     });
-    // }
-
-    // void Update()
-    // {
-    //     print(playerCount);
-    // }
+    private async UniTask Timer()
+    {
+        curTime = time;
+        while (curTime > 0)
+        {
+            curTime -= Time.deltaTime;
+            minute = (int)curTime / 60;
+            second = (int)curTime % 60;
+            text.text = minute.ToString("00") + ":" + second.ToString("00");
+            await UniTask.Yield();
+        }
+        Debug.Log("시간 종료");
+        curTime = 0;
+    }
 }
+
+
 

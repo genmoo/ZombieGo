@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using Fusion;
+using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 public enum MoveDir2
 {
@@ -28,7 +30,6 @@ public class Net_PlayerController : NetworkBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private Tilemap cabinetTilemap;
-
     private Rigidbody2D rb;
     private Vector3Int cellPos = Vector3Int.zero;
     private Vector2 lastMoveInput = Vector2.down;
@@ -71,6 +72,7 @@ public class Net_PlayerController : NetworkBehaviour
     [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
     public float PlayerAlpha { get; set; }
     public Camera Camera;
+    [Networked] public int SceneGroupId { get; set; }
 
     public override void Spawned()
     {
@@ -79,6 +81,9 @@ public class Net_PlayerController : NetworkBehaviour
             Camera = Camera.main;
             Camera.GetComponent<FirstPersonCamera>().Target = transform;
         }
+
+        //  씬 아이디 추가
+        UpdateSceneVisibility();
     }
 
     private void Awake()
@@ -89,7 +94,7 @@ public class Net_PlayerController : NetworkBehaviour
         if (wallTilemap == null)
             wallTilemap = WaitingMapManager.Instance.wallTilemap;
 
-             if (grid == null)
+        if (grid == null)
             grid = PlayMapManager.Instance.grid;
         if (wallTilemap == null)
             wallTilemap = PlayMapManager.Instance.wallTilemap;
@@ -112,23 +117,24 @@ public class Net_PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        DirInput();
-        if (PlayerState2 == PlayerState2.Human)
-        {
-            ArrowInput();
-        }
-        else if (PlayerState2 == PlayerState2.Zombie)
-        {
-            DashInput();
-        }
-
-        else if (PlayerState2 == PlayerState2.Zombie && !zombieSetupDone)
-        {
-            BecomeZombie();
-        }
-
         if (HasStateAuthority)
-            CabinetAlpha(); // 값 변경은 내 권한에서만
+        {
+            DirInput();
+            if (PlayerState2 == PlayerState2.Human)
+            {
+                ArrowInput();
+            }
+            else if (PlayerState2 == PlayerState2.Zombie)
+            {
+                DashInput();
+            }
+
+            else if (PlayerState2 == PlayerState2.Zombie && !zombieSetupDone)
+            {
+                BecomeZombie();
+            }
+        }
+        CabinetAlpha();
     }
 
     public override void FixedUpdateNetwork()
@@ -139,6 +145,7 @@ public class Net_PlayerController : NetworkBehaviour
         }
         UpdateAnimator();
         UpdateMoving();
+        UpdatePosition();
 
         if (isDashing)
         {
@@ -171,17 +178,31 @@ public class Net_PlayerController : NetworkBehaviour
             }
             return; // 대시 중엔 일반 이동 금지
         }
-
-        UpdatePosition();
     }
+
+    void UpdateSceneVisibility()
+    {
+        int mySceneGroupId = SceneManager.GetActiveScene().buildIndex; // 예: 0 = Game, 1 = Lobby
+
+        if (SceneGroupId != mySceneGroupId)
+        {
+            // 다른 씬이면 비활성화
+            gameObject.SetActive(false); // 또는 렌더러, 충돌기 비활성화
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
 
     void DirInput()
     {
-        if (Time.time < dashLock)
-        {
-            dir = MoveDir2.None;
-            return;
-        }
+        // if (Time.time < dashLock)
+        // {
+        //     dir = MoveDir2.None;
+        //     return;
+        // }
 
         if (Input.GetKey(KeyCode.W))
             dir = MoveDir2.Up;
@@ -209,7 +230,7 @@ public class Net_PlayerController : NetworkBehaviour
             case MoveDir2.Right: nextCell += Vector3Int.right; break;
         }
 
-        Vector3Int topCell = nextCell + Vector3Int.up;
+        // Vector3Int topCell = nextCell + Vector3Int.up;
 
         if (!wallTilemap.HasTile(nextCell))
         {
@@ -226,8 +247,8 @@ public class Net_PlayerController : NetworkBehaviour
         Vector2 destPos = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
         Vector2 MoveDir2 = destPos - rb.position;
 
-        float dist = MoveDir2.magnitude;
-        if (dist < speed * Runner.DeltaTime)
+        // float dist = MoveDir2.magnitude;
+        if (MoveDir2.magnitude < speed * Runner.DeltaTime)
         {
             rb.MovePosition(destPos);
             isMoving = false;
@@ -283,7 +304,8 @@ public class Net_PlayerController : NetworkBehaviour
 
         Vector2 spawnPos = rb.position + spawnOffset;
 
-        GameObject arrow = Instantiate(arrowPrefab, spawnPos, Quaternion.identity);
+        // GameObject arrow = Instantiate(arrowPrefab, spawnPos, Quaternion.identity);
+        NetworkObject arrow = Runner.Spawn(arrowPrefab, spawnPos, Quaternion.identity, Runner.LocalPlayer);
 
         Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
         arrowRb.linearVelocity = shootDir * arrowSpeed;
@@ -300,9 +322,16 @@ public class Net_PlayerController : NetworkBehaviour
 
         arrow.transform.rotation = Quaternion.Euler(0f, 0f, zRot);
 
-        Destroy(arrow, arrowLife);
+        // Destroy(arrow, arrowLife);
+        ArrowDespawn(arrow, arrowLife).Forget();
     }
 
+    private async UniTaskVoid ArrowDespawn(NetworkObject netObj, float time)
+    {
+        int delayMs = Mathf.RoundToInt(time * 1000f);
+        await UniTask.Delay(delayMs);
+        Runner.Despawn(netObj);
+    }
     void DashInput()
     {
         if (isDashing) return;
@@ -366,12 +395,6 @@ public class Net_PlayerController : NetworkBehaviour
 
         Destroy(ghost, 0.2f);
     }
-    void SetPlayerAlpha()
-    {
-        Color c = spriteRenderer.color;
-        c.a = PlayerAlpha;
-        spriteRenderer.color = c;
-    }
 
     void ArrowInput()
     {
@@ -416,8 +439,14 @@ public class Net_PlayerController : NetworkBehaviour
     {
         Vector3Int currentCell = grid.WorldToCell(transform.position);
         if (cabinetTilemap.HasTile(currentCell))
-            PlayerAlpha = 0.5f;
+            PlayerAlpha = HasStateAuthority ? 0.5f : 0f;
         else
             PlayerAlpha = 1f;
+    }
+    void SetPlayerAlpha()
+    {
+        Color c = spriteRenderer.color;
+        c.a = PlayerAlpha;
+        spriteRenderer.color = c;
     }
 }
