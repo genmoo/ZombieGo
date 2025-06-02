@@ -9,9 +9,15 @@ public class ArrowDamage : MonoBehaviour
 
         if (health.playerController.playerState == PlayerState.Human)
             return;
-            
-        health.TakeDamage(1);
         
+        ZombieHandler zombie = collision.GetComponent<ZombieHandler>();
+        if (zombie != null)
+        {
+            zombie.SetImmune(0.5f);
+        }
+
+        health.TakeDamage(1);
+
         if (health.playerController.playerState == PlayerState.Zombie)
         {
             Destroy(gameObject);

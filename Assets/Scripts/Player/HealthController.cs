@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class HealthController : MonoBehaviour
 {
     public int maxHealth;
     private int currentHealth;
     public PlayerController playerController;
+    
+    public Slider healthSlider;
+    public GameObject healthUI;
 
     private void Awake()
     {
@@ -14,16 +19,19 @@ public class HealthController : MonoBehaviour
     void InitHealth()
     {
         if (playerController.playerState == PlayerState.Zombie)
-            maxHealth = 10;
-        else if (playerController.playerState == PlayerState.Human)
-            maxHealth = 1;
-
+            maxHealth = 10; 
         currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
+        if (playerController.playerState == PlayerState.Human)
+            return;
+        
         currentHealth -= damage;
+        healthSlider.value = currentHealth;
+        
+        StartCoroutine(ShowHealthUIForOneSecond());
 
         if (currentHealth <= 0)
         {
@@ -37,12 +45,12 @@ public class HealthController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (playerController.playerState == PlayerState.Human)
-        {
-            
-            playerController.playerState = PlayerState.Zombie;
-            InitHealth();
-            playerController.BecomeZombie(); 
-        }
+    }
+    
+    IEnumerator ShowHealthUIForOneSecond()
+    {
+        healthUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        healthUI.SetActive(false);
     }
 }

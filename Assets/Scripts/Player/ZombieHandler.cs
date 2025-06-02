@@ -28,6 +28,10 @@ public class ZombieHandler : MonoBehaviour
     private bool isCooldown = false;
     
     private Vector2 lastMoveInput = Vector2.down;
+    
+    private float immuneUntil = 0f;
+    public float ImmuneUntil => immuneUntil;
+    private bool isImmune = false;
 
     public void Init(Rigidbody2D rigidbody, Vector2 moveInput)
     {
@@ -35,6 +39,15 @@ public class ZombieHandler : MonoBehaviour
         lastMoveInput = moveInput;
     }
 
+    private void Update()
+    {
+        if (isImmune && Time.time >= immuneUntil)
+        {
+            isImmune = false;
+            SetZombieAlpha(1f);
+        }
+    }
+    
     public void BecomeZombie()
     {
         dashLoading.gameObject.SetActive(true);
@@ -143,5 +156,20 @@ public class ZombieHandler : MonoBehaviour
     {
         if (moveInput != Vector2.zero)
             lastMoveInput = moveInput;
+    }
+    
+    
+    public void SetImmune(float duration)
+    {
+        immuneUntil = Time.time + duration;
+        isImmune = true;
+        SetZombieAlpha(0.5f);
+    }
+    
+    private void SetZombieAlpha(float alpha)
+    {
+        Color c = spriteRenderer.color;
+        c.a = alpha;
+        spriteRenderer.color = c;
     }
 }

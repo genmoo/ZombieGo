@@ -68,6 +68,11 @@ public Grid grid;
 
     private void Update()
     {
+/*#if UNITY_EDITOR
+        if (playerState == PlayerState.Zombie)
+            return;
+#endif*/
+        
         DirInput();
         UpdateMoving();
         UpdateAnimator();
