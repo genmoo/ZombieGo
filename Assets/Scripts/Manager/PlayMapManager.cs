@@ -1,30 +1,26 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Fusion;
-using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
-
 
 public class PlayMapManager : NetworkBehaviour
 {
     public static PlayMapManager Instance;
+
     public Grid grid;
     public Tilemap wallTilemap;
     public int playerCount = 0;
 
-    // timer
-    [SerializeField] private TMP_Text text;
+    // Networked timer
+    [Networked]
+    private TickTimer timer { get; set; }
 
-    [SerializeField] private float time;
-    [SerializeField] private float curTime;
+    [SerializeField]
+    private TMP_Text timerText;
 
-    private NetworkRunner Runner;
-
-    int minute;
-    int second;
+    [SerializeField]
+    private float timerDuration = 70f;
 
     void Awake()
     {
@@ -34,40 +30,40 @@ public class PlayMapManager : NetworkBehaviour
             return;
         }
         Instance = this;
-
-        if (Runner == null)
-            Runner = FindObjectOfType<NetworkRunner>();
     }
 
-    private void Start()
+    public override void Spawned()
     {
-        if (Runner.IsSharedModeMasterClient)
+        print("Sd");
+        if (HasStateAuthority)
         {
-            Invoke("StartTimer", 3f);
+            timer = TickTimer.CreateFromSeconds(Runner, timerDuration);
         }
+
+        UpdateTimerLoop().Forget();
     }
 
-    public void StartTimer()
+    private async UniTaskVoid UpdateTimerLoop()
     {
-        time = 70;
-        Timer().Forget();
-    }
-    
-    private async UniTask Timer()
-    {
-        curTime = time;
-        while (curTime > 0)
+        while (true)
         {
-            curTime -= Time.deltaTime;
-            minute = (int)curTime / 60;
-            second = (int)curTime % 60;
-            text.text = minute.ToString("00") + ":" + second.ToString("00");
-            await UniTask.Yield();
+            float remaining = timer.RemainingTime(Runner) ?? 0f;
+
+            int min = Mathf.FloorToInt(remaining / 60f);
+            int sec = Mathf.FloorToInt(remaining % 60f);
+
+            if (timerText != null)
+                timerText.text = $"{min:00}:{sec:00}";
+
+            if (remaining <= 0f)
+                break;
+
+            await UniTask.Delay(500); // 0.5초 간격
         }
-        Debug.Log("시간 종료");
-        curTime = 0;
+
+        if (timerText != null)
+            timerText.text = "00:00";
+
+        Debug.Log("타이머 종료");
     }
 }
-
-
-

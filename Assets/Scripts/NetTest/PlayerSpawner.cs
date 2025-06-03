@@ -25,7 +25,7 @@ public class PlayerSpawner : SimulationBehaviour
 
     private async UniTask SpawnAfterDelay()
     {
-        await UniTask.Delay(2000);
+        await UniTask.DelayFrame(1);
         if (Runner != null && Runner.IsRunning)
         {
             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer);
