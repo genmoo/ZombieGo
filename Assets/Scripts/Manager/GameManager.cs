@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         {
             if (Runner.IsSceneAuthority)
             {
-                Runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
+                Runner.LoadScene(SceneRef.FromIndex(3), LoadSceneMode.Single);
             }
         }
         else if (target == SceneName.WaitingRoom)
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
             {
                  if (Runner.IsSceneAuthority)
                 {
-                    Runner.LoadScene(SceneRef.FromIndex(1), LoadSceneMode.Single);
+                    Runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
                 }
                 // //이미 러너가 실행 중이면 씬만 이동
                 // Debug.Log("[Fusion] 러너 실행 중, StartGame 생략하고 씬만 전환");
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
                 {
                     GameMode = GameMode.Shared,
                     SessionName = "Test",
-                    Scene = SceneRef.FromIndex(1), // WaitingRoom 씬 인덱스
+                    Scene = SceneRef.FromIndex(2), // WaitingRoom 씬 인덱스
                     SceneManager = sceneManager
                 };
                 Runner.StartGame(args);
@@ -94,11 +94,12 @@ public class GameManager : MonoBehaviour
                 Destroy(player);
 
             yield return new WaitForSeconds(delay);
+            // yield return SceneManager.LoadSceneAsync(target.ToString());
             yield return SceneManager.LoadSceneAsync(target.ToString());
             OnGameEndButton();
         }
-
     }
+
     // 로드 된후 로딩 이미지 끄기기
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

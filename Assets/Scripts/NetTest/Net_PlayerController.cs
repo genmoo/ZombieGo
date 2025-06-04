@@ -72,18 +72,44 @@ public class Net_PlayerController : NetworkBehaviour
     [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
     public float PlayerAlpha { get; set; }
     public Camera Camera;
-    [Networked] public int SceneGroupId { get; set; }
+    [Networked] public bool IsZombie { get; set; }
 
     public override void Spawned()
+    {
+        SpawnCamera();
+        PlayerCount();
+    }
+    
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_SetAsZombie()
+    {
+        IsZombie = true;
+        PlayMapManager.Instance.AddZombie();
+        Debug.Log($"{Object.InputAuthority} is now the Leader!");
+    }
+
+    private void SpawnCamera()
     {
         if (HasStateAuthority)
         {
             Camera = Camera.main;
             Camera.GetComponent<FirstPersonCamera>().Target = transform;
         }
+    }
 
-        //  씬 아이디 추가
-        // UpdateSceneVisibility();
+    private void PlayerCount()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 3)
+        {
+            PlayMapManager.Instance.JoinPlayer(this);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (PlayMapManager.Instance != null)
+            PlayMapManager.Instance.LeftPlayer(this);
     }
 
     private void Awake()
@@ -179,22 +205,6 @@ public class Net_PlayerController : NetworkBehaviour
             return; // 대시 중엔 일반 이동 금지
         }
     }
-
-    void UpdateSceneVisibility()
-    {
-        int mySceneGroupId = SceneManager.GetActiveScene().buildIndex; // 예: 0 = Game, 1 = Lobby
-
-        if (SceneGroupId != mySceneGroupId)
-        {
-            // 다른 씬이면 비활성화
-            gameObject.SetActive(false); // 또는 렌더러, 충돌기 비활성화
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-    }
-
 
     void DirInput()
     {

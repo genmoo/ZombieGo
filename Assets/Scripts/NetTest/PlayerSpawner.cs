@@ -29,16 +29,18 @@ public class PlayerSpawner : SimulationBehaviour
         if (Runner != null && Runner.IsRunning)
         {
             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer);
-            // onBeforeSpawned: (runner, obj) =>
-            // {
-            //     obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
-            //     print(SceneManager.GetActiveScene().buildIndex);
-            // });
-
         }
     }
 }
 
+
+
+
+ // onBeforeSpawned: (runner, obj) =>
+            // {
+            //     obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
+            //     print(SceneManager.GetActiveScene().buildIndex);
+            // });
 // }
 // IPlayerJoined, IPlayerLeft
 //     public void PlayerJoined(PlayerRef player)

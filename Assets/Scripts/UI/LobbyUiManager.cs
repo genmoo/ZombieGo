@@ -2,6 +2,7 @@ using UnityEngine;
 using Fusion;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 
 public class LobbyUiManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class LobbyUiManager : MonoBehaviour
     [SerializeField]
     private GameObject creatRoomUi;
     [SerializeField]
-    private NetworkRunner GameManager; 
+    private NetworkRunner GameManager;
     private void Awake()
     {
         SceneManager.sceneLoaded += SpawnRunnder;
@@ -18,19 +19,19 @@ public class LobbyUiManager : MonoBehaviour
 
     private void SpawnRunnder(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine("DelayRunner");
+        DelayRunner().Forget(); 
     }
 
-    IEnumerator DelayRunner()
+    private async UniTask DelayRunner()
     {
-        yield return new WaitForSeconds(0.2f);
+        await UniTask.DelayFrame(4);
         if (FindObjectOfType<NetworkRunner>() == null)
         {
-            var runner = Instantiate(GameManager);
+             Instantiate(GameManager);
         }
     }
 
-     void OnDestroy()
+    void OnDestroy()
     {
         SceneManager.sceneLoaded -= SpawnRunnder;
     }
