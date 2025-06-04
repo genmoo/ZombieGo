@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using Fusion;
+using UnityEngine.UI;
 
 
 public enum MoveDir
@@ -41,6 +42,8 @@ public class PlayerController : NetworkBehaviour
     private bool zombieSetupDone = false;
 
     public Camera Camera;
+    public HealthController healthController;
+    public Image circle;
     
     [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
     public float playerAlpha { get; set; }
@@ -60,8 +63,23 @@ public class PlayerController : NetworkBehaviour
         {
             Camera = Camera.main;
             Camera.GetComponent<FirstPersonCamera>().Target = transform;
+            
+            arrowHandler.arrowLoading.gameObject.SetActive(true);
+            arrowHandler.arrowImage.gameObject.SetActive(true);
+
+            zombieHandler.dashLoading.gameObject.SetActive(false);
+            zombieHandler.dashImage.gameObject.SetActive(false);
         }
-        
+        else
+        {
+            circle.enabled = false;
+            arrowHandler.arrowLoading.gameObject.SetActive(false);
+            arrowHandler.arrowImage.gameObject.SetActive(false);
+
+            zombieHandler.dashLoading.gameObject.SetActive(false);
+            zombieHandler.dashImage.gameObject.SetActive(false);
+            
+        }
     }
     
     private void Awake()
@@ -83,7 +101,8 @@ public class PlayerController : NetworkBehaviour
         arrowHandler.Init(rb, lastMoveInput);
         zombieHandler.Init(rb, lastMoveInput);
         
-        GetComponent<HealthController>().playerController = this;
+        healthController = GetComponent<HealthController>();
+        healthController.playerController = this;
     }
 
     private void Start()
@@ -98,8 +117,6 @@ public class PlayerController : NetworkBehaviour
         if (playerState == PlayerState.Zombie)
             return;
 #endif*/
-
-
 
         if (HasStateAuthority)
         {
@@ -229,9 +246,16 @@ public class PlayerController : NetworkBehaviour
 
     public void BecomeZombie()
     {
+        if (HasStateAuthority)
+        {
+            zombieHandler.dashLoading.gameObject.SetActive(true);
+            zombieHandler.dashImage.gameObject.SetActive(true);
+        }
+
         zombieSetupDone = true;
         zombieHandler.BecomeZombie();
         arrowHandler.HideArrowUI();
+        healthController.InitHealth();
     }
 
     void CabinetAlpha()

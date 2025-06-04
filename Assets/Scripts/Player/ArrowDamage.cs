@@ -14,14 +14,14 @@ public class ArrowDamage : NetworkBehaviour
         ZombieHandler zombie = collision.GetComponent<ZombieHandler>();
         if (zombie != null)
         {
-            zombie.SetImmune(0.5f);
+            zombie.RpcSetImmune(0.5f);
         }
 
-        health.TakeDamage(1);
+        health.RpcTakeDamage(1);
 
         if (health.playerController.playerState == PlayerState.Zombie)
         {
-            Destroy(gameObject);
+            Runner.Despawn(Object);
         }
     }
 }

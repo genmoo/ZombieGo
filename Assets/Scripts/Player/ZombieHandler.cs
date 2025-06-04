@@ -30,9 +30,8 @@ public class ZombieHandler : NetworkBehaviour
     
     private Vector2 lastMoveInput = Vector2.down;
     
-    private float immuneUntil = 0f;
-    public float ImmuneUntil => immuneUntil;
-    private bool isImmune = false;
+    [Networked]
+    public float ImmuneUntil { get; private set; }
 
     public void Init(Rigidbody2D rigidbody, Vector2 moveInput)
     {
@@ -42,17 +41,11 @@ public class ZombieHandler : NetworkBehaviour
 
     private void Update()
     {
-        if (isImmune && Time.time >= immuneUntil)
-        {
-            isImmune = false;
-            SetZombieAlpha(1f);
-        }
+        UpdateZombieAlpha();
     }
     
     public void BecomeZombie()
     {
-        dashLoading.gameObject.SetActive(true);
-        dashImage.gameObject.SetActive(true);
         animator.runtimeAnimatorController = zombieAnimator;
     }
 
@@ -159,12 +152,22 @@ public class ZombieHandler : NetworkBehaviour
             lastMoveInput = moveInput;
     }
     
-    
-    public void SetImmune(float duration)
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    public void RpcSetImmune(float duration)
     {
-        immuneUntil = Time.time + duration;
-        isImmune = true;
-        SetZombieAlpha(0.5f);
+        ImmuneUntil = Runner.SimulationTime + duration;
+    }
+    
+    private void UpdateZombieAlpha()
+    {
+        if (Runner.SimulationTime < ImmuneUntil)
+        {
+            SetZombieAlpha(0.7f);
+        }
+        else
+        {
+            SetZombieAlpha(1f);  
+        }
     }
     
     private void SetZombieAlpha(float alpha)
@@ -173,4 +176,6 @@ public class ZombieHandler : NetworkBehaviour
         c.a = alpha;
         spriteRenderer.color = c;
     }
+    
+    public bool IsImmune => Runner.SimulationTime < ImmuneUntil;
 }

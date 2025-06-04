@@ -30,7 +30,7 @@ public class ZombieSensor : NetworkBehaviour
 
     private bool IsImmune()
     {
-        return Time.time < zombieHandler.ImmuneUntil;
+        return Runner.SimulationTime < zombieHandler.ImmuneUntil;
     }
 
     private void Infect(PlayerController target)

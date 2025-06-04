@@ -5,8 +5,12 @@ using Fusion;
 
 public class HealthController : NetworkBehaviour
 {
-    public int maxHealth;
-    private int currentHealth;
+    [Networked]
+    public int maxHealth { get; set; }
+    
+    [Networked]
+    public int currentHealth { get; set; }
+    
     public PlayerController playerController;
     
     public Slider healthSlider;
@@ -17,14 +21,15 @@ public class HealthController : NetworkBehaviour
         InitHealth();
     }
 
-    void InitHealth()
+    public void InitHealth()
     {
         if (playerController.playerState == PlayerState.Zombie)
             maxHealth = 10; 
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    public void RpcTakeDamage(int damage)
     {
         if (playerController.playerState == PlayerState.Human)
             return;
@@ -44,7 +49,7 @@ public class HealthController : NetworkBehaviour
     {
         if (playerController.playerState == PlayerState.Zombie)
         {
-            Destroy(gameObject);
+            Runner.Despawn(Object);
         }
     }
     
