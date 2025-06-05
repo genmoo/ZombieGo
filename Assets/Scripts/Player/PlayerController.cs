@@ -99,7 +99,7 @@ public class PlayerController : NetworkBehaviour
         cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
 
         arrowHandler.Init(rb, lastMoveInput);
-        zombieHandler.Init(rb, lastMoveInput);
+        zombieHandler.Init(rb, lastMoveInput, grid, wallTilemap);
         
         healthController = GetComponent<HealthController>();
         healthController.playerController = this;

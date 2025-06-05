@@ -610,6 +610,8 @@ MonoBehaviour:
   dashSpeed: 30
   ghostSpawnInterval: 0.01
   _ImmuneUntil: 0
+  ghostPrefab:
+    RawGuidValue: 14c1fa103040a3040ab1ba9b4cd4ec98
 --- !u!114 &2723439027037760663
 MonoBehaviour:
   m_ObjectHideFlags: 0
