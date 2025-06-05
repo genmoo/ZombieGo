@@ -1,13 +1,25 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Fusion;
+using TMPro;
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading;
 
-public class WaitingMapManager : MonoBehaviour
+
+public class WaitingMapManager : NetworkBehaviour
 {
     public static WaitingMapManager Instance;
     public Grid grid;
     public Tilemap wallTilemap;
-    // public NetworkRunner runnerPrefab;
-    public int playerCount = 0;
+    [SerializeField] private GameObject endUi;
+    [SerializeField] private TMP_Text player;
+    [Networked] public int playerCount{ get; set; }
+
+     public override void Spawned()
+    {
+        playerCount = 0;
+    }
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -17,6 +29,32 @@ public class WaitingMapManager : MonoBehaviour
         }
 
         Instance = this;
+
+        endUi.SetActive(false);
+    }
+
+    public void EndUi()
+    {
+        endUi.SetActive(true);
+    }
+
+    public void PlayerJoin()
+    {
+        if (HasStateAuthority)
+        {
+            playerCount++;
+            player.text = $"감염 {playerCount}/8";
+        }
+
+    }
+    
+    public void PlayerLeft()
+    {
+        if (HasStateAuthority)
+        {
+            playerCount--;
+            player.text = $"감염 {playerCount}/8";
+        }
     }
 }
 

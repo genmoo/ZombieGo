@@ -55,24 +55,23 @@ public class GameManager : MonoBehaviour
         }
         else if (target == SceneName.WaitingRoom)
         {
-            Fade_img[0].blocksRaycasts = true;
-            Fade_img[0].alpha = 1f;
-
-            yield return new WaitForSeconds(delay);
-
             if (Runner != null && Runner.IsRunning)
             {
-                 if (Runner.IsSceneAuthority)
+                if (Runner.IsSceneAuthority)
                 {
                     Runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
                 }
-                // //이미 러너가 실행 중이면 씬만 이동
-                // Debug.Log("[Fusion] 러너 실행 중, StartGame 생략하고 씬만 전환");
-                // SceneManager.LoadScene(target.ToString());
-                // 대기방을 러너 씬으로 만들고 rpc로 게임방으로 보내기 다시 rpc로 대기방으로 보내기 지금은 일단 전부 보내는 방식으로 해둠 rpc 하기 귀찮아서
+
+                yield return null;
+                yield return null;
+                WaitingMapManager.Instance.EndUi();
             }
             else
             {
+                Fade_img[0].blocksRaycasts = true;
+                Fade_img[0].alpha = 1f;
+
+                yield return new WaitForSeconds(delay);
                 //러너가 없거나 종료된 상태면 StartGame 호출 (Fusion이 씬도 관리함)
                 var args = new StartGameArgs()
                 {

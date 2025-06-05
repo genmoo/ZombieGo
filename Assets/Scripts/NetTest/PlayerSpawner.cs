@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class PlayerSpawner : SimulationBehaviour
+public class PlayerSpawner : SimulationBehaviour, IPlayerLeft
 {
     public GameObject PlayerPrefab;
 
@@ -15,6 +15,11 @@ public class PlayerSpawner : SimulationBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void PlayerLeft(PlayerRef player)
+    {
+        WaitingMapManager.Instance.PlayerLeft();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -30,17 +35,18 @@ public class PlayerSpawner : SimulationBehaviour
         {
             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer);
         }
+        WaitingMapManager.Instance.PlayerJoin();
     }
 }
 
 
 
 
- // onBeforeSpawned: (runner, obj) =>
-            // {
-            //     obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
-            //     print(SceneManager.GetActiveScene().buildIndex);
-            // });
+// onBeforeSpawned: (runner, obj) =>
+// {
+//     obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
+//     print(SceneManager.GetActiveScene().buildIndex);
+// });
 // }
 // IPlayerJoined, IPlayerLeft
 //     public void PlayerJoined(PlayerRef player)
