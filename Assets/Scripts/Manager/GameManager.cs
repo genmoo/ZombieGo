@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
                 yield return null;
                 yield return null;
-                WaitingMapManager.Instance.EndUi();
+                // WaitingMapManager.Instance.EndUi();
             }
             else
             {

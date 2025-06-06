@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using Fusion;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 
 public enum MoveDir
@@ -59,11 +61,11 @@ public class PlayerController : NetworkBehaviour
     
     public override void Spawned()
     {
+        SpawnCamera();
+        PlayerCount();
+
         if (HasStateAuthority)
         {
-            Camera = Camera.main;
-            Camera.GetComponent<FirstPersonCamera>().Target = transform;
-            
             arrowHandler.arrowLoading.gameObject.SetActive(true);
             arrowHandler.arrowImage.gameObject.SetActive(true);
 
@@ -78,7 +80,8 @@ public class PlayerController : NetworkBehaviour
 
             zombieHandler.dashLoading.gameObject.SetActive(false);
             zombieHandler.dashImage.gameObject.SetActive(false);
-            
+
+
         }
     }
     
@@ -95,20 +98,27 @@ public class PlayerController : NetworkBehaviour
         if (wallTilemap == null)
             wallTilemap = PlayMapManager.Instance.wallTilemap;
 
-        GameObject cabinetObj = GameObject.Find("Cabinet");
-        cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
-
         arrowHandler.Init(rb, lastMoveInput);
         zombieHandler.Init(rb, lastMoveInput, grid, wallTilemap);
         
         healthController = GetComponent<HealthController>();
         healthController.playerController = this;
+        
     }
 
     private void Start()
     {
         cellPos = grid.WorldToCell(transform.position);
         rb.position = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
+
+        GameObject cabinetObj = GameObject.Find("Cabinet");
+        cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
+
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 2)
+        {
+            WaitingMapManager.Instance.PlayerJoin();
+        }
     }
 
     private void Update()
@@ -160,6 +170,38 @@ public class PlayerController : NetworkBehaviour
         UpdateAnimator();
         UpdatePosition();
     }
+// --------------------------------------------------------
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetAsZombie()
+    {
+        playerState = PlayerState.Zombie;
+        Debug.Log($"{Object.InputAuthority} is now the Zombie!!");
+    }
+
+    private void SpawnCamera()
+    {
+        if (HasStateAuthority)
+        {
+            Camera = Camera.main;
+            Camera.GetComponent<FirstPersonCamera>().Target = transform;
+        }
+    }
+
+    private void PlayerCount()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 3)
+        {
+            PlayMapManager.Instance.JoinPlayer(this);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (PlayMapManager.Instance != null)
+            PlayMapManager.Instance.LeftPlayer(this);
+    }
+    // --------------------------------------------------------
 
     void DirInput()
     {
@@ -251,7 +293,7 @@ public class PlayerController : NetworkBehaviour
             zombieHandler.dashLoading.gameObject.SetActive(true);
             zombieHandler.dashImage.gameObject.SetActive(true);
         }
-
+        PlayMapManager.Instance.AddZombie();
         zombieSetupDone = true;
         zombieHandler.BecomeZombie();
         arrowHandler.HideArrowUI();
@@ -277,6 +319,7 @@ public class PlayerController : NetworkBehaviour
         Color c = spriteRenderer.color;
         c.a = playerAlpha;
         spriteRenderer.color = c;
+        Debug.Log($"[SetPlayerAlpha] Alpha set to {playerAlpha}");
     }
     
     

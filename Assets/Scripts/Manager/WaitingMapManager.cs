@@ -28,6 +28,11 @@ public class WaitingMapManager : NetworkBehaviour
         endUi.SetActive(false);
     }
 
+    public override void Spawned()
+    {
+        playerCount = 0;
+    }
+
     public void EndUi()
     {
         endUi.SetActive(true);

@@ -11,7 +11,7 @@ public class PlayMapManager : NetworkBehaviour
     public static PlayMapManager Instance;
     public Grid grid;
     public Tilemap wallTilemap;
-    public List<Net_PlayerController> players = new List<Net_PlayerController>();
+    public List<PlayerController> players = new List<PlayerController>();
     public PlayerScoreboard playerScoreboard;
     // Networked timer
     [Networked] private TickTimer timer { get; set; }
@@ -96,7 +96,7 @@ public class PlayMapManager : NetworkBehaviour
             if (players.Count == 0) return;
 
             int randomIndex = Random.Range(0, players.Count);
-            Net_PlayerController chosenPlayer = players[randomIndex];
+            PlayerController chosenPlayer = players[randomIndex];
 
             // RPC 호출해서 모든 클라이언트가 동기화되도록
             chosenPlayer.RPC_SetAsZombie();
@@ -109,6 +109,7 @@ public class PlayMapManager : NetworkBehaviour
     public void AddZombie()
     {
         ZombieCount++;
+        print("dasfg");
         EndGame();
     }
 
@@ -117,31 +118,23 @@ public class PlayMapManager : NetworkBehaviour
         int playerCount = players.Count;
         if (playerCount == ZombieCount)
         {
-            // EndGameUi();
             EndGameSceneChange();
         }
     }
 
-    // private void EndGameUi()
-    // {
-    //     endUi.SetActive(true);
-    //     EndGameSceneChange().Forget();
-    // }
-
-    // private async UniTaskVoid EndGameSceneChange()
-    // {
-    //     await UniTask.Delay(5000);
-    //     cts?.Cancel();
-    //     GameManager.Instance.ChangeToWatingScene();
-    // }
 
     private void EndGameSceneChange()
     {
         cts?.Cancel();
+
+        var player = GameObject.FindWithTag("Player");
+        if (player != null)
+            Destroy(player);
+
         GameManager.Instance.ChangeToWatingScene();
     }
 
-    public void JoinPlayer(Net_PlayerController player)
+    public void JoinPlayer(PlayerController player)
     {
         if (!players.Contains(player))
         {
@@ -150,7 +143,7 @@ public class PlayMapManager : NetworkBehaviour
         }
     }
 
-    public void LeftPlayer(Net_PlayerController player)
+    public void LeftPlayer(PlayerController player)
     {
         if (players.Contains(player))
         {
