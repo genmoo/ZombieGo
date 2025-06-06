@@ -15,11 +15,6 @@ public class WaitingMapManager : NetworkBehaviour
     [SerializeField] private GameObject endUi;
     [SerializeField] private TMP_Text player;
     [Networked] public int playerCount{ get; set; }
-
-     public override void Spawned()
-    {
-        playerCount = 0;
-    }
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -40,21 +35,14 @@ public class WaitingMapManager : NetworkBehaviour
 
     public void PlayerJoin()
     {
-        if (HasStateAuthority)
-        {
             playerCount++;
             player.text = $"감염 {playerCount}/8";
-        }
-
     }
     
     public void PlayerLeft()
     {
-        if (HasStateAuthority)
-        {
             playerCount--;
             player.text = $"감염 {playerCount}/8";
-        }
     }
 }
 

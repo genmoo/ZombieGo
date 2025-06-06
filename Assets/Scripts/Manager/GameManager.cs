@@ -16,9 +16,8 @@ public class GameManager : MonoBehaviour
     // 네트워크
     public NetworkRunner Runner;
     public NetworkSceneManagerDefault sceneManager;
-    private string currentSceneName;
-    [SerializeField]
-    private float delay = 3f;
+    [SerializeField] private NetworkRunner runnerPrefab;
+    [SerializeField] private float delay = 3f;
 
     private void Awake()
     {
@@ -30,9 +29,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
-
-        Runner = GetComponent<NetworkRunner>();
-        sceneManager = GetComponent<NetworkSceneManagerDefault>();
     }
     private void OnEnable()
     {
@@ -88,20 +84,16 @@ public class GameManager : MonoBehaviour
             Fade_img[0].blocksRaycasts = true;
             Fade_img[0].alpha = 1f;
 
-            var player = GameObject.FindWithTag("Player");
-            if (player != null)
-                Destroy(player);
-
-            yield return new WaitForSeconds(delay);
-            // yield return SceneManager.LoadSceneAsync(target.ToString());
-            yield return SceneManager.LoadSceneAsync(target.ToString());
             OnGameEndButton();
+            yield return new WaitForSeconds(delay);
+            yield return SceneManager.LoadSceneAsync(target.ToString());
         }
     }
 
     // 로드 된후 로딩 이미지 끄기기
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        EnsureRunner();
         Fade_img[0].blocksRaycasts = false;
         Fade_img[0].alpha = 0f;
     }
@@ -121,7 +113,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(LoadScene(SceneName.LYS_NightClass));
     }
-    // 셧 다운
+
     public void OnGameEndButton()
     {
         if (Runner != null)
@@ -130,44 +122,16 @@ public class GameManager : MonoBehaviour
             Destroy(Runner.gameObject);
         }
     }
+
+    public void EnsureRunner()
+    {
+        if (Runner != null) return;
+
+        var runnerGO = Instantiate(runnerPrefab);
+        Runner = runnerGO.GetComponent<NetworkRunner>();
+        sceneManager = runnerGO.GetComponent<NetworkSceneManagerDefault>();
+
+        DontDestroyOnLoad(runnerGO);
+    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// 스타트 함수
-// public void ChangeToNextScene()
-// {
-//     SceneName current = GetCurrentSceneEnum();
-//     SceneName next = current switch
-//     {
-//         SceneName.Lobby => SceneName.WaitingRoom,
-//         SceneName.WaitingRoom => SceneName.LYS_NightClass,
-//         SceneName.LYS_NightClass => SceneName.Lobby,
-//         _ => SceneName.Lobby
-//     };
-//     StartCoroutine(LoadScene(next));
-// }
-
-// private static SceneName GetCurrentSceneEnum()
-// {
-//     string sceneName = SceneManager.GetActiveScene().name;
-
-//     if (System.Enum.TryParse(sceneName, out SceneName result))
-//     {
-//         return result;
-//     }
-//     else
-//     {
-//         Debug.LogError("씬 이름과 enum 값이 일치하지 않음: " + sceneName);
-//         return SceneName.Lobby;
-//     }
-// }

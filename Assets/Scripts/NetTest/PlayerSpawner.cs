@@ -24,7 +24,6 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerLeft
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // StartCoroutine("SpawnAfterDelay");
         SpawnAfterDelay().Forget();
     }
 
@@ -35,37 +34,5 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerLeft
         {
             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer);
         }
-        WaitingMapManager.Instance.PlayerJoin();
     }
 }
-
-
-
-
-// onBeforeSpawned: (runner, obj) =>
-// {
-//     obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
-//     print(SceneManager.GetActiveScene().buildIndex);
-// });
-// }
-// IPlayerJoined, IPlayerLeft
-//     public void PlayerJoined(PlayerRef player)
-//     {
-//         if (player == Runner.LocalPlayer)
-//         {
-//             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer,
-//    onBeforeSpawned: (runner, obj) =>
-//    {
-//        obj.GetComponent<Net_PlayerController>().SceneGroupId = 3;
-//    });
-//         }
-
-//         WaitingMapManager.Instance.playerCount++;
-//         Debug.Log($"플레이어 입장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
-//     }
-
-//     public void PlayerLeft(PlayerRef player)
-//     {
-//         WaitingMapManager.Instance.playerCount--;
-//         Debug.Log($"플레이어 퇴장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
-//     }

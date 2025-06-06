@@ -10571,6 +10571,7 @@ GameObject:
   - component: {fileID: 820203138}
   - component: {fileID: 820203137}
   - component: {fileID: 820203141}
+  - component: {fileID: 820203142}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -10677,7 +10678,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitUi: {fileID: 1754555758}
   creatRoomUi: {fileID: 1937812360}
-  GameManager: {fileID: 5109187343620005931, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
+  GameManager: {fileID: 0}
+--- !u!114 &820203142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820203136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1590829917
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 820203141}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &876900353
 GameObject:
   m_ObjectHideFlags: 0
@@ -11026,10 +11046,6 @@ PrefabInstance:
     - target: {fileID: 8799432723965067367, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8799432723965067367, guid: 1ab305f4af3695845a7e9204b6ae3920, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

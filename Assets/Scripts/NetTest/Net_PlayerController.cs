@@ -125,9 +125,6 @@ public class Net_PlayerController : NetworkBehaviour
         if (wallTilemap == null)
             wallTilemap = PlayMapManager.Instance.wallTilemap;
 
-
-        GameObject cabinetObj = GameObject.Find("Cabinet");
-        cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
     }
 
     private void Start()
@@ -135,9 +132,18 @@ public class Net_PlayerController : NetworkBehaviour
         cellPos = grid.WorldToCell(transform.position);
         rb.position = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
 
+        GameObject cabinetObj = GameObject.Find("Cabinet");
+        cabinetTilemap = cabinetObj.GetComponent<Tilemap>();
+
         if (PlayerState2 == PlayerState2.Zombie)
         {
             BecomeZombie();
+        }
+
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 2)
+        {
+            WaitingMapManager.Instance.PlayerJoin();
         }
     }
 
