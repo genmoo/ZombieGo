@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7752804485326415568}
   - component: {fileID: 6985987866173784869}
   - component: {fileID: -1817577297104719143}
+  - component: {fileID: -2883659134777479162}
+  - component: {fileID: -4390878431397061341}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -175,3 +177,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9787c5e87a72b94ba97027a8116197b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2883659134777479162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722232415096526414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3018407986
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: -1817577297104719143}
+  - {fileID: -4390878431397061341}
+  ForceRemoteRenderTimeframe: 0
+--- !u!114 &-4390878431397061341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722232415096526414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e690b5fb1084f5ab1c86457af401d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 1
+  _interpolationTarget: {fileID: 0}
+  UsePreciseRotation: 0
+  UseRenderSleepThresholds: 1
+  RenderThresholds:
+    UseEnergy: 1
+    Position: 0.01
+    Rotation: 0.01
+    Scale: 0.01

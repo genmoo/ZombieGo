@@ -470,12 +470,15 @@ MonoBehaviour:
   wallTilemap: {fileID: 0}
   animator: {fileID: 8384868651919936581}
   spriteRenderer: {fileID: 4131893020095710442}
-  playerState: 0
   speed: 5
   arrowHandler: {fileID: 5460838842038689637}
   zombieHandler: {fileID: 4745883303506823377}
   Camera: {fileID: 0}
+  healthController: {fileID: 0}
+  circle: {fileID: 6049876967753665041}
   _playerAlpha: 0
+  _playerState: 0
+  _isFlipped: 0
 --- !u!50 &2561882897380308845
 Rigidbody2D:
   serializedVersion: 5
@@ -579,7 +582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0da1d29de6839428cbb133328de636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  _maxHealth: 0
+  _currentHealth: 0
   playerController: {fileID: 3448699737050935526}
   healthSlider: {fileID: 4802884488673140174}
   healthUI: {fileID: 8352410724962672941}
@@ -605,6 +609,9 @@ MonoBehaviour:
   dashCooldown: 8
   dashSpeed: 30
   ghostSpawnInterval: 0.01
+  _ImmuneUntil: 0
+  ghostPrefab:
+    RawGuidValue: 14c1fa103040a3040ab1ba9b4cd4ec98
 --- !u!114 &2723439027037760663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3862934864889817317}
   - component: {fileID: 4802884488673140174}
+  - component: {fileID: 6354141229560614746}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -1249,6 +1257,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6354141229560614746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8352410724962672941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c65b0a2bd184a747bec0b9cb7f71d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4608713557708306483}
+  offset: {x: 0, y: 3, z: 0}
 --- !u!1 &8767498788641322907
 GameObject:
   m_ObjectHideFlags: 0

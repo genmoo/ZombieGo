@@ -13,80 +13,63 @@ public class ZombieHandler : NetworkBehaviour
     public RuntimeAnimatorController zombieAnimator;
     public Image dashLoading;
     public Image dashImage;
-    
+
     public float dashCooldown = 8f;
     public float dashSpeed = 30f;
     public float ghostSpawnInterval = 0.01f;
 
     private Rigidbody2D rb;
-    private bool isDashing = false;
-    private Vector2 dashTarget;
+    
+    [Networked] private bool IsDashing { get; set; }
+    [Networked] private Vector2 DashTarget { get; set; }
+    [Networked] private float LastDashTime { get; set; }
+    [Networked] private bool IsCooldown { get; set; }
+
     private Vector2 dashDirection = Vector2.zero;
     private float dashLock = 0f;
     private float ghostSpawnTimer = 0f;
-    private float lastDashTime = -999f;
     private float timer = 0f;
-    private bool isCooldown = false;
-    
     private Vector2 lastMoveInput = Vector2.down;
-    
-    private float immuneUntil = 0f;
-    public float ImmuneUntil => immuneUntil;
-    private bool isImmune = false;
 
-    public void Init(Rigidbody2D rigidbody, Vector2 moveInput)
+    [Networked] public float ImmuneUntil { get; private set; }
+
+    [SerializeField] private NetworkPrefabRef ghostPrefab;
+
+    public void Init(Rigidbody2D rigidbody, Vector2 moveInput, Grid grid, Tilemap wallTilemap)
     {
         rb = rigidbody;
         lastMoveInput = moveInput;
+        this.grid = grid;
+        this.wallTilemap = wallTilemap;
     }
 
     private void Update()
     {
-        if (isImmune && Time.time >= immuneUntil)
-        {
-            isImmune = false;
-            SetZombieAlpha(1f);
-        }
+        UpdateZombieAlpha();
     }
-    
+
     public void BecomeZombie()
     {
-        dashLoading.gameObject.SetActive(true);
-        dashImage.gameObject.SetActive(true);
         animator.runtimeAnimatorController = zombieAnimator;
     }
-
+    
     public void HandleDashInput()
     {
-        if (isDashing) return;
+        if (IsDashing) return;
 
-        if (Keyboard.current.rightShiftKey.wasPressedThisFrame && Time.time - lastDashTime > dashCooldown)
+        if (HasInputAuthority && Keyboard.current.rightShiftKey.wasPressedThisFrame &&
+            (Runner.SimulationTime - LastDashTime > dashCooldown))
         {
             if (lastMoveInput == Vector2.up) dashDirection = Vector2.up;
             else if (lastMoveInput == Vector2.down) dashDirection = Vector2.down;
             else if (lastMoveInput == Vector2.left) dashDirection = Vector2.left;
             else if (lastMoveInput == Vector2.right) dashDirection = Vector2.right;
             else return;
-
-            Vector3Int startCell = grid.WorldToCell(rb.position);
-            Vector3Int dashCell = startCell;
-
-            for (int i = 0; i < 6; i++)
-            {
-                Vector3Int nextCell = dashCell + new Vector3Int((int)dashDirection.x, (int)dashDirection.y, 0);
-                if (wallTilemap.HasTile(nextCell))
-                    break;
-                dashCell = nextCell;
-            }
-
-            dashTarget = grid.CellToWorld(dashCell) + new Vector3(0.5f, 0f);
-            isDashing = true;
-            lastDashTime = Time.time;
-            isCooldown = true;
-            dashLoading.fillAmount = 0;
+            
+            RpcStartDash(dashDirection);
         }
 
-        if (isCooldown)
+        if (HasInputAuthority && IsCooldown)
         {
             timer += Time.deltaTime;
             float ratio = Mathf.Clamp01(timer / dashCooldown);
@@ -94,24 +77,44 @@ public class ZombieHandler : NetworkBehaviour
 
             if (timer >= dashCooldown)
             {
-                isCooldown = false;
+                IsCooldown = false;
                 timer = 0;
                 dashLoading.fillAmount = 1;
             }
         }
     }
 
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    private void RpcStartDash(Vector2 dashDir)
+    {
+        Vector3Int startCell = grid.WorldToCell(rb.position);
+        Vector3Int dashCell = startCell;
+
+        for (int i = 0; i < 6; i++)
+        {
+            Vector3Int nextCell = dashCell + new Vector3Int((int)dashDir.x, (int)dashDir.y, 0);
+            if (wallTilemap.HasTile(nextCell))
+                break;
+            dashCell = nextCell;
+        }
+
+        DashTarget = grid.CellToWorld(dashCell) + new Vector3(0.5f, 0f);
+        IsDashing = true;
+        LastDashTime = Runner.SimulationTime;
+        IsCooldown = true;
+    }
+
     public bool HandleDashMovement()
     {
-        if (!isDashing) return false;
+        if (!IsDashing) return false;
 
-        Vector2 nextPos = Vector2.MoveTowards(rb.position, dashTarget, dashSpeed * Time.fixedDeltaTime);
+        Vector2 nextPos = Vector2.MoveTowards(rb.position, DashTarget, dashSpeed * Time.fixedDeltaTime);
         Vector3Int nextCell = grid.WorldToCell(nextPos);
 
         if (wallTilemap.HasTile(nextCell))
         {
-            isDashing = false;
-            dashLock = Time.time + 0.5f;
+            IsDashing = false;
+            dashLock = Runner.SimulationTime + 0.5f;
             return false;
         }
 
@@ -124,11 +127,11 @@ public class ZombieHandler : NetworkBehaviour
             ghostSpawnTimer = 0f;
         }
 
-        if (Vector2.Distance(rb.position, dashTarget) < 0.05f)
+        if (Vector2.Distance(rb.position, DashTarget) < 0.05f)
         {
-            rb.position = dashTarget;
-            isDashing = false;
-            dashLock = Time.time + 0.5f;
+            rb.position = DashTarget;
+            IsDashing = false;
+            dashLock = Runner.SimulationTime + 0.5f;
         }
 
         return true;
@@ -136,41 +139,66 @@ public class ZombieHandler : NetworkBehaviour
 
     private void CreateDashGhost()
     {
-        GameObject ghost = new GameObject("DashGhost");
-        SpriteRenderer sr = ghost.AddComponent<SpriteRenderer>();
+        int spriteType = 0; 
 
-        sr.sprite = spriteRenderer.sprite;
-        sr.flipX = spriteRenderer.flipX;
-        sr.sortingOrder = spriteRenderer.sortingOrder - 1;
-        sr.color = new Color(1f, 1f, 1f, 0.5f);
+        if (Mathf.Abs(lastMoveInput.x) > Mathf.Abs(lastMoveInput.y))
+        {
+            spriteType = 0; // side
+        }
+        else
+        {
+            spriteType = (lastMoveInput.y > 0) ? 1 : 2; // up or down
+        }
 
-        ghost.transform.position = transform.position;
-        ghost.transform.localScale = transform.localScale;
+        bool flipX = (spriteType == 0) ? (lastMoveInput.x > 0) : false;
 
-        Destroy(ghost, 0.2f);
+        Runner.Spawn(
+            ghostPrefab,
+            transform.position,
+            Quaternion.identity,
+            Object.InputAuthority, // 중요!
+            (runner, ghostObj) =>
+            {
+                var dashGhost = ghostObj.GetComponent<DashGhost>();
+                dashGhost.SpriteType = spriteType;
+                dashGhost.IsFlipX = flipX;
+            }
+        );
     }
 
-    public bool IsDashing => isDashing;
+    public bool IsCurrentlyDashing => IsDashing;
     public float DashLock => dashLock;
-    
+
     public void SetMoveInput(Vector2 moveInput)
     {
         if (moveInput != Vector2.zero)
             lastMoveInput = moveInput;
     }
-    
-    
-    public void SetImmune(float duration)
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RpcSetImmune(float duration)
     {
-        immuneUntil = Time.time + duration;
-        isImmune = true;
-        SetZombieAlpha(0.5f);
+        ImmuneUntil = Runner.SimulationTime + duration;
     }
-    
+
+    private void UpdateZombieAlpha()
+    {
+        if (Runner.SimulationTime < ImmuneUntil)
+        {
+            SetZombieAlpha(0.7f);
+        }
+        else
+        {
+            SetZombieAlpha(1f);
+        }
+    }
+
     private void SetZombieAlpha(float alpha)
     {
         Color c = spriteRenderer.color;
         c.a = alpha;
         spriteRenderer.color = c;
     }
+
+    public bool IsImmune => Runner.SimulationTime < ImmuneUntil;
 }
