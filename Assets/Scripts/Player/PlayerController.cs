@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 using Fusion;
 using UnityEngine.UI;
 
-
 public enum MoveDir
 {
     None,
@@ -51,10 +50,11 @@ public class PlayerController : NetworkBehaviour
     [Networked] 
     public PlayerState playerState { get; set; }
     
+    [Networked]
+    public bool isInvincible { get; set; }
+    
     [Networked, OnChangedRender(nameof(OnFlipChanged))]
     public bool isFlipped { get; set; }
-
-    
    
     
     public override void Spawned()
@@ -78,7 +78,6 @@ public class PlayerController : NetworkBehaviour
 
             zombieHandler.dashLoading.gameObject.SetActive(false);
             zombieHandler.dashImage.gameObject.SetActive(false);
-            
         }
     }
     
@@ -111,16 +110,14 @@ public class PlayerController : NetworkBehaviour
         rb.position = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
     }
 
-    private void Update()
+    public override void FixedUpdateNetwork()
     {
-/*#if UNITY_EDITOR
-        if (playerState == PlayerState.Zombie)
-            return;
-#endif*/
-
+        CabinetAlpha();
+        
         if (HasStateAuthority)
         {
             DirInput();
+
 
             if (playerState == PlayerState.Human)
             {
@@ -145,17 +142,12 @@ public class PlayerController : NetworkBehaviour
             BecomeZombie();
         }
 
-        CabinetAlpha();
-    }
-
-    public override void FixedUpdateNetwork()
-    {
         if (playerState == PlayerState.Zombie && zombieHandler.HandleDashMovement())
         {
             cellPos = grid.WorldToCell(rb.position);
             return;
         }
-        
+
         UpdateMoving();
         UpdateAnimator();
         UpdatePosition();
@@ -237,7 +229,7 @@ public class PlayerController : NetworkBehaviour
             isFlipped = spriteRenderer.flipX = false;
 
         if (dir == MoveDir.Up || dir == MoveDir.Down)
-            spriteRenderer.flipX = false;
+            isFlipped = spriteRenderer.flipX = false;
 
         animator.SetFloat("XInput", moveInput.x);
         animator.SetFloat("YInput", moveInput.y);
@@ -260,25 +252,49 @@ public class PlayerController : NetworkBehaviour
 
     void CabinetAlpha()
     {
-        Vector3Int currentCell = grid.WorldToCell(transform.position);
+        Vector3 positionAbove = transform.position + new Vector3(0, 0.5f);
+        Vector3Int currentCell = grid.WorldToCell(positionAbove);
 
-        if (cabinetTilemap.HasTile(currentCell))
+        float targetAlpha = 1f;
+        
+        if (HasStateAuthority)
         {
-            playerAlpha = HasStateAuthority ? 0.5f : 0f;
+            if (cabinetTilemap.HasTile(currentCell))
+            {
+                targetAlpha = 0.5f;
+            }
+            else
+            {
+                targetAlpha = 1f;
+            }
+            if (Mathf.Abs(playerAlpha - targetAlpha) > 0.01f)
+            {
+                playerAlpha = targetAlpha;
+            }
         }
-        else
-        {
-            playerAlpha = 1f;
-        }
-    }
-
-    void SetPlayerAlpha()
-    {
-        Color c = spriteRenderer.color;
-        c.a = playerAlpha;
-        spriteRenderer.color = c;
     }
     
+    void SetPlayerAlpha()
+    {
+        float alphaToSet = playerAlpha;
+
+        if (cabinetTilemap.HasTile(grid.WorldToCell(transform.position + new Vector3(0, 0.5f))))
+        {
+            if (Runner.LocalPlayer == Object.InputAuthority)
+            {
+                alphaToSet = 0.5f;
+            }
+            else
+            {
+                alphaToSet = 0f;
+            }
+        }
+
+        Color c = spriteRenderer.color;
+        c.a = alphaToSet;
+        spriteRenderer.color = c;
+    }
+
     
     private void OnFlipChanged()
     {

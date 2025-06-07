@@ -478,6 +478,7 @@ MonoBehaviour:
   circle: {fileID: 6049876967753665041}
   _playerAlpha: 0
   _playerState: 0
+  _isInvincible: 0
   _isFlipped: 0
 --- !u!50 &2561882897380308845
 Rigidbody2D:
