@@ -43,10 +43,10 @@ public class ZombieHandler : NetworkBehaviour
         this.wallTilemap = wallTilemap;
     }
 
-    private void Update()
-    {
-        UpdateZombieAlpha();
-    }
+    // private void Update()
+    // {
+    //     UpdateZombieAlpha();
+    // }
 
     public void BecomeZombie()
     {
@@ -181,24 +181,24 @@ public class ZombieHandler : NetworkBehaviour
         ImmuneUntil = Runner.SimulationTime + duration;
     }
 
-    private void UpdateZombieAlpha()
-    {
-        if (Runner.SimulationTime < ImmuneUntil)
-        {
-            SetZombieAlpha(0.7f);
-        }
-        else
-        {
-            SetZombieAlpha(1f);
-        }
-    }
+    // private void UpdateZombieAlpha()
+    // {
+    //     if (Runner.SimulationTime < ImmuneUntil)
+    //     {
+    //         SetZombieAlpha(0.7f);
+    //     }
+    //     else
+    //     {
+    //         SetZombieAlpha(1f);
+    //     }
+    // }
 
-    private void SetZombieAlpha(float alpha)
-    {
-        Color c = spriteRenderer.color;
-        c.a = alpha;
-        spriteRenderer.color = c;
-    }
+    // private void SetZombieAlpha(float alpha)
+    // {
+    //     Color c = spriteRenderer.color;
+    //     c.a = alpha;
+    //     spriteRenderer.color = c;
+    // }
 
     public bool IsImmune => Runner.SimulationTime < ImmuneUntil;
 }

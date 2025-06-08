@@ -2,9 +2,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Fusion;
 using TMPro;
-using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
-using System.Threading;
 
 
 public class WaitingMapManager : NetworkBehaviour
@@ -14,6 +11,7 @@ public class WaitingMapManager : NetworkBehaviour
     public Tilemap wallTilemap;
     [SerializeField] private GameObject endUi;
     [SerializeField] private TMP_Text player;
+    [SerializeField] private TMP_Text start;
     [Networked] public int playerCount{ get; set; }
     void Awake()
     {
@@ -25,12 +23,21 @@ public class WaitingMapManager : NetworkBehaviour
 
         Instance = this;
 
-        endUi.SetActive(false);
+    
     }
 
     public override void Spawned()
     {
         playerCount = 0;
+
+        if (Runner.IsSharedModeMasterClient)
+        {
+            start.text = $"게임 시작";
+        }
+        else
+        {
+            start.text = $"대기중";
+        }
     }
 
     public void EndUi()

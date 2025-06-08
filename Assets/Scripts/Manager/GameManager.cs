@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
             {
                 if (Runner.IsSceneAuthority)
                 {
+                    yield return new WaitForSeconds(2f);
                     Runner.LoadScene(SceneRef.FromIndex(2), LoadSceneMode.Single);
                 }
 

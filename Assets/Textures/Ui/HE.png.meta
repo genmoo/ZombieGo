@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b93d782a67f74804f9fc3ce438101c09
+guid: 0ee8316cbf643bc4c9445b4a8c241fc8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5240381630957374874
-    second: Gray Rectangle_0
+      213: 6000310079352002982
+    second: HE_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gray Rectangle_0
+      name: HE_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 246
-        height: 96
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 5, y: 5, z: 5, w: 5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 662bd4fdbac6647b0800000000000000
-      internalID: -5240381630957374874
+      spriteID: 6a9d8f5e932654350800000000000000
+      internalID: 6000310079352002982
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 02b39402079266545ad054b6073c0ffb
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Gray Rectangle_0: -5240381630957374874
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

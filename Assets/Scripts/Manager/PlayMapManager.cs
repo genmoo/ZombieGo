@@ -20,8 +20,10 @@ public class PlayMapManager : NetworkBehaviour
     // Count Player
     private int ZombieCount = 0;
     [SerializeField] private TMP_Text countdownText;
-    [SerializeField] private GameObject endUi;
     private CancellationTokenSource cts;
+
+    [SerializeField] private GameObject ZombieEndUi;
+    [SerializeField] private GameObject HumanEndUi;
 
     private void Awake()
     {
@@ -32,7 +34,6 @@ public class PlayMapManager : NetworkBehaviour
         }
         Instance = this;
 
-        endUi.SetActive(false);
         cts = new CancellationTokenSource();
     }
 
@@ -43,16 +44,16 @@ public class PlayMapManager : NetworkBehaviour
 
     private void StartRound()
     {
-        if (HasStateAuthority)
-        {
-            timer = TickTimer.CreateFromSeconds(Runner, timerDuration);
-        }
-        UpdateTimerLoop(cts.Token).Forget();
         RandomChoiseZombie(cts.Token).Forget();
     }
 
     private async UniTaskVoid UpdateTimerLoop(CancellationToken token)
     {
+        if (HasStateAuthority)
+        {
+            timer = TickTimer.CreateFromSeconds(Runner, timerDuration);
+        }
+
         while (!token.IsCancellationRequested)
         {
             float remaining = timer.RemainingTime(Runner) ?? 0f;
@@ -72,20 +73,26 @@ public class PlayMapManager : NetworkBehaviour
             timerText.text = "00:00";
         Debug.Log("타이머 종료");
 
+
+        HumanEndUi.SetActive(true);
         // 시간으로 끝내기
-        // EndGameUi();
         EndGameSceneChange();
     }
 
     private async UniTaskVoid RandomChoiseZombie(CancellationToken token)
     {
+        countdownText.text = $"잠시뒤에 숙주좀비가 결정됩니다.\n서로 멀리 떨어지세요!";
+        await UniTask.Delay(3000, cancellationToken: token);
+
         float countdown = 10f;
 
         while (countdown > 0)
         {
             int sec = Mathf.CeilToInt(countdown);
-            countdownText.text = $"좀비 선택까지: {sec}초";
-            await UniTask.Delay(1000, cancellationToken: token);
+            countdownText.text = $"{sec}초 남았습니다!";
+            await UniTask.Delay(800, cancellationToken: token);
+            countdownText.text = $" ";
+            await UniTask.Delay(200, cancellationToken: token);
             countdown -= 1f;
         }
 
@@ -104,6 +111,8 @@ public class PlayMapManager : NetworkBehaviour
 
         await UniTask.Delay(1000, cancellationToken: token);
         countdownText.text = "";
+
+        UpdateTimerLoop(cts.Token).Forget();
     }
 
     public void AddZombie()
@@ -118,6 +127,7 @@ public class PlayMapManager : NetworkBehaviour
         int playerCount = players.Count;
         if (playerCount == ZombieCount)
         {
+            ZombieEndUi.SetActive(true);
             EndGameSceneChange();
         }
     }

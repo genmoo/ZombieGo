@@ -24,12 +24,12 @@ public enum PlayerState
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : NetworkBehaviour
-{ 
+{
     public Grid grid;
     public Tilemap wallTilemap;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    
+
     public float speed = 5f;
 
     public ArrowHandler arrowHandler;
@@ -46,24 +46,37 @@ public class PlayerController : NetworkBehaviour
     public Camera Camera;
     public HealthController healthController;
     public Image circle;
-    
+
     [Networked, OnChangedRender(nameof(SetPlayerAlpha))]
     public float playerAlpha { get; set; }
-    
-    [Networked] 
+
+    [Networked]
     public PlayerState playerState { get; set; }
-    
+
     [Networked, OnChangedRender(nameof(OnFlipChanged))]
     public bool isFlipped { get; set; }
+    private bool isSpawned = false;
 
-    
-   
-    
+
+    [Networked] private int cellPosX { get; set; }
+    [Networked] private int cellPosY { get; set; }
+    [Networked] private int cellPosZ { get; set; }
+    private Vector3Int currentCell
+    {
+        get => new Vector3Int(cellPosX, cellPosY, cellPosZ);
+        set
+        {
+            cellPosX = value.x;
+            cellPosY = value.y;
+            cellPosZ = value.z;
+        }
+    }
+
     public override void Spawned()
     {
         SpawnCamera();
         PlayerCount();
-
+        isSpawned = true;
         if (HasStateAuthority)
         {
             arrowHandler.arrowLoading.gameObject.SetActive(true);
@@ -84,7 +97,7 @@ public class PlayerController : NetworkBehaviour
 
         }
     }
-    
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,10 +113,10 @@ public class PlayerController : NetworkBehaviour
 
         arrowHandler.Init(rb, lastMoveInput);
         zombieHandler.Init(rb, lastMoveInput, grid, wallTilemap);
-        
+
         healthController = GetComponent<HealthController>();
         healthController.playerController = this;
-        
+
     }
 
     private void Start()
@@ -123,10 +136,17 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
-/*#if UNITY_EDITOR
-        if (playerState == PlayerState.Zombie)
-            return;
-#endif*/
+        /*#if UNITY_EDITOR
+                if (playerState == PlayerState.Zombie)
+                    return;
+        #endif*/
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Color c = spriteRenderer.color;
+            c.a = c.a == 1f ? 0.3f : 1f;
+            spriteRenderer.color = c;
+            Debug.Log($"[Manual Alpha] Alpha set to {c.a}");
+        }
 
         if (HasStateAuthority)
         {
@@ -150,9 +170,12 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
+        if (!isSpawned) return;
+
         if (playerState == PlayerState.Zombie && !zombieSetupDone)
         {
             BecomeZombie();
+
         }
 
         CabinetAlpha();
@@ -162,15 +185,14 @@ public class PlayerController : NetworkBehaviour
     {
         if (playerState == PlayerState.Zombie && zombieHandler.HandleDashMovement())
         {
-            cellPos = grid.WorldToCell(rb.position);
+
             return;
         }
-        
         UpdateMoving();
         UpdateAnimator();
         UpdatePosition();
     }
-// --------------------------------------------------------
+    // --------------------------------------------------------
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_SetAsZombie()
     {
@@ -302,16 +324,19 @@ public class PlayerController : NetworkBehaviour
 
     void CabinetAlpha()
     {
-        Vector3Int currentCell = grid.WorldToCell(transform.position);
+        if (HasStateAuthority)
+        {
+            currentCell = grid.WorldToCell(transform.position);
+        }
 
         if (cabinetTilemap.HasTile(currentCell))
-        {
-            playerAlpha = HasStateAuthority ? 0.5f : 0f;
-        }
-        else
-        {
-            playerAlpha = 1f;
-        }
+            {
+                playerAlpha = HasStateAuthority ? 0.5f : 0f;
+            }
+            else
+            {
+                playerAlpha = 1f;
+            }
     }
 
     void SetPlayerAlpha()
@@ -321,8 +346,8 @@ public class PlayerController : NetworkBehaviour
         spriteRenderer.color = c;
         Debug.Log($"[SetPlayerAlpha] Alpha set to {playerAlpha}");
     }
-    
-    
+
+
     private void OnFlipChanged()
     {
         spriteRenderer.flipX = isFlipped;
