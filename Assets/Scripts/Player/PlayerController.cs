@@ -4,8 +4,6 @@ using UnityEngine.Tilemaps;
 using Fusion;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Cysharp.Threading.Tasks;
-
 
 public enum MoveDir
 {
@@ -162,7 +160,6 @@ public class PlayerController : NetworkBehaviour
         if (playerState == PlayerState.Zombie && !zombieSetupDone)
         {
             BecomeZombie();
-
         }
 
         CabinetAlpha();
@@ -172,7 +169,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (playerState == PlayerState.Zombie && zombieHandler.HandleDashMovement())
         {
-
+            cellPos = grid.WorldToCell(rb.position);
             return;
         }
         UpdateMoving();

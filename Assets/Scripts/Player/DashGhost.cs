@@ -17,7 +17,7 @@ public class DashGhost : NetworkBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         ApplySprite();
-        
+
         Invoke(nameof(DespawnSelf), 0.2f); // 0.2초 후 자동 삭제
     }
 
