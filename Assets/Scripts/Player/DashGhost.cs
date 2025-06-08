@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class DashGhost : NetworkBehaviour
 {
-    [SerializeField] private Sprite[] sprites; 
+    [SerializeField] private Sprite[] sprites; // 0: side, 1: up, 2: down
 
     private SpriteRenderer sr;
 
     [Networked]
-    public int SpriteType { get; set; } 
+    public int SpriteType { get; set; } // 0, 1, 2a
     [Networked]
-    public bool IsFlipX { get; set; } 
+    public bool IsFlipX { get; set; } // true or false
 
     public override void Spawned()
     {
         sr = GetComponent<SpriteRenderer>();
         ApplySprite();
-        
-        Invoke(nameof(DespawnSelf), 0.2f); 
+
+        Invoke(nameof(DespawnSelf), 0.2f); // 0.2초 후 자동 삭제
     }
 
     public void Update()

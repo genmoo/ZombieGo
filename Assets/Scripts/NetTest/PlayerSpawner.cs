@@ -3,9 +3,12 @@ using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class PlayerSpawner : SimulationBehaviour
+
+public class PlayerSpawner : SimulationBehaviour, IPlayerLeft
 {
     public GameObject PlayerPrefab;
+
+    private bool hasSpawned = false;
 
     private void OnEnable()
     {
@@ -17,47 +20,28 @@ public class PlayerSpawner : SimulationBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    public void PlayerLeft(PlayerRef player)
+    {
+        WaitingMapManager.Instance.PlayerLeft();
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // StartCoroutine("SpawnAfterDelay");
+        hasSpawned = false; // 씬 바뀌었으니 다시 스폰할 수 있게 초기화
         SpawnAfterDelay().Forget();
     }
 
     private async UniTask SpawnAfterDelay()
     {
-        await UniTask.Delay(2000);
+        await UniTask.Delay(500);
+
+        if (hasSpawned) return;
+
         if (Runner != null && Runner.IsRunning)
         {
             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer);
-            // onBeforeSpawned: (runner, obj) =>
-            // {
-            //     obj.GetComponent<Net_PlayerController>().SceneGroupId = SceneManager.GetActiveScene().buildIndex;
-            //     print(SceneManager.GetActiveScene().buildIndex);
-            // });
-
+            hasSpawned = true;
         }
     }
+
 }
-
-// }
-// IPlayerJoined, IPlayerLeft
-//     public void PlayerJoined(PlayerRef player)
-//     {
-//         if (player == Runner.LocalPlayer)
-//         {
-//             Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer,
-//    onBeforeSpawned: (runner, obj) =>
-//    {
-//        obj.GetComponent<Net_PlayerController>().SceneGroupId = 3;
-//    });
-//         }
-
-//         WaitingMapManager.Instance.playerCount++;
-//         Debug.Log($"플레이어 입장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
-//     }
-
-//     public void PlayerLeft(PlayerRef player)
-//     {
-//         WaitingMapManager.Instance.playerCount--;
-//         Debug.Log($"플레이어 퇴장: {player} / 현재 인원: {WaitingMapManager.Instance.playerCount}");
-//     }

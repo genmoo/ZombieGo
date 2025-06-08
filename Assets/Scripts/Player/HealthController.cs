@@ -16,10 +16,10 @@ public class HealthController : NetworkBehaviour
     public Slider healthSlider;
     public GameObject healthUI;
 
-    public override void Spawned()
-    {
-        InitHealth();
-    }
+    // public override void Spawned()
+    // {
+    //     InitHealth();
+    // }
 
     public void InitHealth()
     {

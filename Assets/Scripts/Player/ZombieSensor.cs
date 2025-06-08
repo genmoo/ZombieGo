@@ -19,9 +19,9 @@ public class ZombieSensor : NetworkBehaviour
         if (!collision.TryGetComponent(out HealthController health)) return;
 
         var targetPlayer = health.playerController;
-        
+
         if (targetPlayer == ownerPlayer) return;
-        
+
         if (ownerPlayer.playerState != PlayerState.Zombie) return;
         if (targetPlayer.playerState != PlayerState.Human) return;
 

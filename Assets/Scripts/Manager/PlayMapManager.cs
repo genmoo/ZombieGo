@@ -1,32 +1,31 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Fusion;
-using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
-
+using System.Collections.Generic;
+using System.Threading;
 
 public class PlayMapManager : NetworkBehaviour
 {
     public static PlayMapManager Instance;
     public Grid grid;
     public Tilemap wallTilemap;
-    public int playerCount = 0;
+    public List<PlayerController> players = new List<PlayerController>();
+    public PlayerScoreboard playerScoreboard;
+    // Networked timer
+    [Networked] private TickTimer timer { get; set; }
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private float timerDuration = 70f;
+    // Count Player
+    private int ZombieCount = 0;
+    [SerializeField] private TMP_Text countdownText;
+    private CancellationTokenSource cts;
 
-    // timer
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private GameObject ZombieEndUi;
+    [SerializeField] private GameObject HumanEndUi;
 
-    [SerializeField] private float time;
-    [SerializeField] private float curTime;
-
-    private NetworkRunner Runner;
-
-    int minute;
-    int second;
-
-    void Awake()
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -35,39 +34,131 @@ public class PlayMapManager : NetworkBehaviour
         }
         Instance = this;
 
-        if (Runner == null)
-            Runner = FindObjectOfType<NetworkRunner>();
+        cts = new CancellationTokenSource();
     }
 
-    private void Start()
+    public override void Spawned()
     {
+        StartRound();
+    }
+
+    private void StartRound()
+    {
+        RandomChoiseZombie(cts.Token).Forget();
+    }
+
+    private async UniTaskVoid UpdateTimerLoop(CancellationToken token)
+    {
+        if (HasStateAuthority)
+        {
+            timer = TickTimer.CreateFromSeconds(Runner, timerDuration);
+        }
+
+        while (!token.IsCancellationRequested)
+        {
+            float remaining = timer.RemainingTime(Runner) ?? 0f;
+
+            int min = Mathf.FloorToInt(remaining / 60f);
+            int sec = Mathf.FloorToInt(remaining % 60f);
+
+            if (timerText != null)
+                timerText.text = $"{min:00}:{sec:00}";
+
+            if (remaining <= 0f)
+                break;
+            await UniTask.Delay(500, cancellationToken: token); // 0.5초 간격
+        }
+
+        if (timerText != null)
+            timerText.text = "00:00";
+        Debug.Log("타이머 종료");
+
+
+        HumanEndUi.SetActive(true);
+        // 시간으로 끝내기
+        EndGameSceneChange();
+    }
+
+    private async UniTaskVoid RandomChoiseZombie(CancellationToken token)
+    {
+        countdownText.text = $"잠시뒤에 숙주좀비가 결정됩니다.\n서로 멀리 떨어지세요!";
+        await UniTask.Delay(3000, cancellationToken: token);
+
+        float countdown = 10f;
+
+        while (countdown > 0)
+        {
+            int sec = Mathf.CeilToInt(countdown);
+            countdownText.text = $"{sec}초 남았습니다!";
+            await UniTask.Delay(800, cancellationToken: token);
+            countdownText.text = $" ";
+            await UniTask.Delay(200, cancellationToken: token);
+            countdown -= 1f;
+        }
+
+        countdownText.text = "좀비 선택 중...";
+        // Shared 모드 마스터 클라이언트만 실행
         if (Runner.IsSharedModeMasterClient)
         {
-            Invoke("StartTimer", 3f);
+            if (players.Count == 0) return;
+
+            int randomIndex = Random.Range(0, players.Count);
+            PlayerController chosenPlayer = players[randomIndex];
+
+            // RPC 호출해서 모든 클라이언트가 동기화되도록
+            chosenPlayer.RPC_SetAsZombie();
+        }
+
+        await UniTask.Delay(1000, cancellationToken: token);
+        countdownText.text = "";
+
+        UpdateTimerLoop(cts.Token).Forget();
+    }
+
+    public void AddZombie()
+    {
+        ZombieCount++;
+        print("dasfg");
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        int playerCount = players.Count;
+        if (playerCount == ZombieCount)
+        {
+            ZombieEndUi.SetActive(true);
+            EndGameSceneChange();
         }
     }
 
-    public void StartTimer()
+
+    private void EndGameSceneChange()
     {
-        time = 70;
-        Timer().Forget();
+        cts?.Cancel();
+
+        var player = GameObject.FindWithTag("Player");
+        if (player != null)
+            Destroy(player);
+
+        GameManager.Instance.ChangeToWatingScene();
     }
-    
-    private async UniTask Timer()
+
+    public void JoinPlayer(PlayerController player)
     {
-        curTime = time;
-        while (curTime > 0)
+        if (!players.Contains(player))
         {
-            curTime -= Time.deltaTime;
-            minute = (int)curTime / 60;
-            second = (int)curTime % 60;
-            text.text = minute.ToString("00") + ":" + second.ToString("00");
-            await UniTask.Yield();
+            print("join");
+            players.Add(player);
         }
-        Debug.Log("시간 종료");
-        curTime = 0;
+    }
+
+    public void LeftPlayer(PlayerController player)
+    {
+        if (players.Contains(player))
+        {
+            print("left");
+            players.Remove(player);
+        }
     }
 }
-
-
-
