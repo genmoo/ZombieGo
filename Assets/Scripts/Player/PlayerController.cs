@@ -56,6 +56,13 @@ public class PlayerController : NetworkBehaviour
 
     [Networked, OnChangedRender(nameof(OnFlipChanged))]
     public bool isFlipped { get; set; }
+    
+    public AudioClip zombieSfx;
+    private AudioSource audioSource;
+    
+    [Networked, OnChangedRender(nameof(OnShootSoundChanged))]
+    private bool isSound { get; set; }
+    
 
     public GameObject NickName;
 
@@ -63,25 +70,7 @@ public class PlayerController : NetworkBehaviour
     {
         SpawnCamera();
         PlayerCount();
-        if (HasStateAuthority)
-        {
-            arrowHandler.arrowLoading.gameObject.SetActive(true);
-            arrowHandler.arrowImage.gameObject.SetActive(true);
-
-            zombieHandler.dashLoading.gameObject.SetActive(false);
-            zombieHandler.dashImage.gameObject.SetActive(false);
-        }
-        else
-        {
-            circle.enabled = false;
-            arrowHandler.arrowLoading.gameObject.SetActive(false);
-            arrowHandler.arrowImage.gameObject.SetActive(false);
-
-            zombieHandler.dashLoading.gameObject.SetActive(false);
-            zombieHandler.dashImage.gameObject.SetActive(false);
-
-
-        }
+        isSound = false;
     }
 
     private void Awake()
@@ -102,11 +91,34 @@ public class PlayerController : NetworkBehaviour
 
         healthController = GetComponent<HealthController>();
         healthController.playerController = this;
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
 
     }
 
     private void Start()
     {
+        if (HasStateAuthority)
+        {
+            arrowHandler.arrowLoading.gameObject.SetActive(true);
+            arrowHandler.arrowImage.gameObject.SetActive(true);
+
+            zombieHandler.dashLoading.gameObject.SetActive(false);
+            zombieHandler.dashImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            circle.enabled = false;
+            arrowHandler.arrowLoading.gameObject.SetActive(false);
+            arrowHandler.arrowImage.gameObject.SetActive(false);
+
+            zombieHandler.dashLoading.gameObject.SetActive(false);
+            zombieHandler.dashImage.gameObject.SetActive(false);
+
+
+        }
+
         cellPos = grid.WorldToCell(transform.position);
         rb.position = grid.CellToWorld(cellPos) + new Vector3(0.5f, 0f);
 
@@ -120,12 +132,9 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
+
     private void Update()
     {
-        /*#if UNITY_EDITOR
-                if (playerState == PlayerState.Zombie)
-                    return;
-        #endif*/
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Color c = spriteRenderer.color;
@@ -148,12 +157,11 @@ public class PlayerController : NetworkBehaviour
                 zombieHandler.SetMoveInput(lastMoveInput);
                 zombieHandler.HandleDashInput();
             }
-
-            //디버깅용
-            if (Keyboard.current.eKey.wasPressedThisFrame)
+            
+            /*if (Keyboard.current.eKey.wasPressedThisFrame)
             {
                 playerState = PlayerState.Zombie;
-            }
+            }*/
         }
 
 
@@ -163,6 +171,7 @@ public class PlayerController : NetworkBehaviour
         }
 
         CabinetAlpha();
+
     }
 
     public override void FixedUpdateNetwork()
@@ -180,7 +189,7 @@ public class PlayerController : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_SetAsZombie()
     {
-        playerState = PlayerState.Zombie;
+        playerState = PlayerState.Zombie; 
         Debug.Log($"{Object.InputAuthority} is now the Zombie!!");
     }
 
@@ -285,11 +294,20 @@ public class PlayerController : NetworkBehaviour
             isFlipped = spriteRenderer.flipX = false;
 
         if (dir == MoveDir.Up || dir == MoveDir.Down)
-            spriteRenderer.flipX = false;
+            isFlipped = spriteRenderer.flipX = false;
 
         animator.SetFloat("XInput", moveInput.x);
         animator.SetFloat("YInput", moveInput.y);
         animator.SetBool("isWalk", isMoving && dir != MoveDir.None);
+    }
+    
+    private void OnShootSoundChanged()
+    {
+        PlayShootSfx();
+    }
+    private void PlayShootSfx()
+    {
+        audioSource.PlayOneShot(zombieSfx);
     }
 
     public void BecomeZombie()
@@ -304,6 +322,12 @@ public class PlayerController : NetworkBehaviour
         zombieHandler.BecomeZombie();
         arrowHandler.HideArrowUI();
         healthController.InitHealth();
+        
+        if (HasStateAuthority)
+        {
+            isSound = !isSound;
+        }
+        
     }
 
     void CabinetAlpha()

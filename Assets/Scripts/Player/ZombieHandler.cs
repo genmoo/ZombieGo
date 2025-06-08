@@ -30,17 +30,31 @@ public class ZombieHandler : NetworkBehaviour
     private float ghostSpawnTimer = 0f;
     private float timer = 0f;
     private Vector2 lastMoveInput = Vector2.down;
+    
+    public AudioClip shootSfx;
+    private AudioSource audioSource;
 
     [Networked] public float ImmuneUntil { get; private set; }
+    
+    [Networked, OnChangedRender(nameof(OnShootSoundChanged))]
+    private bool isSound { get; set; }
 
     [SerializeField] private NetworkPrefabRef ghostPrefab;
 
+    public override void Spawned()
+    {
+        isSound = false;
+    }
+    
     public void Init(Rigidbody2D rigidbody, Vector2 moveInput, Grid grid, Tilemap wallTilemap)
     {
         rb = rigidbody;
         lastMoveInput = moveInput;
         this.grid = grid;
         this.wallTilemap = wallTilemap;
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -53,6 +67,16 @@ public class ZombieHandler : NetworkBehaviour
         animator.runtimeAnimatorController = zombieAnimator;
     }
 
+    private void OnShootSoundChanged()
+    {
+        PlayShootSfx();
+    }
+    
+    private void PlayShootSfx()
+    {
+        audioSource.PlayOneShot(shootSfx);
+    }
+
     public void HandleDashInput()
     {
         if (IsDashing) return;
@@ -60,6 +84,11 @@ public class ZombieHandler : NetworkBehaviour
         if (HasInputAuthority && Keyboard.current.rightShiftKey.wasPressedThisFrame &&
             (Runner.SimulationTime - LastDashTime > dashCooldown))
         {
+            if (HasStateAuthority)
+            {
+                isSound = !isSound;
+            }
+
             if (lastMoveInput == Vector2.up) dashDirection = Vector2.up;
             else if (lastMoveInput == Vector2.down) dashDirection = Vector2.down;
             else if (lastMoveInput == Vector2.left) dashDirection = Vector2.left;

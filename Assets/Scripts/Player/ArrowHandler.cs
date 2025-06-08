@@ -21,10 +21,23 @@ public class ArrowHandler : NetworkBehaviour
     private float timer = 0f;
     private bool isCooldown = false;
     
+    public AudioClip shootSfx;
+    private AudioSource audioSource;
+    
+    [Networked, OnChangedRender(nameof(OnShootSoundChanged))]
+    private bool isSound { get; set; }
+
+    public override void Spawned()
+    {
+        isSound = false;
+    }
     public void Init(Rigidbody2D rigidbody, Vector2 moveInput)
     {
         rb = rigidbody;
         lastMoveInput = moveInput;
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     public void HandleArrowInput()
@@ -52,8 +65,23 @@ public class ArrowHandler : NetworkBehaviour
         }
     }
 
+    private void OnShootSoundChanged()
+    {
+        PlayShootSfx();
+    }
+    
+    private void PlayShootSfx()
+    {
+        audioSource.PlayOneShot(shootSfx);
+    }
+    
     private void ShootArrow()
     {
+        if (HasStateAuthority)
+        {
+            isSound = !isSound;
+        }
+        
         Vector2 shootDir = lastMoveInput.normalized;
         Vector2 spawnOffset = Vector2.zero;
 

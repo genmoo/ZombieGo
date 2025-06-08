@@ -482,6 +482,7 @@ MonoBehaviour:
   _playerState: 0
   _isInvincible: 0
   _isFlipped: 0
+  zombieSfx: {fileID: 8300000, guid: 9db54ef4a23a6a248b060f8aef057f88, type: 3}
   NickName: {fileID: 4184221392616404237}
 --- !u!50 &2561882897380308845
 Rigidbody2D:
@@ -574,6 +575,7 @@ MonoBehaviour:
   arrowCooldown: 1.5
   arrowLoading: {fileID: 2107420560827858984}
   arrowImage: {fileID: 5487858766409430482}
+  shootSfx: {fileID: 8300000, guid: 1861888ebb7f78d43aba0036c922c799, type: 3}
 --- !u!114 &8779908427083572965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +615,7 @@ MonoBehaviour:
   dashCooldown: 8
   dashSpeed: 30
   ghostSpawnInterval: 0.01
+  shootSfx: {fileID: 8300000, guid: 9627b82dfd51e1840a52c71df89fa389, type: 3}
   _ImmuneUntil: 0
   ghostPrefab:
     RawGuidValue: 14c1fa103040a3040ab1ba9b4cd4ec98

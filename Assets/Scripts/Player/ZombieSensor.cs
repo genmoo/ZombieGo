@@ -6,7 +6,9 @@ public class ZombieSensor : NetworkBehaviour
     public ZombieHandler zombieHandler;
 
     private PlayerController ownerPlayer;
-
+    
+    
+    
     private void Awake()
     {
         ownerPlayer = zombieHandler.GetComponent<PlayerController>();
@@ -32,7 +34,7 @@ public class ZombieSensor : NetworkBehaviour
     {
         return Runner.SimulationTime < zombieHandler.ImmuneUntil;
     }
-
+    
     private void Infect(PlayerController target)
     {
         target.playerState = PlayerState.Zombie;
