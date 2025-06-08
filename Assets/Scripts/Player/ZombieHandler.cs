@@ -19,7 +19,7 @@ public class ZombieHandler : NetworkBehaviour
     public float ghostSpawnInterval = 0.01f;
 
     private Rigidbody2D rb;
-    
+
     [Networked] private bool IsDashing { get; set; }
     [Networked] private Vector2 DashTarget { get; set; }
     [Networked] private float LastDashTime { get; set; }
@@ -43,16 +43,16 @@ public class ZombieHandler : NetworkBehaviour
         this.wallTilemap = wallTilemap;
     }
 
-    // private void Update()
-    // {
-    //     UpdateZombieAlpha();
-    // }
+    private void Update()
+    {
+        UpdateZombieAlpha();
+    }
 
     public void BecomeZombie()
     {
         animator.runtimeAnimatorController = zombieAnimator;
     }
-    
+
     public void HandleDashInput()
     {
         if (IsDashing) return;
@@ -65,7 +65,7 @@ public class ZombieHandler : NetworkBehaviour
             else if (lastMoveInput == Vector2.left) dashDirection = Vector2.left;
             else if (lastMoveInput == Vector2.right) dashDirection = Vector2.right;
             else return;
-            
+
             RpcStartDash(dashDirection);
         }
 
@@ -139,7 +139,7 @@ public class ZombieHandler : NetworkBehaviour
 
     private void CreateDashGhost()
     {
-        int spriteType = 0; 
+        int spriteType = 0;
 
         if (Mathf.Abs(lastMoveInput.x) > Mathf.Abs(lastMoveInput.y))
         {
@@ -181,24 +181,24 @@ public class ZombieHandler : NetworkBehaviour
         ImmuneUntil = Runner.SimulationTime + duration;
     }
 
-    // private void UpdateZombieAlpha()
-    // {
-    //     if (Runner.SimulationTime < ImmuneUntil)
-    //     {
-    //         SetZombieAlpha(0.7f);
-    //     }
-    //     else
-    //     {
-    //         SetZombieAlpha(1f);
-    //     }
-    // }
-
-    // private void SetZombieAlpha(float alpha)
-    // {
-    //     Color c = spriteRenderer.color;
-    //     c.a = alpha;
-    //     spriteRenderer.color = c;
-    // }
-
+    public void UpdateZombieAlpha()
+    {
+        if (Runner.SimulationTime < ImmuneUntil)
+        {
+            PlayerController pc = GetComponent<PlayerController>();
+            if (!pc.isInvincible)
+            {
+                pc.isInvincible = true;
+            }
+        }
+        else
+        {
+            PlayerController pc = GetComponent<PlayerController>();
+            if (pc.isInvincible)
+            {
+                pc.isInvincible = false;
+            }
+        }
+    }
     public bool IsImmune => Runner.SimulationTime < ImmuneUntil;
 }

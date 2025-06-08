@@ -12,7 +12,8 @@ public class WaitingMapManager : NetworkBehaviour
     [SerializeField] private GameObject endUi;
     [SerializeField] private TMP_Text player;
     [SerializeField] private TMP_Text start;
-    [Networked] public int playerCount{ get; set; }
+
+    public int playerCount { get; set; }
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,21 +24,11 @@ public class WaitingMapManager : NetworkBehaviour
 
         Instance = this;
 
-    
     }
 
     public override void Spawned()
     {
         playerCount = 0;
-
-        if (Runner.IsSharedModeMasterClient)
-        {
-            start.text = $"게임 시작";
-        }
-        else
-        {
-            start.text = $"대기중";
-        }
     }
 
     public void EndUi()
@@ -45,16 +36,36 @@ public class WaitingMapManager : NetworkBehaviour
         endUi.SetActive(true);
     }
 
+
     public void PlayerJoin()
     {
-            playerCount++;
-            player.text = $"감염 {playerCount}/8";
+
+        playerCount++;
+        Count();
     }
-    
+
     public void PlayerLeft()
     {
-            playerCount--;
-            player.text = $"감염 {playerCount}/8";
+
+        playerCount--;
+        Count();
+    }
+
+    public void Count()
+    {
+        player.text = $"감염 {playerCount}/8";
+        startButtonSet();
+    }
+
+
+    private void startButtonSet()
+    {
+        start.text = Runner.IsSharedModeMasterClient ? "게임 시작" : "대기중";
+    }
+
+    private void Update()
+    {
+        print(playerCount);
+        // Count();
     }
 }
-

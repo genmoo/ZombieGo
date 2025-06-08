@@ -480,7 +480,9 @@ MonoBehaviour:
   circle: {fileID: 6049876967753665041}
   _playerAlpha: 0
   _playerState: 0
+  _isInvincible: 0
   _isFlipped: 0
+  NickName: {fileID: 4184221392616404237}
 --- !u!50 &2561882897380308845
 Rigidbody2D:
   serializedVersion: 5

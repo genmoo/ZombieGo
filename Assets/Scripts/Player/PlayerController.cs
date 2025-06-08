@@ -53,30 +53,18 @@ public class PlayerController : NetworkBehaviour
     [Networked]
     public PlayerState playerState { get; set; }
 
+    [Networked]
+    public bool isInvincible { get; set; }
+
     [Networked, OnChangedRender(nameof(OnFlipChanged))]
     public bool isFlipped { get; set; }
-    private bool isSpawned = false;
 
-
-    [Networked] private int cellPosX { get; set; }
-    [Networked] private int cellPosY { get; set; }
-    [Networked] private int cellPosZ { get; set; }
-    private Vector3Int currentCell
-    {
-        get => new Vector3Int(cellPosX, cellPosY, cellPosZ);
-        set
-        {
-            cellPosX = value.x;
-            cellPosY = value.y;
-            cellPosZ = value.z;
-        }
-    }
+    public GameObject NickName;
 
     public override void Spawned()
     {
         SpawnCamera();
         PlayerCount();
-        isSpawned = true;
         if (HasStateAuthority)
         {
             arrowHandler.arrowLoading.gameObject.SetActive(true);
@@ -170,7 +158,6 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
-        if (!isSpawned) return;
 
         if (playerState == PlayerState.Zombie && !zombieSetupDone)
         {
@@ -324,27 +311,49 @@ public class PlayerController : NetworkBehaviour
 
     void CabinetAlpha()
     {
+        Vector3 positionAbove = transform.position + new Vector3(0, 0.5f);
+        Vector3Int currentCell = grid.WorldToCell(positionAbove);
+
+        float targetAlpha = 1f;
+
         if (HasStateAuthority)
         {
-            currentCell = grid.WorldToCell(transform.position);
-        }
-
-        if (cabinetTilemap.HasTile(currentCell))
+            if (cabinetTilemap.HasTile(currentCell))
             {
-                playerAlpha = HasStateAuthority ? 0.5f : 0f;
+                targetAlpha = 0.5f;
             }
             else
             {
-                playerAlpha = 1f;
+                targetAlpha = 1f;
             }
+            if (Mathf.Abs(playerAlpha - targetAlpha) > 0.01f)
+            {
+                playerAlpha = targetAlpha;
+            }
+        }
     }
 
     void SetPlayerAlpha()
     {
+        float alphaToSet = playerAlpha;
+
+        if (cabinetTilemap.HasTile(grid.WorldToCell(transform.position + new Vector3(0, 0.5f))))
+        {
+            if (Runner.LocalPlayer == Object.InputAuthority)
+            {
+                alphaToSet = 0.5f;
+                NickName.SetActive(true);
+            }
+            else
+            {
+                alphaToSet = 0f;
+                NickName.SetActive(false);
+            }
+        }
+
         Color c = spriteRenderer.color;
-        c.a = playerAlpha;
+        c.a = alphaToSet;
         spriteRenderer.color = c;
-        Debug.Log($"[SetPlayerAlpha] Alpha set to {playerAlpha}");
     }
 
 
